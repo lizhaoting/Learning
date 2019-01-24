@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FLEX</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .title {
+            height: 80px;
+            background-color: #cdcdcd;
+        }
+        .flex {
+            height: calc(100% - 120px);
+            display: flex;
+        }
+        .leftBar {
+            width: 200px;
+            flex-shrink: 0;
+            background-color: #ffff99;
+        }
+        .container {
+            width: 100%;
+            background-color: #EE8888;
+        }
+        .rightBar {
+            width: 200px;
+            flex-shrink: 0;
+            background-color: #ffff99;
+        }
+        .footer { 
+            height: 40px;
+            background-color: #cdcdcd;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">标题</div>
+    <div class="flex">
+        <div class="leftBar">
+            <span>目录</span>
+        </div>
+        <div class="container">
+            <span>内容</span>
+        </div>
+        <div class="rightBar">
+            <span>右侧</span>
+        </div>
+    </div>
+    <div class="footer">
+        版权声明
+    </div>
+</body>
+</html>

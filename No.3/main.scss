@@ -1,0 +1,5 @@
+@each $item in red, green, yellow {
+    .#{$item} {
+      color: $item;
+    }
+  }

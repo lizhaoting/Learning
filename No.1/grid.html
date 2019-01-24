@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GRID</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 200px auto 200px;
+            grid-template-rows: 80px auto 40px;
+        }
+        .header {
+            grid-column-start: 1;
+            grid-column-end: 4;
+            background-color: #cdcdcd;
+        }
+        .leftBar {
+            background-color: #ffff99;
+        }
+        .content {
+            background-color: #EE8888;
+        }
+        .rightBar {
+            background-color: #ffff99;
+        }
+        .footer {
+            grid-column-start: 1;
+            grid-column-end: 4;
+            background-color: #cdcdcd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">标题</div>
+        <div class="leftBar">目录</div>
+        <div class="content">内容</div>
+        <div class="rightBar">右侧</div>
+        <div class="footer">版权声明</div>
+    </div>
+</body>
+</html>
