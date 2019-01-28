@@ -1,4 +1,4 @@
-## （二）Sass初体验
+## （三）Sass初体验
 
 > **1：环境布置**
 - **安装Ruby**
@@ -38,7 +38,7 @@
 
 - **SCSS是sass的一个升级版本，完全兼容sass**
 
-- **SCSS是靠缩进表示嵌套关系，SCSS是花括号**
+- **Sass是靠缩进表示嵌套关系，SCSS是花括号**
 
 - **具体语法上面的差异**
   ```css
@@ -230,15 +230,16 @@ sass main.scss main.css
   ```
 
 - **Sass计算属性**
-```css
-body {
-　　margin: (14px/2);
-　　top: 50px + 100px;
-　　right: $var * 10%;
-}
-```
+  ```css
+  body {
+  　　margin: (14px/2);
+  　　top: 50px + 100px;
+  　　right: $var * 10%;
+  }
+  ```
 
 - **Sass继承**
+
   - **extend**
   ```css
   .header {
@@ -331,6 +332,24 @@ body {
 
 > **5：课后练习**
 
+  - 下面哪一项是.sass语法
+    ```
+    A: !primary-color= hotpink;
+    A: @color: red
+    A: $color: red;
+    A: color: red;
+    ```
+
+  - 下面哪一中写法可以在scss文件中实现类名变量
+    ```
+    A: .@classname
+    B: .$classname
+    C: .@{classname}
+    D: .${classname}
+    E: .#{$member}
+    F: .@{$member}
+    ```
+
   - body的color是
     ```css
     .header {
@@ -355,26 +374,8 @@ body {
 
     D: yellow
     ```
-  - class_one和class_two哪个在宽度上更宽
-    ```css
-    .format {
-      width: percentage(0.5);
-    }
 
-    .class_one {
-      .format
-    }
-
-    .class_two {
-      .format()
-    }
-    ```
-    ```
-    A: class_one
-    B: class_two
-    C: 不知道
-    D: 相同
-    ```
+  - scss有几种编译风格？分别有什么特点？
 
   - 书写一个mixin，自动生成浏览器前缀
 
@@ -382,5 +383,5 @@ body {
 
 > **5：总结**
 ```
-本节课讲解了Less的基本使用，从嵌套、混合、变量、函数和引入五个方面介绍了Less的基础用法，并和Sass进行了概念层次的比较，分析Less的优劣势
+本节课讲解了Sass的基本使用，从嵌套、变量、函数、继承和高阶属性方面介绍了Sass的常用语法，贯穿全篇比较了Sass与Less的共同点和差异
 ```
