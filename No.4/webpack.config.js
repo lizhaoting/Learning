@@ -4,7 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: './index.js',
   output: {
-    path: path.resolve(__dirname, ''),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   mode: 'development',
@@ -15,8 +15,33 @@ module.exports = {
         use: ExtractTextPlugin.extract({
             fallback: "style-loader",
             use: [
-                { loader: "css-loader", options: { importLoaders: 1 } },
-                "postcss-loader"
+              "css-loader",
+              {
+                loader: "postcss-loader",
+                "options": {
+                  plugins: [
+                    require('postcss-modules'),
+                  ]
+                }
+              },
+              {
+                loader: "postcss-loader",
+                "options": {
+                  plugins: [
+                    require('autoprefixer')({"browsers": ["last 10 versions"]}),
+                    require('lost'),
+                    require('lost'),
+                  ]
+                }
+              },
+              {
+                loader: "postcss-loader",
+                "options": {
+                  plugins: [
+                    require('stylelint'),
+                  ]
+                }
+              },
             ]
         })
       }
