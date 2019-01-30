@@ -1,0 +1,6 @@
+@for $index from 1 to 100 {
+  .background-#{$index} {
+      background-image: url("/image/#{$index}.jpg");
+      display: flex;
+  }
+}
