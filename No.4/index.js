@@ -1,4 +1,4 @@
-import styles from './style.css';
+import './style.css';
 
 function app() {
 	var element = document.createElement('div');
