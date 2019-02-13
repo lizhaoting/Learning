@@ -1,22 +1,4 @@
-.title {
+.header {
   display: flex;
-  font-size: 1rem;
   lost-column: 1/1;
-}
-
-:root {
-  --fontSize: 1rem;
-  --mainColor: #12345678;
-  --centered: {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  };
-}
-
-body {
-  color: var(--mainColor);
-  font-size: var(--fontSize);
-  line-height: calc(var(--fontSize) * 1.5);
-  padding: calc((var(--fontSize) / 2) + 1px);
 }

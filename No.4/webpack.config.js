@@ -16,32 +16,32 @@ module.exports = {
             fallback: "style-loader",
             use: [
               "css-loader",
+              // {
+              //   loader: "postcss-loader",
+              //   "options": {
+              //     plugins: [
+              //       require('postcss-modules'),
+              //     ]
+              //   }
+              // },
               {
                 loader: "postcss-loader",
                 "options": {
                   plugins: [
-                    require('postcss-modules'),
-                  ]
-                }
-              },
-              {
-                loader: "postcss-loader",
-                "options": {
-                  plugins: [
-                    require('autoprefixer')({"browsers": ["last 10 versions"]}),
+                    // require('autoprefixer')({"browsers": ["last 10 versions"]}),
                     require('lost'),
-                    require('postcss-cssnext'),
+                    // require('postcss-cssnext'),
                   ]
                 }
               },
-              {
-                loader: "postcss-loader",
-                "options": {
-                  plugins: [
-                    require('stylelint'),
-                  ]
-                }
-              },
+              // {
+              //   loader: "postcss-loader",
+              //   "options": {
+              //     plugins: [
+              //       require('stylelint'),
+              //     ]
+              //   }
+              // },
             ]
         })
       }

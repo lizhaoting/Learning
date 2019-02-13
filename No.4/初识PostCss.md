@@ -116,7 +116,9 @@
       ```
 
 > **3：autoprefixer**
-
+  ```css
+  根据can i use解析css并且为其添加浏览器厂商前缀的PostCSS插件
+  ```
   ```css
   npm install autoprefixer --save-dev
   ```
@@ -130,7 +132,15 @@
     }
   }
   ```
+  ```css
+  .header {
+    display: flex;
+  }
+  ```
 > **4：stylelint**
+  ```css
+  强制开发人员按照团队css规范写css样式的工具，类似eslint
+  ```
   ```css
   npm install stylelint stylelint-config-lost stylelint-config-standard --save-dev
   ```
@@ -144,8 +154,17 @@
     }
   },
   ```
+  ```css
+  .header {
+    display: flex;
+    color: '#00';
+  }
+  ```
 
 > **5：postcss-cssnext**
+  ```css
+  可以使用下一代Css语法，目前尚在草案
+  ```
   ```css
   npm install postcss-cssnext --save-dev
   ```
@@ -159,8 +178,23 @@
     }
   },
   ```
+  ```css
+  :root {
+    --mainColor: #000;
+    --mainFont: 16px;
+  }
+
+  body {
+    color: var(--mainColor);
+    font-size: var(--mainFont);
+    padding: calc((var(--fontSize) / 4) + 5px);
+  }
+  ```
 
 > **6：postcss-modules**
+  ```
+  以模块化方式实现Css, 重点在于解决了样式冲突
+  ```
   ```css
   npm install postcss-modules --save-dev
   ```
@@ -174,7 +208,16 @@
     }
   },
   ```
+  ```css
+  .header {
+    display: flex;
+    font-size: 1rem;
+  }
+  ```
 > **7：lost**
+  ```css
+  强大的PostCSS网格系统
+  ```
   ```css
   npm install lost --save-dev
   ```
@@ -188,6 +231,13 @@
     }
   },
   ```
+  ```css
+  .header {
+    display: flex;
+    font-size: 1rem;
+    lost-column: 1/1;
+  }
+  ```
 
 > **8：课后练习**
 
@@ -198,46 +248,29 @@
     C: 插件系统
     ```
 
-  - 下面哪一中写法可以在scss文件中实现类名变量
+  - Webpack中loader的执行顺序
     ```
-    A: .@classname
-    B: .$classname
-    C: .@{classname}
-    D: .${classname}
-    E: .#{$member}
-    F: .@{$member}
+    A: 从后向前
+    B: 从前向后
+    C: 随机执行
     ```
 
-  - body的color是
+  - 找出下面正确的color写法
     ```css
-    .header {
-      border: 1px solid #ddd;
-    }
-    body {
-      @extend .header;
-      color: green;
-      color: orange;
-    }
-    .header {
-      color: red;
-      color: yellow;
-    }
-    ```
-    ```css
-    A:  green
+    A:  #000
 
-    B:  orange
+    B:  #000000
 
-    C: red
+    C:  #00
 
-    D: yellow
+    D:  black
     ```
 
-  - scss有几种编译风格？分别有什么特点？
+  - 为什么stylelint需要放在第一个loader
 
-  - 书写一个mixin，自动生成浏览器前缀
+  - 用lost实现一个双飞燕（圣杯）布局
 
-  - 用while循环实现讲义中的背景scss循环
+  - 尝试自己搭建webpack脚手架，入口index.js
 
 > **7：总结**
 ```
