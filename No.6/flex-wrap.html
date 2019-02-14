@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flex-wrap</title>
+    <style>
+        .nowrap {
+            display: flex;
+            flex-wrap: nowrap;
+            background: #8A469B;
+        }
+        .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            background: #8A469B;
+        }
+        .wrap-reverse {
+            display: flex;
+            flex-wrap: wrap-reverse;
+            background: #8A469B;
+        }
+        span {
+            width: 30%;
+            height: 50px;
+            margin: 10px;
+            background: #EA7F26;
+        }
+    </style>
+</head>
+<body>
+    <h1>nowrap</h1>
+    <div class="nowrap">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    </div>
+    <h1>wrap</h1>
+    <div class="wrap">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    </div>
+    <h1>wrap-reverse</h1>
+    <div class="wrap-reverse">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    </div>
+</body>
+</html>

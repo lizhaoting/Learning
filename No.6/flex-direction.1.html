@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flex-direction</title>
+    <style>
+        .row {
+            display: flex;
+            flex-direction: row;
+            background: #8A469B;
+        }
+        .row-reverse {
+            display: flex;
+            flex-direction: row-reverse;
+            background: #8A469B;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            background: #8A469B;
+        }
+        .column-reverse {
+            display: flex;
+            flex-direction: column-reverse;
+            background: #8A469B;
+        }
+        span {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            background: #EA7F26;
+        }
+    </style>
+</head>
+<body>
+    <h1>row</h1>
+    <div class="row">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    </div>
+    <h1>row-reverse</h1>
+    <div class="row-reverse">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    </div>
+    <h1>column</h1>
+    <div class="column">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    </div>
+    <h1>column-reverse</h1>
+    <div class="column-reverse">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    </div>
+</body>
+</html>
