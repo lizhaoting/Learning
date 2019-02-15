@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flex</title>
+    <style>
+        .main {
+            display: flex;
+            background: #8A469B;
+        }
+        .main span {
+            width: 600px;
+            height: 50px;
+            margin: 10px;
+            background: #EA7F26;
+        }
+        .No1 {
+            flex: auto;
+            /* (1 1 auto) */
+        }
+        .No2 {
+            flex: none;
+            /* (0 0 auto) */
+        }
+        .No3 {
+            flex: 1;
+            flex-basis: 0;
+            /* (1 1 auto) */
+        }
+        .No4 {
+            flex: 4;
+            flex-basis: 0;
+            /* (1 1 auto) */
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <span class="No1">1</span>
+        <span class="No1">2</span>
+        <span class="No1">3</span>
+    </div>
+    <div class="main">
+        <span class="No2">1</span>
+        <span class="No2">2</span>
+        <span class="No2">3</span>
+    </div>
+    <div class="main">
+        <span class="No3">1</span>
+        <span class="No3">2</span>
+        <span class="No3">3</span>
+    </div>
+    <div class="main">
+        <span class="No1">1</span>
+        <span class="No2">2</span>
+        <span class="No4">3</span>
+    </div>
+</body>
+</html>

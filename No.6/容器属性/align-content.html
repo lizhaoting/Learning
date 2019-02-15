@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Align-content</title>
+    <style>
+        .flex-start {
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            background: #8A469B;
+        }
+        .flex-end {
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-end;
+            background: #8A469B;
+        }
+        .center {
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            background: #8A469B;
+        }
+        .space-between {
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-between;
+            background: #8A469B;
+        }
+        .space-around {
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-around;
+            background: #8A469B;
+        }
+        .space-evenly {
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-evenly;
+            background: #8A469B;
+        }
+        .stretch {
+            height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: stretch;
+            background: #8A469B;
+        }
+        span {
+            width: 30%;
+            height: 50px;
+            background: #EA7F26;
+        }
+        .span {
+            width: 30%;
+            height: unset;
+            background: #EA7F26;
+        }
+    </style>
+</head>
+<body>
+    <h1>flex-start</h1>
+    <div class="flex-start">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    </div>
+    <h1>flex-end</h1>
+    <div class="flex-end">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    </div>
+    <h1>center</h1>
+    <div class="center">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    </div>
+    <h1>space-between</h1>
+    <div class="space-between">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    </div>
+    <h1>space-around</h1>
+    <div class="space-around">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    </div>
+    <h1>space-evenly</h1>
+    <div class="space-evenly">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    </div>
+    <h1>stretch</h1>
+    <div class="stretch">
+        <span class="span">1</span>
+        <span class="span">2</span>
+        <span class="span">3</span>
+        <span class="span">4</span>
+        <span class="span">5</span>
+        <span class="span">6</span>
+        <span class="span">7</span>
+        <span class="span">8</span>
+    </div>
+</body>
+</html>

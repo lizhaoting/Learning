@@ -34,6 +34,19 @@
 	- inline-flex (内联块级弹性伸缩盒)
 
 > **3：容器 (flex container) 属性**
+   ```css
+	flex-direction
+
+	flex-wrap
+
+	flex-flow
+
+	justify-content
+
+	align-items
+
+	align-content
+  ```
   - **flex-direction (决定主轴方向)**
 	- row (横向从左到右排列 - 左对齐)
 
@@ -103,207 +116,112 @@
 	    justify-content: center; 
 	}
 	```
-  - **最老版本**
-  - **最老版本**
+  - **align-items (容器成员 (flex item) 交叉轴上的对齐方式)**
+	- stretch (拉伸容器成员 (flex item) 适应容器 - 默认属性)
+	- flex-start (交叉轴起始位置对齐 - 上对齐)
 
+	- flex-end (交叉轴结束位置对齐 - 下对齐)
 
+    - center (交叉轴中间位置对齐 - 居中)
+		- 未溢出：容器成员上边距交叉轴起始位置距离 === 容器成员上边距交叉轴起始位置距离
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-> **3：CSS预处理器的魔法**
-
-- **文件切分**
-	- **`CSS 预处理器扩展了 @import 指令的能力`**
-
-	- **`编译环节将切分后的文件重新合并为一个大文件`**
-		- 解决了大文件不便维护的问题
-		- 解决了一堆小文件在加载时的性能问题
-
-- **模块化**
-	- **`CSS 文件在合理切分`**
-	- **`CSS 文件在合理切分`**
-
-	- **`编译环节将切分后的文件重新合并为一个大文件`**
-		- 解决了大文件不便维护的问题
-		- 小文件的相互关系形成一个树形结构
-			- 入口文件 -> 根节点
-			- 模块文件 -> 树形的其它节点
-
-		```
-		index.css
-		├─ header.css
-		│   └─ reset.css
-		├─ content.css
-		│   ├─ left.css
-		│   │   └─ nav.css
-		│   └─ right.css
-		├─ fotter.css
-		└─ ...
-		```
-
-- **选择符嵌套**
-	- **`传统嵌套`**
-		- 手工维护缩进关系
-		- 当上级选择符发生变化时，所有相关的下级选择符都要修改
-		- 注释书写
-		```css
-		.header {
-			margin: auto; /* 水平居中 */
-			width: 1000px;
-			color: #333;
-		}
-		.header li {
-			float: left;
-			width: 100px;
-		}
-		.header li a {
-			display: block;
-			text-decoration: none;
-		}
-		```
-	- **`预处理器嵌套`**
-		- 层级关系清晰
-		- 注释清晰易读
-		```css
-		.header {
-				margin: auto  // 水平居中
-				width: 1000px
-				color: #333
-			
-				li {
-					float: left  // 水平排列
-					width: 100px
-				
-					a {
-						display: block
-						text-decoration: none
-					}
-				}
-		}
-		```
-
-- **变量(换肤)**
-	- **`更容易实现网站视觉风格的统一`**
+		- 溢出：两个方向溢出相同的长度
+	- baseline (容器成员 (flex item) 基线对齐)
 	```css
-	strong {
-		color: #ff4466;
-		font-weight: bold;
-	}
-	
-	/* ... */
-	
-	.error {
-		color: #ff4466;
+	.main {
+	    display: flex;
+	    align-items: center; 
 	}
 	```
-	- **`换肤`**
+  - **align-content (多根轴线的对齐方式, 单轴线不起作用 - 每一根轴线理解为一个容器成员 (flex item))**
+	- flex-start
+
+	- flex-end
+
+	- center
+
+	- space-between
+
+	- space-around
+
+	- stretch
+
+> **3：容器成员 (flex item) 属性**
+  ```css
+	order
+
+	flex-grow
+
+	flex-shrink
+
+	flex-basis
+
+	flex
+
+	align-self
+  ```
+  - **order (容器成员排列顺序 - integer)**
+	- 0 (默认 - 数值越小, 排列越靠前, 可以为负值)
 	```css
-	$color-primary = #329FD9
-	
-	header {
-		color: $color-default
-	}
-
-	.footer {
-		color: $color-default
+	.item {
+	    order: 1;
 	}
 	```
-
-- **运算**
+  - **flex-grow (容器成员放大比例 - number)**
+	- 0 (默认 - 数值越大, 占据的剩余空间越大, 不允许负值)
 	```css
-	$left: 20px;
-	.header {
-		margin-left: $left + 12px;
+	.item {
+	    flex-grow: 1;
 	}
 	```
-
-- **函数**
+  - **flex-shrink (容器成员缩小比例 - number)**
+	- 1 (默认 - 数值越大, 压缩比例越大, 不允许负值)
+	- 最小宽度制约
 	```css
-	.border-radius(@radius: 5px) {
-		-webkit-border-radius: @radius;
-		-moz-border-radius: @radius;
-		border-radius: @radius;
+	.item {
+	    flex-shrink: 0;
+	}
+	```
+  - **flex-basis (分配多余空间之前，容器成员占据的主轴空间)**
+	- auto (容器成员原本大小)
+	- px
+	- %
+	```css
+	.item {
+	    flex-basis: 50px;
+	}
+	```
+- **flex (flex-grow, flex-shrink 和 flex-basis的简写)**
+	- 顺序
+	- auto - (1 1 auto)
+	- none - (0 0 auto)
+	- 1 - (1 1 auto)
+	```css
+	.item {
+	    flex: auto;
+	}
+	```
+- **align-self (允许单个容器成员有与其他容器成员不同的对齐方式)**
+	- auto (默认)
+	- flex-start
+	- flex-end
+	- center
+	- baseline
+	- stretch
+	```css
+	.item {
+	    align-self: auto;
 	}
 	```
 
-> **4：常见的CSS预处理器**
+> **4：课后练习`**
 
-- **Less**
-	```
-	Alexis Sellier于2009年设计
+- 换成800px为什么左右边宽度变成了2
+- flex-basic后面添加了width为什么会失效（选择）
+- flex-basic受到min与max制约吗（选择）
+- 一道计算题计算出flex各个元素宽度
+```css
 
-	LESS的第一个版本是用Ruby编写的，在后来的版本中，它被JavaScript代替
-
-	Less 是一门 CSS 预处理语言，它扩充了 CSS 语言，增加了诸如变量、混合(mixin)、函数等功能，让 CSS 更易维护、方便制作主题、扩充
-
-	Less 可以运行在 Node 或浏览器端
-	```
-
-- **Sass**
-	```
-	Hampton Catlin 设计
-
-	于2006年由 Natalie Weizenbaum 开发
-
-	Sass 扩展了 CSS3，增加了规则、变量、混入、选择器、继承等等特性
-	基于ruby
-	```
-
-- **PostCss**
-	```
-	Andrey Sitnik开发
-
-	理解为一种插件系统(类似于css领域的webpack)
-	```
-	- **常见的两个插件**
-		- autoprefixer
-		- stylelint
-
-> **5：课后练习`**
-
-- CSS发展历史上经历了哪几种布局革命
-```
-1
-2
-3
-4
-```
-
-- 哪种CSS预处理器基于ruby开发  (单选)
-
-```
-A: Less
-B: Sass
-C: Stylus
-D: PostCSS
 ```
 
 > **`6：总结`**
