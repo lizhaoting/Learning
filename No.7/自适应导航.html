@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自适应导航</title>
+    <style>
+        .main1 {
+            margin: 0;
+            text-align: right;
+            list-style: none;
+            background: #8A469B;
+        }
+        .main1 li {
+            display: inline-block;
+        }
+        .main1 a {
+            display: inline-block;
+            padding: 10px;
+            margin: 0 10px;
+            text-decoration: none;
+            color: #FFF;
+            background-color: #8A469B;
+        }
+        .main1 a:hover {
+            background-color: #EA7F26;
+        }
+        @media screen and (max-width: 800px) {
+            .main1 {
+                text-align: justify;
+                text-align-last: justify;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .main1 li {
+                display: block;
+            }
+            .main1 a {
+                display: block;
+                text-align: center;
+                text-align-last: center;
+                padding: 10px;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+            .main1 li:last-of-type a {
+                border-bottom: 0px;
+            }
+        }
+
+
+        .main2 {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-end;
+            list-style: none;
+            margin: 0;
+            background: #8A469B;
+        }
+        .main2 a {
+            display: block;
+            padding: 10px;
+            margin: 0 10px;
+            text-decoration: none;
+            color: #FFF;
+            background-color: #8A469B;
+        }
+        .main2 a:hover {
+            background-color: #EA7F26;
+        }
+        @media screen and (max-width: 800px) {
+            .main2 {
+                justify-content: space-between;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .main2 {
+                flex-flow: column nowrap;
+                padding: 0;
+            }
+            .main2 a {
+                text-align: center;
+                padding: 10px;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+            .main2 li:last-of-type a {
+                border-bottom: 0px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h3>不使用Flexbox</h3>
+    <ul class="main1">
+        <li><a href="#">侠课岛</a></li>
+        <li><a href="#">同学计划</a></li>
+        <li><a href="#">社区</a></li>
+    </ul>
+    <h3>使用Flexbox</h3>
+    <ul class="main2">
+        <li><a href="#">侠课岛</a></li>
+        <li><a href="#">同学计划</a></li>
+        <li><a href="#">社区</a></li>
+    </ul>
+</body>
+</html>

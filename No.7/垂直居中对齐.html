@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>垂直居中对齐</title>
+    <style>
+        .main1 {
+            position: relative;
+            height: 200px;
+            background: #8A469B;
+        }
+        .main1 div {
+            display: block;
+            width: 50%;
+            height: 50%;
+            background: #EA7F26;
+            overflow: hidden;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+        .main1 div span {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #EA7F26;
+        }
+        .main2 {
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #8A469B;
+        }
+        .main2 div {
+            width: 50%;
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #EA7F26;
+        }
+    </style>
+</head>
+<body>
+    <h3>不使用Flexbox</h3>
+    <div class="main1">
+        <div>
+            <span>
+                侠课岛
+            </span>
+        </div>
+    </div>
+    <h3>使用Flexbox</h3>
+    <div class="main2">
+        <div>
+            <span>
+                侠课岛
+            </span>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DIV + CSS</title>
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        p, span {
+            margin: 0;
+            padding: 0;
+        }
+        .left,
+        .middle,
+        .right {
+            position: relative;
+            float: left;
+            height: 100%;
+        }
+        .container {
+            padding:0 200px 0 200px;
+            height: calc(100% - 120px);
+        }
+        .left {
+            margin-left: -100%;
+            left: -200px;
+            width: 200px;
+            background-color: #ffff99;
+        }
+        .right {
+            margin-left: -200px;
+            right: -200px;
+            width: 200px;
+            background-color: #ffff99;
+        }
+        .middle { 
+            width: 100%;
+            background-color: #EE8888;
+            word-break: break-all;
+        }
+        .header {
+            height: 80px;
+            background-color: #cdcdcd;
+        }
+        .footer { 
+            height: 40px;
+            background-color: #cdcdcd;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+        <div class="header">
+            <span>标题</span>
+        </div>
+        <div class="container">
+            <div class="middle">
+                <span>内容</span>
+            </div>
+            <div class="left">
+                <span>目录</span>
+            </div>
+            <div class="right">
+                <span>右侧</span>
+            </div>
+        </div>
+        <div class="footer">
+            <span>版权声明</span>
+        </div>
+</body>
+</html>
