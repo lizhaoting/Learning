@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>径向渐变 - 渐变形状</title>
+    <style>
+        .main {
+            height: 200px;
+            width: 300px;
+            display: inline-block;
+        }
+        .radial1 {
+            background-image: radial-gradient(closest-side circle, red, green, blue);
+        }
+        .radial2 {
+            background-image: radial-gradient(farthest-side circle, red, green, blue);
+        }
+        .radial3 {
+            background-image: radial-gradient(closest-corner circle, red, green, blue);
+        }
+        .radial4 {
+            background-image: radial-gradient(farthest-corner circle, red, green, blue);
+        }
+        .radial5 {
+            background-image: radial-gradient(100% 50%, red, green, blue);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main radial1"></div>
+    <div class="main radial2"></div>
+    <br />
+    <div class="main radial3"></div>
+    <div class="main radial4"></div>
+    <br />
+    <div class="main radial5"></div>
+</body>
+</html>

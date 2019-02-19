@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>线性渐变 - 声明多个</title>
+    <style>
+        .main {
+            height: 50px;
+        }
+        .linear1 {
+            background: linear-gradient(green 10px, transparent 10px);
+        }
+        .linear2 {
+            background: linear-gradient(green 10px, transparent 10px),
+            linear-gradient(90deg,green 10px, transparent 10px) repeat left top / 40px;
+        }
+        .linear3 {
+            background: linear-gradient(green 10px, transparent 10px),
+                        linear-gradient(90deg,green 10px, transparent 10px) repeat left top / 40px,
+                        linear-gradient(transparent 40px, green 4px);
+        }
+    </style>
+</head>
+<body>
+    <div class="main linear1"></div>
+    <br />
+    <br />
+    <div class="main linear2"></div>
+    <br />
+    <br />
+    <div class="main linear3"></div>
+</body>
+</body>
+</html>

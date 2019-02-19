@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>线性渐变 - 多种颜色</title>
+    <style>
+        .main {
+            height: 150px;
+            width: 500px;
+        }
+        .linear1 {
+            background-image: linear-gradient(
+                to right,
+                red, 
+                blue 25%, 
+                green 50%, 
+                orange 75%, 
+                red
+            );
+        }
+        .linear2 {
+            background-image: linear-gradient(
+                to right, 
+                red 100px, 
+                blue 200px, 
+                green 300px, 
+                orange 400px, 
+                red
+            );
+        }
+        .linear3 {
+            background-image: linear-gradient(
+                to right, 
+                red 100px, 
+                blue 100px, blue 200px, 
+                green 200px, green 300px, 
+                orange 300px, orange 400px,
+                yellow 400px, yellow 500px
+            );
+        }
+    </style>
+</head>
+<body>
+    <div class="main linear1"></div>
+    <br />
+    <div class="main linear2"></div>
+    <br />
+    <div class="main linear3"></div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 ##  （八）CSS3渐变
 
-> **1：基本概念**
+> **`1：基本概念`**
 
 - **在两个或多个指定的颜色之间显示平稳的过渡**
 
@@ -15,31 +15,31 @@
 
 - **作为元素的 background-image( background ) 使用**
 
-> **2：浏览器支持**
+> **`2：浏览器支持`**
   - **完全支持该属性的第一个浏览器版本**
 
 	![image](./borwer.png)
 
   - **浏览器前缀**
-  ```css
-  .header {
-	/* Safari */
-    background: -webkit-linear-gradient(red, blue);
-	/* Opera */
-    background: -o-linear-gradient(red, blue);
-	/* Firefox */
-    background: -moz-linear-gradient(red, blue);
-	/* 标准的语法, 放在最后 */
-    background: linear-gradient(red, blue);
-}
-  ```
+	```css
+	.header {
+	    /* Safari */
+	    background: -webkit-linear-gradient(red, blue);
+	    /* Opera */
+	    background: -o-linear-gradient(red, blue);
+	    /* Firefox */
+	    background: -moz-linear-gradient(red, blue);
+	    /* 标准的语法, 放在最后 */
+	    background: linear-gradient(red, blue);
+	}
+	```
 
-> **3：线性渐变 (Linear Gradients)**
+> **`3：线性渐变 (Linear Gradients)`**
 
 - **基本语法**
 
 	```css
-	background-image: linear-gradient(direction, color1, color2, ...);
+	background-image: linear-gradient([[<angle> | to <side-or-corner> ],]?<color-stop>[,<color-stop>]+);
 	```
 
 - **从上到下 - 默认方向**
@@ -56,7 +56,7 @@
 
 - **对角**
 	```css
-	to left top/left top/bottom right/right bottom
+	to left top/left bottom/right bottom/right top
 
 	background: linear-gradient(to bottom right, #147B96 , #E6D205);
 	```
@@ -65,106 +65,109 @@
 
 	![image](./angle.png)
 	```css
-	background: linear-gradient(45deg, #147B96 , #E6D205);
+	background: linear-gradient(45deg, #147B96 , transparent);
 	```
 
 - **多种颜色**
 	```css
-	background-image: linear-gradient(left, #147B96, #E6D205 25%, #147B96 50%, #E6D205 75%, #147B96);
+	background-image: linear-gradient(to right, #147B96, #E6D205 25%, #147B96 50%, #E6D205 75%, #147B96);
+	background-image: linear-gradient(to right, #147B96, #E6D205 50px, #147B96 50px, #E6D205 50px, #147B96);
 	```
 
 - **重复渐变**
 	```css
-	background-image: repeating-linear-gradient(left, #147B96, #E6D205 25%, #147B96 50%, #E6D205 75%, #147B96);
+	background-image: repeating-linear-gradient(to right, #147B96, #E6D205 25%, #147B96 50%, #E6D205 75%, #147B96);
 	```
 
-> **4：线性渐变实例**
-
-> **4：课后练习**
-- Flex container存在下列哪几个描述, 分别代表什么
+- **声明多个 - 逗号分隔 - 最先声明优先级最高**
 	```css
-	A : Main axis
-	B : Cross axis
-	C : Row axis
-	D ：Column axis
+	background: linear-gradient(green 10px, transparent 10px),
+				linear-gradient(90deg,green 10px, transparent 10px) repeat left top / 40px,
+				linear-gradient(transparent 40px, green 4px);
 	```
-- Flex item存在下列哪几个描述, 分别代表什么
+
+> **`4：线性渐变实例`**
+- **炫彩文字**
 	```css
-	A : Main size
-	B : Cross size
-	C : Row size
-	D ：Column size
+	.linear {
+        color: green;
+        background-image: linear-gradient(
+            left,
+            rgb(16, 121, 148), 
+            rgb(230, 211, 13) 25%, 
+            rgb(18, 136, 165) 50%, 
+            rgb(231, 213, 10) 75%, 
+            rgb(16, 121, 148)
+        );
+        background-size: 200% 100%;
+        text-fill-color: transparent;
+        background-clip: text;
+        animation: mask 4s infinite linear;
+    }
+	@keyframes mask {
+        0%  { background-position: 0 0;}
+        100% { background-position: -100% 0;
+	}
 	```
-- item元素的实际宽度是多少
+- **特殊图形**
 	```css
-	.main {
-	    display: flex;
-	}
-	.main .item {
-	    flex-basis: 200px;
-	    width: 100px;
-	} 
+	background: linear-gradient(-60deg, blue 50%, transparent 0) no-repeat top left / 50% 50%,
+                linear-gradient(60deg, blue 50%, transparent 0) no-repeat top right / 50% 50%,
+                linear-gradient(-120deg, blue 50%, transparent 0) no-repeat bottom left / 50% 50%,
+                linear-gradient(120deg, blue 50%, transparent 0) no-repeat bottom right / 50% 50%;
 	```
-- Flex container具有哪几个属性, 分别代表什么
 
-- Flex item具有哪几个属性, 分别代表什么
-
-- class为two的容器宽度是多少? 并说明原因 (实操)
+> **`5：径向渐变 (Radial Gradients)`**
+- **基本语法**
 	```css
-	.main {
-	    display: flex;
-	    background: #8A469B;
-	}
-	.main span{
-	    width: 800px;
-	    height: 50px;
-	    border: 1px solid #FFF;
-	    box-sizing: border-box;
-	    background: #EA7F26;
-	}
-	.zero {
-	    flex-shrink: 0;
-	}
-	.one {
-	    flex-shrink: 1;
-	}
-	.two {
-	    flex-shrink: 9;
-	}
-
-	<div class="main">
-        <span class="zero">1</span>
-        <span class="one">2</span>
-        <span class="two">3</span>
-    </div>
+	background-image: radial-gradient([[<shape> || <size>] [at <position>]?,| at <position>,]?<color-stop>[,<color-stop>]+);
 	```
-
-- 计算出各个 li 元素实际宽度 (计算)
+	- **渐变中心 - 中心点**
+		- 30px (20%) 20px (30%) - 左侧30px (30%)距离上侧20px (20%)
+		```css
+		ackground-image: radial-gradient(0% 0%, red, green, blue);
+		```
+	- **渐变形状 -  ellipse (椭圆形)**
+		- circle
+		- ellipse
+		```css
+		background-image: radial-gradient(circle at farthest-corner, red, green, blue);
+		```
+	- **渐变大小 - farthest-corner (最远)**
+		- closest-side - 渐变的半径长度为从圆心到离圆心最近的边
+		- farthest-side - 渐变的半径长度为从圆心到离圆心最近的角
+		- closest-corner - 渐变的半径长度为从圆心到离圆心最远的边
+		- farthest-corner - 渐变的半径长度为从圆心到离圆心最远的角
+		- ...
+		```css
+		background-image: radial-gradient(circle at farthest-corner, red, green, blue);
+		```
+- **多种颜色**
 	```css
-	.main {
-	    display: flex;
-	    width: 400px;
-	    margin: 0;
-	    padding: 0;
-	    list-style: none;
-	}
-	.main li {
-	    width: 200px;
-	}
-	.main li:nth-child(1) {
-	    background: #888;
-	}
-	.main li:nth-child(2) {
-	    background: #ccc;
-	}
-	.main li:nth-child(3) {
-	    flex-shrink: 3;
-	    background: #aaa;
-	}
+	...
+	```
+- **重复渐变**
+	```css
+	...
+	```
+- **声明多个 - 逗号分隔 - 最先声明优先级最高**
+	```css
+	...
 	```
 
-> **`5：总结`**
+
+> **`6：课后练习`**
+- 为什么针对Gradients属性特别推荐autoprefixer
+
+- 利用Linear Gradients实现下列样式( 10px * 10px ) ( 10 * 5 )
+	![image](./white.png)
+
+- 利用Radial Gradients实现下列样式( 100px * 100px * 4)
+
+	![image](./picture.png)
+
+> **`7：总结`**
 
 ```
-本节课讲解了Flex弹性盒模型的基本概念, 简要介绍了Flex弹性盒模型的发展历程，最后重点介绍了Flex container六个属性以及Flex item的六个属性
+本节课讲解了Linear Gradients与Radial Gradients的基本概念, 介绍了两种渐变的常用属性，最后结合了Linear Gradients实例介绍了CSS3渐变在实际中的部分应用场景
 ```
