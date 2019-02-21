@@ -76,7 +76,7 @@
 
 - **重复渐变**
 	```css
-	background-image: repeating-linear-gradient(to right, #147B96, #E6D205 25%, #147B96 50%, #E6D205 75%, #147B96);
+	background-image: repeating-linear-gradient(to right, #147B96, #E6D205 5%, #147B96 10%, #E6D205 20%, #147B96);
 	```
 
 - **声明多个 - 逗号分隔 - 最先声明优先级最高**
@@ -92,7 +92,7 @@
 	.linear {
         color: green;
         background-image: linear-gradient(
-            left,
+            to left,
             rgb(16, 121, 148), 
             rgb(230, 211, 13) 25%, 
             rgb(18, 136, 165) 50%, 
@@ -100,8 +100,8 @@
             rgb(16, 121, 148)
         );
         background-size: 200% 100%;
-        text-fill-color: transparent;
-        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
         animation: mask 4s infinite linear;
     }
 	@keyframes mask {

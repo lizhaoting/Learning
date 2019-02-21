@@ -16,10 +16,10 @@
         }
         .linear {
             color: green;
-            background-image: linear-gradient(left, rgb(16, 121, 148), rgb(230, 211, 13) 25%, rgb(18, 136, 165) 50%, rgb(231, 213, 10) 75%, rgb(16, 121, 148));
+            background-image: linear-gradient(to left, rgb(16, 121, 148), rgb(230, 211, 13) 25%, rgb(18, 136, 165) 50%, rgb(231, 213, 10) 75%, rgb(16, 121, 148));
             background-size: 200% 100%;
-            text-fill-color: transparent;
-            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
             animation: mask 4s infinite linear;
         }
         @keyframes mask {
