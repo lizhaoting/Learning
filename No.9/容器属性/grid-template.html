@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid-template</title>
+    <style>
+        .main {
+            height: 500px;
+            display: grid;
+            grid-template: [title-left] "title title title" 80px [title-right]
+                           [content-left] "left content content" 1fr [content-right]
+                           [footer-left] "left footer footer" 80px [footer-right]
+                           / 120px 1fr 120px;
+        }
+
+        .title {
+            background-color: #cdcdcd;
+            grid-area: title;
+        }
+
+        .left {
+            background-color: #ffff99;
+            grid-area: left;
+        }
+
+        .content {
+            background-color: #EE8888;
+            grid-area: content;
+        }
+
+        .footer {
+            background-color: #cdcdcd;
+            grid-area: footer;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="title"></div>
+        <div class="left"></div>
+        <div class="content"></div>
+        <div class="footer"></div>
+    </section>
+</body>
+</html>

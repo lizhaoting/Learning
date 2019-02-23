@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Align-items</title>
+    <style>
+        .main1 {
+            display: grid;
+		    grid-template-columns: 100px 100px 100px;
+		    grid-template-rows: 100px;
+            align-items: start;
+        }
+        .main2 {
+            display: grid;
+		    grid-template-columns: 100px 100px 100px;
+		    grid-template-rows: 100px;
+            align-items: end;
+        }
+        .main3 {
+            display: grid;
+		    grid-template-columns: 100px 100px 100px;
+		    grid-template-rows: 100px;
+            align-items: center;
+        }
+        .main4 {
+            display: grid;
+		    grid-template-columns: 100px 100px 100px;
+		    grid-template-rows: 100px;
+            align-items: stretch;
+        }
+
+        .item {
+            width: 100px;
+            height: 80px;
+            background-color: #8A469B;
+        }
+        .item2 {
+            background-color: #8A469B;
+        }
+    </style>
+</head>
+<body>
+    <h1>Start</h1>
+    <div class="main1">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <h1>End</h1>
+    <div class="main2">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <h1>Center</h1>
+    <div class="main3">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <h1>Stretch</h1>
+    <div class="main4">
+        <div class="item2"></div>
+        <div class="item2"></div>
+        <div class="item2"></div>
+    </div>
+</body>
+</html>

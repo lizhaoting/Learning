@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid-auto-flow</title>
+    <style>
+        .row {
+            display: grid;
+            grid-template-columns: 100px 100px 100px 00px;
+            grid-template-rows: 100px 100px 100px;
+            grid-auto-flow: row;
+            grid-gap: 10px;
+        }
+        .column {
+            display: grid;
+            grid-template-columns: 100px 100px 100px 00px;
+            grid-template-rows: 100px 100px 100px;
+            grid-auto-flow: column;
+            grid-gap: 10px;
+        }
+        .item1 {
+            width: 100px;
+            height: 100px;
+            background-color: #8A469B;
+        }
+        .item2 {
+            width: 200px;
+            height: 200px;
+            background-color: #8A469B;
+        }
+    </style>
+</head>
+<body>
+    <h1>row</h1>
+    <div class="row">
+        <div class="item1"></div>
+        <div class="item1"></div>
+        <div class="item1"></div>
+        <div class="item1"></div>
+        <div class="item1"></div>
+    </div>
+    <h1>column</h1>
+    <div class="column">
+        <div class="item1"></div>
+        <div class="item1"></div>
+        <div class="item1"></div>
+        <div class="item1"></div>
+    </div>
+</body>
+</html>

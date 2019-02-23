@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid-template-columns/rows</title>
+    <style>
+        .main1 {
+            display: grid;
+            grid-template-columns: [columns-1] 100px [columns-2] 200px auto;
+            grid-template-rows: [rows-1] 100px [rows-2] 200px;
+        }
+        .main2 {
+            display: grid;
+            grid-template-columns: repeat(4, 100px [columns]) auto;
+            grid-template-rows: repeat(4, 100px [rows]);
+        }
+        .main3 {
+            display: grid;
+            grid-template-columns: 100px 1fr 3fr;
+	        grid-template-rows: 100px 1fr 3fr;
+        }
+    </style>
+</head>
+<body>
+    <h1>基本用法</h1>
+    <div class="main1"></div>
+    <h1>重复</h1>
+    <div class="main2"></div>
+    <h1>自由空间</h1>
+    <div class="main3"></div>
+</body>
+</html>

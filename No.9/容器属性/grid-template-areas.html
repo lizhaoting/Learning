@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid-template-areas</title>
+    <style>
+        .header {
+            grid-area: header;
+            background: #8A469B;
+        }
+        .left {
+            grid-area: left;
+            background: #EA7F26;
+        }
+        .right {
+            grid-area: right;
+            background: #EA7F26;
+        }
+        .footer {
+            grid-area: footer;
+            background: #8A469B;
+        }
+        .main {
+            height: 500px;
+            display: grid;
+            grid-template-columns: 100px 100px auto 100px 100px;
+            grid-template-rows: 100px auto 100px;;
+            grid-template-areas: "header header header header header" "left left . . right" "footer footer footer footer footer";
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header"></div>
+        <div class="left"></div>
+        <div class=""></div>
+        <div class="right"></div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>

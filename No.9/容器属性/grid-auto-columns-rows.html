@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid-auto-columns-rows</title>
+    <style>
+        .main1 {
+            display: grid;
+            grid-template-rows: 100px 100px 100px;
+            grid-auto-columns: 200px;
+        }
+        .main2 {
+            display: grid;
+            grid-template-columns: 100px 100px 100px;
+            grid-template-rows: 100px 100px 100px;
+            grid-auto-columns: 200px;
+        }
+        .item1 {
+            grid-column: 1 / 5;
+            background-color: #8A469B;
+        }
+    </style>
+</head>
+<body>
+    <h1>不指定 grid-template-columns</h1>
+    <div class="main1">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <h1>指定 grid-template-columns</h1>
+    <div class="main2">
+        <div class="item1"></div>
+        <div class="item2"></div>
+        <div class="item3"></div>
+    </div>
+</body>
+</html>

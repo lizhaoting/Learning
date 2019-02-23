@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Justify-content</title>
+    <style>
+        .start {
+            display: grid;
+		    grid-template-columns: 100px 100px 100px;
+		    grid-template-rows: auto;
+            justify-content: start;
+        }
+        .end {
+            display: grid;
+		    grid-template-columns: 100px 100px 100px;
+		    grid-template-rows: auto;
+            justify-content: end;
+        }
+        .center {
+            display: grid;
+		    grid-template-columns: 100px 100px 100px;
+		    grid-template-rows: auto;
+            justify-content: center;
+        }
+        .stretch {
+            display: grid;
+		    grid-template-columns: auto auto auto;
+		    grid-template-rows: auto;
+            justify-content: stretch;
+        }
+        .space-around {
+            display: grid;
+		    grid-template-columns: 100px 100px 100px;
+		    grid-template-rows: auto;
+            justify-content: space-around;
+        }
+        .space-between {
+            display: grid;
+		    grid-template-columns: 100px 100px 100px;
+		    grid-template-rows: auto;
+            justify-content: space-between;
+        }
+        .space-evenly {
+            display: grid;
+		    grid-template-columns: 100px 100px 100px;
+		    grid-template-rows: auto;
+            justify-content: space-evenly;
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: #8A469B;
+        }
+        .item2 {
+            height: 100px;
+            background-color: #8A469B;
+        }
+    </style>
+</head>
+<body>
+    <h1>Start</h1>
+    <div class="start">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <h1>End</h1>
+    <div class="end">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <h1>Center</h1>
+    <div class="center">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <h1>Stretch</h1>
+    <div class="stretch">
+        <div class="item2"></div>
+        <div class="item2"></div>
+        <div class="item2"></div>
+    </div>
+    <h1>Space-around</h1>
+    <div class="space-around">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <h1>Space-between</h1>
+    <div class="space-between">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <h1>space-evenly</h1>
+    <div class="space-evenly">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+</body>
+</html>
