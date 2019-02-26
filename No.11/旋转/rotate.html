@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rotate</title>
+    <style>
+        .container {
+            display: inline-block;
+            border: 1px dashed #EA7F26;
+        }
+        .rotate {
+            height: 100px;
+            width: 100px;
+            transform: rotate(45deg);
+            background-color: #EA7F26;
+        }
+        .rotateX {
+            height: 100px;
+            width: 100px;
+            transform: rotateX(45deg);
+            background-color: #EA7F26;
+        }
+        .rotateY {
+            height: 100px;
+            width: 100px;
+            transform: rotateY(45deg);
+            background-color: #EA7F26;
+        }
+        .rotateZ {
+            height: 100px;
+            width: 100px;
+            transform: rotateZ(45deg);
+            background-color: #EA7F26;
+        }
+        .rotate3d {
+            height: 100px;
+            width: 100px;
+            transform: rotate3d(1, 1, 1, 45deg);
+            background-color: #EA7F26;
+        }
+    </style>
+</head>
+<body>
+    <h1>rotate(angle)</h1>
+    <div class="container">
+        <div class="rotate"></div>
+    </div>
+    <br />
+    <br />
+    <h1>rotateX(angle)</h1>
+    <div class="container">
+        <div class="rotateX"></div>
+    </div>
+    <br />
+    <br />
+    <h1>rotateY(angle)</h1>
+    <div class="container">
+        <div class="rotateY"></div>
+    </div>
+    <br />
+    <br />
+    <h1>rotateZ(angle)</h1>
+    <div class="container">
+        <div class="rotateZ"></div>
+    </div>
+    <br />
+    <br />
+    <h1>rotate3d(x, y, z, angle)</h1>
+    <div class="container">
+        <div class="rotate3d"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>threejs-basic-geometry</title>
+    <style>
+        body{
+            font-family: Monospace;
+            background: #f0f0f0;
+            margin: 0px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript" src="./libs/three.js"></script>
+<script type="text/javascript" src="./libs/OrbitControls.js"></script>
+<script type="text/javascript">
+    var container;
+    var camera, scene, renderer;
+    var orbitControls, clock, delta;
+    main();
+    render();
+    function main(){
+        container = document.createElement('div')
+        document.body.appendChild(container);
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(30,
+                      window.innerWidth/window.innerHeight, 1, 1000);
+        camera.position.set(100, 300, 100);
+        camera.lookAt(new THREE.Vector3(0,0,0));
+        renderer = new THREE.WebGLRenderer({antialias:true});
+        renderer.setClearColor(new THREE.Color(0x000000));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+        orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
+        orbitControls.target = new THREE.Vector3(0, 0, 0);
+        orbitControls.autoRotate = false;
+        clock = new THREE.Clock();
+        var ambientLight = new THREE.AmbientLight( 0x606060 );
+        scene.add( ambientLight );
+        var directionalLight = new THREE.DirectionalLight( 0xffffff );
+        directionalLight.position.set( 1, 0.75, 0.5 ).normalize();
+        scene.add( directionalLight );
+        var size =100;
+		var axesHelper = new THREE.AxisHelper( size );
+		scene.add( axesHelper );
+        plane1();
+        plane2();
+        plane3();
+    }
+    function plane1(){
+        var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
+        var planeMat = new THREE.MeshLambertMaterial({
+            color:0x666666,
+            wireframe:false
+        });
+        var planeMesh = new THREE.Mesh(planeGeo, planeMat);
+        planeMesh.position.set(0, 0, 0);
+        planeMesh.rotation.x = -0.5 * Math.PI;
+        scene.add(planeMesh);
+    }
+    function plane2(){
+        var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
+        var planeMat = new THREE.MeshLambertMaterial({
+            color:0x666666,
+            wireframe:false
+        });
+        var planeMesh = new THREE.Mesh(planeGeo, planeMat);
+        planeMesh.position.set(0, 0, 0);
+        planeMesh.rotation.x = 0 * Math.PI;
+        scene.add(planeMesh);
+    }
+    function plane3(){
+        var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
+        var planeMat = new THREE.MeshLambertMaterial({
+            color:0x666666,
+            wireframe:false
+        });
+        var planeMesh = new THREE.Mesh(planeGeo, planeMat);
+        planeMesh.position.set(0, 0, 0);
+        planeMesh.rotation.y = .5 * Math.PI;
+        scene.add(planeMesh);
+    }
+    function render(){
+        delta = clock.getDelta();
+        orbitControls.update(delta);
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+    }
+
+</script>
+
+</body>
+</html>
