@@ -1,0 +1,23 @@
+1、不要将开源项目的issue当做讨论区，留下老子学不动了，丢的是国人的脸
+2、遇到问题先尝试自己独立解决、解决不了去百度、百度不行stackoverflow或者Google，最后去问同事或者群里提问，提高解决问题能力
+3、不懂得问题不要回答，比如rotate3D（）
+4、知识要学扎实，并相信自己，举例咕泡官网
+	console.log('global')
+
+setTimeout(function () {
+console.log('timeout1')
+new Promise(function (resolve, reject) {
+console.log('timeout1_promise')
+resolve()
+}).then(function () {
+console.log('timeout1_then')
+})
+.catch(er => er)
+}, 2000)
+
+for (var i = 1;i <= 5;i ++) {
+setTimeout(function() {
+console.log(i)
+}, i*1000)
+console.log(i)
+}

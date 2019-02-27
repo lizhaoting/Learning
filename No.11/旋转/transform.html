@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>threejs-basic-geometry</title>
+    <title>Rotate3d</title>
     <style>
         body{
             font-family: Monospace;
@@ -19,15 +19,20 @@
     var container;
     var camera, scene, renderer;
     var orbitControls, clock, delta;
+    var line;
     main();
     render();
     function main(){
         container = document.createElement('div')
         document.body.appendChild(container);
         scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(30,
-                      window.innerWidth/window.innerHeight, 1, 1000);
-        camera.position.set(100, 300, 100);
+        camera = new THREE.PerspectiveCamera(
+            45,
+            window.innerWidth/window.innerHeight, 
+            1, 
+            100000
+        );
+        camera.position.set(0, 0, 300);
         camera.lookAt(new THREE.Vector3(0,0,0));
         renderer = new THREE.WebGLRenderer({antialias:true});
         renderer.setClearColor(new THREE.Color(0x000000));
@@ -44,16 +49,22 @@
         scene.add( directionalLight );
         var size =100;
 		var axesHelper = new THREE.AxisHelper( size );
+        console.log(axesHelper);
 		scene.add( axesHelper );
         plane1();
         plane2();
         plane3();
+        line();
+        rotatePlane();
     }
     function plane1(){
         var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
-        var planeMat = new THREE.MeshLambertMaterial({
-            color:0x666666,
-            wireframe:false
+        var planeMat = new THREE.MeshBasicMaterial({
+            // color:0xFF0000,
+            opacity: 0.5,
+            color:0x0000FF,
+            side: THREE.DoubleSide,
+            wireframe: true,
         });
         var planeMesh = new THREE.Mesh(planeGeo, planeMat);
         planeMesh.position.set(0, 0, 0);
@@ -62,9 +73,11 @@
     }
     function plane2(){
         var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
-        var planeMat = new THREE.MeshLambertMaterial({
-            color:0x666666,
-            wireframe:false
+        var planeMat = new THREE.MeshBasicMaterial({
+            // color:0x0000FF,
+            color:0xFF0000,
+            side: THREE.DoubleSide,
+            wireframe: true,
         });
         var planeMesh = new THREE.Mesh(planeGeo, planeMat);
         planeMesh.position.set(0, 0, 0);
@@ -73,13 +86,57 @@
     }
     function plane3(){
         var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
-        var planeMat = new THREE.MeshLambertMaterial({
-            color:0x666666,
-            wireframe:false
+        var planeMat = new THREE.MeshBasicMaterial({
+            // color:0x666666,
+            color:0x008000,
+            side: THREE.DoubleSide,
+            wireframe: true,
         });
         var planeMesh = new THREE.Mesh(planeGeo, planeMat);
         planeMesh.position.set(0, 0, 0);
         planeMesh.rotation.y = .5 * Math.PI;
+        scene.add(planeMesh);
+    }
+
+    // 添加线条
+    function line() {
+        var material = new THREE.LineBasicMaterial({ color:0xFFFFFF , linewidth: 100});
+        var geometry = new THREE.Geometry();
+        geometry.vertices.push(new THREE.Vector3(100, 100, -100));
+        geometry.vertices.push(new THREE.Vector3(0,0,0));
+        line = new THREE.Line(geometry, material);
+        scene.add(line);   
+    }
+
+    // 添加旋转平面
+    function rotatePlane() {
+        var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
+        var planeMat = new THREE.MeshBasicMaterial({
+            // color:0x666666,
+            color:0x666666,
+            side: THREE.DoubleSide,
+            wireframe: false,
+        });
+        var planeMesh = new THREE.Mesh(planeGeo, planeMat);
+        planeMesh.position.set(0, 0, 0);
+
+        var axis = new THREE.Vector3(-1, 1, -1);
+        var rotWorldMatrix = new THREE.Matrix4();
+        rotWorldMatrix.makeRotationAxis(axis.normalize(), 45 * Math.PI / 180 );
+        rotWorldMatrix.multiply(planeMesh.matrix);
+        planeMesh.matrix = rotWorldMatrix;
+        planeMesh.rotation.setFromRotationMatrix(planeMesh.matrix);
+
+
+        // 模拟X旋转
+        // planeMesh.rotation.x = (1 / 4) * Math.PI;
+
+        // 模拟Y旋转
+        // planeMesh.rotation.y = (1 / 4) * Math.PI;
+
+        // 模拟Z旋转
+        // planeMesh.rotation.z = (1 / 4) * Math.PI;
+
         scene.add(planeMesh);
     }
     function render(){

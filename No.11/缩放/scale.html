@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scale</title>
+    <style>
+        .body {
+            margin-left: 40%;
+        }
+        .container {
+            display: inline-block;
+            border: 1px dashed black;
+        }
+        .public {
+            height: 100px;
+            width: 100px;
+            background-color: #EA7F26;
+            opacity: .5;
+        }
+        .scale-x {
+            transform: scale(2);
+        }
+        .scale-y {
+            transform: scale(0, 2);
+        }
+        .scaleX {
+            transform: scaleX(2);
+        }
+        .scaleY {
+            transform: scaleY(2);
+        }
+        .scaleZ {
+            transform: scaleZ(2);
+        }
+        .scale3d {
+            transform: scale3d(2, 2, 2);
+        }
+    </style>
+</head>
+<body>
+    <h1>scale(x[, y])</h1>
+    <div class="container">
+        <div class="scale-x public"></div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div class="scale-y public"></div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1>scaleX(x)</h1>
+    <div class="container">
+        <div class="scaleX public"></div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1>scaleY(y)</h1>
+    <div class="container">
+        <div class="scaleY public"></div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1>scaleZ(z)</h1>
+    <div class="container">
+        <div class="scaleZ public"></div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1>scale3d(x, y, z)</h1>
+    <div class="container">
+        <div class="scale3d public"></div>
+    </div>
+</body>
+</html>
