@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transform-origin</title>
+    <style>
+        html {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            display: inline-block;
+            border: 1px dashed black;
+        }
+        .public {
+            height: 100px;
+            width: 100px;
+            opacity: .5;
+            background: #EA7F26;
+        }
+        .transform-origin {
+            transform: rotateZ(45deg);
+            transform-origin: left top;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="transform-origin public"></div>
+    </div>
+</body>
+</html>

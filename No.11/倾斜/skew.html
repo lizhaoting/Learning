@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Skew</title>
+    <style>
+        body {
+            margin-left: 40%;
+        }
+        .container {
+            display: inline-block;
+            border: 1px dashed black;
+        }
+        .public {
+            height: 100px;
+            width: 100px;
+            background: #EA7F26;
+            opacity: .5;
+        }
+        .skewX {
+            transform: skewX(45deg);
+        }
+        .skewY {
+            transform: skewY(45deg);
+        }
+        .skew {
+            transform: skew(45deg, 45deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>skewX</h1>
+    <div class="container">
+        <div class="skewX public"></div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1>skewY</h1>
+    <div class="container">
+        <div class="skewY public"></div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1>skew</h1>
+    <div class="container">
+        <div class="skew public"></div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</body>
+</html>

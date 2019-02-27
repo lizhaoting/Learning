@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Scale</title>
+    <title>Translate</title>
     <style>
         body {
             margin-left: 40%;
@@ -16,35 +16,30 @@
         .public {
             height: 100px;
             width: 100px;
-            border: 1px dashed #EA7F26;
+            background: #EA7F26;
             opacity: .5;
-            background: url('./logo.png');
-            background-size: cover;
         }
-        .scale-x {
-            transform: scale(2);
+        .translateX {
+            transform: translateX(20px);
         }
-        .scale-y {
-            transform: scale(0, 2);
+        .translateY {
+            transform: translateY(20px);
         }
-        .scaleX {
-            transform: scaleX(2);
+        .translateZ {
+            transform: perspective(500px) translateZ(200px);
         }
-        .scaleY {
-            transform: scaleY(2);
+        .translate {
+            transform: translate(20px, 20px);
         }
-        .scaleZ {
-            transform: perspective(500px) scaleZ(1) translateZ(200px);;
-        }
-        .scale3d {
-            transform: scale3d(.5, 2, .5);
+        .translate3d {
+            transform: translate3d(20px, 20px, 20px);
         }
     </style>
 </head>
 <body>
-    <h1>scale(x[, y])</h1>
+    <h1>translateX</h1>
     <div class="container">
-        <div class="scale-x public"></div>
+        <div class="translateX public"></div>
     </div>
     <br />
     <br />
@@ -52,8 +47,9 @@
     <br />
     <br />
     <br />
+    <h1>translateY</h1>
     <div class="container">
-        <div class="scale-y public"></div>
+        <div class="translateY public"></div>
     </div>
     <br />
     <br />
@@ -61,9 +57,9 @@
     <br />
     <br />
     <br />
-    <h1>scaleX(x)</h1>
+    <h1>translateZ</h1>
     <div class="container">
-        <div class="scaleX public"></div>
+        <div class="translateZ public"></div>
     </div>
     <br />
     <br />
@@ -71,9 +67,9 @@
     <br />
     <br />
     <br />
-    <h1>scaleY(y)</h1>
+    <h1>translate</h1>
     <div class="container">
-        <div class="scaleY public"></div>
+        <div class="translate public"></div>
     </div>
     <br />
     <br />
@@ -81,19 +77,9 @@
     <br />
     <br />
     <br />
-    <h1>scaleZ(z)</h1>
+    <h1>translate3d</h1>
     <div class="container">
-        <div class="scaleZ public"></div>
-    </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <h1>scale3d(x, y, z)</h1>
-    <div class="container">
-        <div class="scale3d public"></div>
+        <div class="translate3d public"></div>
     </div>
     <br />
     <br />

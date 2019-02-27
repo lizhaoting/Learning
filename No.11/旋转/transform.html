@@ -56,6 +56,7 @@
         plane3();
         line();
         rotatePlane();
+        cube();
     }
     function plane1(){
         var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
@@ -139,6 +140,22 @@
 
         scene.add(planeMesh);
     }
+
+    function cube() {
+        var cube1 = new THREE.Mesh(new THREE.CubeGeometry(2, 2, 2),
+        new THREE.MeshBasicMaterial({
+            color: 0xffffff
+        }));
+        cube1.position.set(5, 0, 200);
+        scene.add(cube1);
+        var cube2 = new THREE.Mesh(new THREE.CubeGeometry(2, 2, 2),
+        new THREE.MeshBasicMaterial({
+            color: 0xffffff
+        }));
+        cube2.position.set(-5, 0, 200);
+        scene.add(cube2);
+    }
+
     function render(){
         delta = clock.getDelta();
         orbitControls.update(delta);
