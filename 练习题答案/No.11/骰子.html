@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        #outer{
+            perspective: 500px;
+            -webkit-perspective:500px;
+            -moz-perspective:500px;
+            -moz-perspective-origin: 50% 50%;
+            overflow: hidden;
+        }
+        #group{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style:preserve-3d;
+            -webkit-transform-style:preserve-3d;
+            -moz-transform-style:preserve-3d;
+            transform-origin:50% 50% -100px;
+            -webkit-transform-origin:50% 50% -100px;
+            -moz-transform-origin:50% 50% -100px;
+            margin: 200px auto;
+            transform-animation:scroll 3s linear 0s infinite;
+            -webkit-animation:scroll 3s linear 0s infinite;
+            -moz-animation:scroll 3s linear 0s infinite;
+            background-color:#E8E8E9;
+            border-radius:20px;
+        }
+        .page{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            text-align: center;
+            font-weight: bold;
+            overflow: hidden;
+            word-break:break-all;
+            word-wrap:break-word;
+            text-align: center;
+            background-color:#E8E8E9;
+            border:1px solid #E0E0E0; 
+        }
+        #page1{
+        }
+        #page2{
+            transform-origin:right;
+            transform:rotateY(-90deg);
+            -webkit-transform-origin:right;
+            -webkit-transform:rotateY(-90deg);
+            -moz-transform-origin:right;
+            -moz-transform:rotateY(-90deg);
+        }
+        #page3{
+            transform-origin:left;
+            transform:rotateY(90deg);
+            -webkit-transform-origin:left;
+            -webkit-transform:rotateY(90deg);
+            -moz-transform-origin:left;
+            -moz-transform:rotateY(90deg);
+        }
+        #page4{
+            transform-origin:top;
+            transform:rotateX(-90deg);
+            -webkit-transform-origin:top;
+            -webkit-transform:rotateX(-90deg);
+            -moz-transform-origin:top;
+            -moz-transform:rotateX(-90deg);
+        }
+        #page5{
+            transform-origin:bottom;
+            transform:rotateX(90deg);
+            -webkit-transform-origin:bottom;
+            -webkit-transform:rotateX(90deg);
+            -moz-transform-origin:bottom;
+            -moz-transform:rotateX(90deg);
+        }
+        #page6{
+            transform:translateZ(-200px);
+            -webkit-transform:translateZ(-200px);
+            -moz-transform:translateZ(-200px);
+        }
+        .page span {
+            display:inline-block;
+            width:50px;
+            height:50px;
+            border-radius:25px;
+            background-color:#050505;
+            box-shadow:inset 3px 3px 5px #000;
+        }
+        #page1 span{
+            position:absolute;
+            left:50%;
+            top:50%;
+            margin-top:-25px;
+            margin-left: -25px;
+        }
+        #page2 span {
+            margin:75px 25px;
+        }
+        #page3 span {
+            position:absolute;
+        }
+        #page3 span:first-child {
+            top:20px;
+            left:20px;
+        }
+        #page3 span:nth-child(2) {
+            top:75px;
+            left:75px;
+        }
+        #page3 span:last-child {
+            bottom:20px;
+            right:20px;
+        }
+        #page4 span {
+            margin:25px 25px;
+        }
+        #page5 span {
+            margin:25px 25px;
+        }
+        #page5 span:last-child {
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin-left:-25px;
+            margin-top:-25px;
+        }
+        #page6 span {
+            margin:7px 25px;
+        }
+        @-webkit-keyframes scroll {
+            0% {
+                -webkit-transform:rotateY(0deg) rotateX(60deg) rotateZ(45deg);
+            }
+            25% {
+                -webkit-transform:rotateY(0deg) rotateX(60deg) rotateZ(45deg);
+            }
+            50% {
+                -webkit-transform:rotateY(0deg) rotateX(60deg) rotateZ(45deg);
+            } 
+            75% {
+                -webkit-transform:rotateY(0deg) rotateX(60deg) rotateZ(45deg);
+            }
+            100% {
+                -webkit-transform:rotateY(0deg) rotateX(60deg) rotateZ(45deg);
+            }
+ 
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div id="group">
+            <div class="page" id="page1"><span></span></div>
+            <div class="page" id="page2"><span></span><span></span></div>
+            <div class="page" id="page3"><span></span><span></span><span></span></div>
+            <div class="page" id="page4"><span></span><span></span><span></span><span></span></div>
+            <div class="page" id="page5"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="page" id="page6"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+    </div>
+</body>
+</html>

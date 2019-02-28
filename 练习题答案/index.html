@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Css3动画效果，超简单的loveHeart</title>
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+</head>
+<style type="text/css">
+*{
+padding: 0;
+margin: 0;
+}
+body,html{
+width: 100%;
+height: 100%;
+overflow: hidden;
+background: linear-gradient(to right,pink,white) no-repeat;
+}
+.warp{
+margin: 50px auto;
+width: 80%;
+height: 100%;
+}
+.hearts span{
+position: absolute;
+top: 24px;
+left: 15px;
+font-family: "华文行楷";
+z-index: 999;
+}
+.hearts {
+float: left;
+width: 200px;
+height: 200px;
+position: relative;
+margin-top:100px;
+margin-left:200px;
+a***tion: heart 3s linear infinite normal;
+}
+.hearts:before, .hearts:after {
+position: absolute;
+content: "";
+left: 70px; top: 0;
+width: 70px;
+height: 115px;
+background: #f00;
+-moz-border-radius: 50px 50px 0 0;
+border-radius: 50px 50px 0 0; 
+-webkit-transform: rotate(-45deg);
+-moz-transform: rotate(-45deg);
+-ms-transform: rotate(-45deg);
+-o-transform: rotate(-45deg);
+transform: rotate(-45deg);
+-webkit-transform-origin: 0 100%;
+-moz-transform-origin: 0 100%;
+-ms-transform-origin: 0 100%;
+-o-transform-origin: 0 100%;
+transform-origin: 0 100%;
+}
+.hearts:after {
+left: 0;
+-webkit-transform: rotate(45deg);
+-moz-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+-o-transform: rotate(45deg);
+transform: rotate(45deg);
+-webkit-transform-origin: 100% 100%;
+-moz-transform-origin: 100% 100%; 
+-ms-transform-origin: 100% 100%;
+-o-transform-origin: 100% 100%;
+transform-origin :100% 100%;
+}
+@keyframes heart{
+0%{
+transform: scale(0.5);
+}
+100%{
+transform: scale(1.3);
+}
+}
+#heartTextCopy{
+float: left;
+padding-top: 100px;
+width: 600px;
+height: 500px;
+font-size: 19px;
+font-family: "仿宋";
+color: plum;
+}
+</style>
+<body>
+<div class="warp">
+<div class="heartText">
+<pre id="heartTextCopy"></pre>
+<div class="hearts">
+<span>LoveHeart</span>
+</div>
+</div>
+</div>
+<pre id="heartText" style = "display: none;">
+落花也有纷飞的时候，夏日的风卷起的是记忆的花残，纷飞的却是放任的灵魂。
+思也，念也？
+青梅竹马，从小一起长到大。 突然有一天，他对她说：“嫁给我吧。” 但是她犹豫不决。 
+于是他们用剪刀石头布决定一切。 
+他赢了。 结婚后她问他，为什么那么有把握。 
+他淡淡地一笑：“七岁的时候我就知道你喜欢出石头。”
+</pre>
+</body>
+<script type="text/javascript">
+var txt = document.getElementById('heartText').innerHTML;
+var temp = 0;
+function herat(){
+if(temp > txt.length){
+temp = 0;
+}
+temp++;
+document.getElementById('heartTextCopy').innerHTML= txt.substring(0,temp);
+}
+setInterval(herat,200);
+</script>
+</html>

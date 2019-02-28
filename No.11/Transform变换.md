@@ -10,23 +10,27 @@
 
   ![image](./camera.png)
 
+- **`正交投影`**
+
+  ![image](./squre.png)
+
 - **`坐标系` - 左手坐标系**
 
-    ![image](./left.png)
+  ![image](./left.png)
 
 - **`Transform-origin` - 基准点**
 
 - **`Transform-style` - 元素呈现方式**
 
-- **Rotate - 旋转**
+- **`Rotate` - 旋转**
 
-- **Scale - 缩放**
+- **`Scale` - 缩放**
 
-- **Skew - 倾斜**
+- **`Skew` - 倾斜**
 
-- **Translate - 移动**
+- **`Translate` - 移动**
 
-- **Perspective - 透视**
+- **`Perspective` - 透视**
 
 > **`2：浏览器兼容`**
 - **完全支持Transform第一个浏览器版本**
@@ -192,3 +196,52 @@ transform: perspective(200px);
   - `flat` - `2D形式`
 
   - `preserve-3d` - `3D形式`
+
+> **`10：课后练习`**
+
+- **`CSS中Transform采用哪种投影, 有什么特点`**
+    ```css
+    A: 正交投影
+
+    B: 透视投影
+    ```
+
+- **`尝试使用Transform实现下图样式`**
+
+    ![image](./photo.png)
+    ```css
+    image宽度 300px
+    image高度 220px
+    
+    image padding 10px
+
+    倾斜角度不限制, 协调即可
+    ```
+
+
+
+- **`使用Flex布局结合Transform实现下图样式`**
+
+    ![image](./touzi.png)
+
+    ```css
+    边长 400px * 400px
+
+    紫色背景 #8A469B
+
+    棱(边) #CDCDCD
+
+    点数 #000
+
+    面 #FFF
+    ```
+
+- **`尝试使用Transform实现下图样式 (选做)`**
+
+    ![image](./three.png)
+
+> **`11：总结`**
+
+    ```
+    本节课讲解了Transform的基本概念, 简要介绍了CSS3坐标系统与透视原理, 重点介绍了Transform常用的Rotate(旋转)、Scale(缩放)、Skew(倾斜)、Translate(移动)、Perspective(透视)属性
+    ```
