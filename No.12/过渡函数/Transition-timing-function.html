@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transition-timing-function</title>
+    <style>
+        html, body {
+            position: absolute;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+        }
+        button {
+            padding: 10px;
+        }
+        .container {
+            width: 100%;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            text-align: center;
+        }
+        .main {
+            width: 100px;
+            height: 20px;
+            border: 1px solid #EA7F26;
+            background-color: #EA7F26;
+        }
+
+        .main:hover {
+            width: 100%;
+        }
+
+        .transform {
+            width: 100%;
+        }
+
+        .linear {
+            transition-duration: 2s;
+            transition-timing-function: linear;
+        }
+
+        .ease {
+            transition-duration: 2s;
+            transition-timing-function: ease;
+        }
+
+        .ease-in {
+            transition-duration: 2s;
+            transition-timing-function: ease-in;
+        }
+
+        .ease-out {
+            transition-duration: 2s;
+            transition-timing-function: ease-out;
+        }
+
+        .ease-in-out {
+            transition-duration: 2s;
+            transition-timing-function: ease-in-out;
+        }
+
+        .cubic-bezier {
+            transition-duration: 2s;
+            transition-timing-function: cubic-bezier(1, 1, 1, 1);
+        }
+    </style>
+</head>
+<body>
+    <h2>linear</h2>
+    <div class="container">
+        <div class="main linear"></div>
+    </div>
+    
+    <h2>ease</h2>
+    <div class="container">
+        <div class="main ease"></div>
+    </div>
+
+    <h2>ease-in</h2>
+    <div class="container">
+        <div class="main ease-in"></div>
+    </div>
+
+    <h2>ease-out</h2>
+    <div class="container">
+        <div class="main ease-out"></div>
+    </div>
+
+    <h2>ease-in-out</h2>
+    <div class="container">
+        <div class="main ease-in-out"></div>
+    </div>
+
+    <h2>cubic-bezier</h2>
+    <div class="container">
+        <div class="main cubic-bezier"></div>
+    </div>
+
+    <br />
+    <button onclick="start()">
+        start
+    </button>
+    &nbsp;&nbsp;
+    <button onclick="end()">
+        end
+    </button>
+</body>
+<script>
+    function start() {
+        const list = document.getElementsByClassName('main');
+        console.log(list);
+        [...list].map(s => {
+            s.classList.add('transform');
+        })
+    }
+
+    function end() {
+        const list = document.getElementsByClassName('main');
+        console.log(list);
+        [...list].map(s => {
+            s.classList.remove('transform');
+        })
+    }
+</script>
+</html>

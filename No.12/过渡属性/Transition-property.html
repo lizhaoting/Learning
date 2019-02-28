@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transition-property</title>
+    <style>
+        html, body {
+            position: absolute;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        .container {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .main {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #EA7F26;
+            background-color: #EA7F26;
+            background-image: url('./logo.png');
+            background-size: cover;
+            /* 必须配合transition-duration */
+            transition-duration: 1s;
+        }
+
+        .main:hover {
+            width: 200px;
+            height: 200px;
+        }
+
+        .no {
+            transition-property: no;
+        }
+
+        .transition-property-width {
+            transition-property: width;
+        }
+
+        .transition-property-height {
+            transition-property: height;
+        }
+
+        .all {
+            transition-property: all;
+        }
+    </style>
+</head>
+<body>
+    <h1>no</h1>
+    <div class="container">
+        <div class="main no"></div>
+    </div>
+    
+    <h1>width</h1>
+    <div class="container">
+        <div class="main transition-property-width"></div>
+    </div>
+    <h1>height</h1>
+    <div class="container">
+        <div class="main transition-property-height"></div>
+    </div>
+    <h1>all</h1>
+    <div class="container">
+        <div class="main all"></div>
+    </div>
+</body>
+</html>
