@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>悬浮菜单栏</title>
+    <style>
+        body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            text-align: center;
+        }
+        li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 15px;
+            border-left: 1px solid #5f310a;
+            font-size: 16px;
+            list-style: none;
+            color: #FFF;
+            background-color: #EA7F26;
+            cursor: pointer;
+        }
+        .main {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 100px;
+            padding: 0 300px;
+            background-color: #8A469B;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <li>同学计划</li>
+        <li>学习路线</li>
+        <li>教程系列</li>
+    </div>
+</body>
+</html>
