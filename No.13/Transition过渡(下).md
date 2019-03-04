@@ -2,7 +2,95 @@
 
 > **`8：悬浮菜单栏特效`**
 
+- `拉伸展开`
 
+  ![image](./1.gif)
+
+    - `初始状态`
+    ```css
+    .origin1 {
+        opacity: 0;
+        transform: rotateY(90deg);
+        transform-origin: center;
+        transition-property: all;
+    }
+    ```
+
+    - `结束状态`
+    ```css
+    .main li:hover .menu1 :nth-child(1) {
+        opacity: 1;
+        transition-duration: .5s;
+        transition-delay: .3s;
+        transform: rotateY(0);
+    }
+
+    .main li:hover .menu1 :nth-child(2) {
+        opacity: 1;
+        transition-duration: .5s;
+        transition-delay: .6s;
+        transform: rotateY(0);
+    }
+
+    .main li:hover .menu1 :nth-child(3) {
+        opacity: 1;
+        transition-duration: .5s;
+        transition-delay: .9s;
+        transform: rotateY(0);
+    }
+
+    .main li:hover .menu1 :nth-child(4) {
+        opacity: 1;
+        transition-duration: .5s;
+        transition-delay: 1.2s;
+        transform: rotateY(0);
+    }
+    ```
+
+- `旋转移入`
+
+  ![image](./2.gif)
+
+  - `初始状态`
+  ```css
+  .origin2 {
+        opacity: 0;
+        transform: translateX(50px) rotate(-90deg);
+        transform-origin: top center;
+        transition-property: all;
+    }
+  ```
+
+  - `结束状态`
+  ```css
+  .main li:hover .menu2 :nth-child(1) {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+        transition-duration: .5s;
+        transition-delay: .3s;
+    }
+
+    .main li:hover .menu2 :nth-child(2) {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+        transition-duration: .5s;
+        transition-delay: .6s;
+    }
+
+    .main li:hover .menu2 :nth-child(3) {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+        transition-duration: .5s;
+        transition-delay: .9s;
+    }
+
+    .main li:hover .menu2 :nth-child(4) {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+        transition-duration: .5s;
+        transition-delay: 1.2s;
+    }
+  ```
 
 
 

@@ -6,39 +6,194 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>悬浮菜单栏</title>
     <style>
-        body {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+        * {
             margin: 0;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
         }
-        li {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 15px;
-            border-left: 1px solid #5f310a;
-            font-size: 16px;
+        body {
+            background-color: #1f2937;
+            height: 100px;
+
+            font-family: "Raleway", sans-serif;
+            letter-spacing: 1px;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            padding-top: 20px;
+        }
+        ul {
             list-style: none;
-            color: #FFF;
-            background-color: #EA7F26;
-            cursor: pointer;
+        }
+        nav {
+            height: 40px;
+            margin: 40px auto;
+            background-color: rgba(23, 23, 50, 0.7);
+            text-align: center;
+            border-radius: 4px;
         }
         .main {
             display: flex;
-            justify-content: space-between;
-            margin-top: 100px;
-            padding: 0 300px;
-            background-color: #8A469B;
+            justify-content: center;
         }
+        a {
+            text-decoration: none;
+            color: #ffe;
+            text-transform: capitalize;
+            font-family: monospace;
+            display: block;
+            padding: 10px 15px;
+            font-size: 16px;
+            transition: background-color 0.5s ease-in-out;
+            font-family: "Raleway", sans-serif;
+        }
+        a:hover {
+            background-color: #8A469B;
+            cursor: pointer;
+        }
+        .list li {
+            background-color: #8A469B;
+            padding: 10px 0;
+            color: #FFF;
+        }
+
+
+        /*------------- 同学计划 -------------------*/
+
+        .origin1 {
+            opacity: 0;
+            transform: rotateY(90deg);
+            transform-origin: center;
+            transition-property: all;
+        }
+
+        .main li:hover .menu1 :nth-child(1) {
+            opacity: 1;
+            transition-duration: .5s;
+            transition-delay: .3s;
+            transform: rotateY(0);
+        }
+
+        .main li:hover .menu1 :nth-child(2) {
+            opacity: 1;
+            transition-duration: .5s;
+            transition-delay: .6s;
+            transform: rotateY(0);
+        }
+
+        .main li:hover .menu1 :nth-child(3) {
+            opacity: 1;
+            transition-duration: .5s;
+            transition-delay: .9s;
+            transform: rotateY(0);
+        }
+
+        .main li:hover .menu1 :nth-child(4) {
+            opacity: 1;
+            transition-duration: .5s;
+            transition-delay: 1.2s;
+            transform: rotateY(0);
+        }
+
+        /*------------- 教程内容 -------------------*/
+
+        .origin2 {
+            opacity: 0;
+            transform: translateX(50px) rotate(-90deg);
+            transform-origin: top center;
+            transition-property: all;
+        }
+
+        .main li:hover .menu2 :nth-child(1) {
+            opacity: 1;
+            transform: translateX(0) rotate(0);
+            transition-duration: .5s;
+            transition-delay: .3s;
+        }
+
+        .main li:hover .menu2 :nth-child(2) {
+            opacity: 1;
+            transform: translateX(0) rotate(0);
+            transition-duration: .5s;
+            transition-delay: .6s;
+        }
+
+        .main li:hover .menu2 :nth-child(3) {
+            opacity: 1;
+            transform: translateX(0) rotate(0);
+            transition-duration: .5s;
+            transition-delay: .9s;
+        }
+
+        .main li:hover .menu2 :nth-child(4) {
+            opacity: 1;
+            transform: translateX(0) rotate(0);
+            transition-duration: .5s;
+            transition-delay: 1.2s;
+        }
+
+
+        /* 练习题内容 */
+
+        .origin3{opacity:0;transform:rotateX(-90deg);transform-origin:top center;transition-property:all;}
+        .main li:hover .menu3 :nth-child(1){opacity:1;transform:rotateX(0);transition-duration:.5s;transition-delay:.3s;}
+        .main li:hover .menu3 :nth-child(2){opacity:1;transform:rotateX(0);transition-duration:.5s;transition-delay:.6s;}
+        .main li:hover .menu3 :nth-child(3){opacity:1;transform:rotateX(0);transition-duration:.5s;transition-delay:.9s;}
+        .main li:hover .menu3 :nth-child(4) {opacity:1;transform:rotateX(0);transition-duration:.5s;transition-delay:1.2s;}
+        .origin4{opacity:0;transform:scale(2);transform-origin:top center;transition-property:all;}
+        .main li:hover .menu4 :nth-child(1){opacity:1;transform:scale(1);transition-duration:.5s;transition-delay:.3s;}
+        .main li:hover .menu4 :nth-child(2){opacity:1;transform:scale(1);transition-duration:.5s;transition-delay:.6s;}
+        .main li:hover .menu4 :nth-child(3){opacity:1;transform:scale(1);transition-duration:.5s;transition-delay:.9s;}
+        .main li:hover .menu4 :nth-child(4){opacity:1;transform:scale(1);transition-duration:.5s;transition-delay:1.2s;}
+
     </style>
 </head>
 <body>
-    <div class="main">
-        <li>同学计划</li>
-        <li>学习路线</li>
-        <li>教程系列</li>
-    </div>
+    <nav>
+        <ul class="main">
+            <li><a>同学计划</a>
+                <ul class="list menu1">
+                    <li class="origin1">同学计划</li>
+                    <li class="origin1">同学计划</li>
+                    <li class="origin1">同学计划</li>
+                    <li class="origin1">同学计划</li>
+                </ul>
+            </li>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <li><a>学习路线</a>
+                <ul class="list menu2">
+                    <li class="origin2">学习路线</li>
+                    <li class="origin2">学习路线</li>
+                    <li class="origin2">学习路线</li>
+                    <li class="origin2">学习路线</li>
+                </ul>
+            </li>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <li><a>教程系列</a>
+                <ul class="list menu3">
+                    <li class="origin3">教程系列</li>
+                    <li class="origin3">教程系列</li>
+                    <li class="origin3">教程系列</li>
+                    <li class="origin3">教程系列</li>
+                </ul>
+            </li>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <li><a>教程内容</a>
+                <ul class="list menu4">
+                    <li class="origin4">教程内容</li>
+                    <li class="origin4">教程内容</li>
+                    <li class="origin4">教程内容</li>
+                    <li class="origin4">教程内容</li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 </body>
 </html>

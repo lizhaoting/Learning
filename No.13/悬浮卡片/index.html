@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<title>悬浮卡片</title>
+<style>
+    .effect-phoebe {
+        width: 480px;
+        height: 360px;
+    }
+
+    .effect-phoebe img {
+        opacity: 0.85;
+        transition: opacity 0.35s;
+    }
+
+    .effect-phoebe:hover img {
+        opacity: 0.6;
+    }
+
+    .effect-phoebe figcaption::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url(../img/triangle2.svg) no-repeat center center;
+        background-size: 100% 100%;
+        content: '';
+        transition: opacity 0.35s, transform 0.35s;
+        transform: scale3d(5,2.5,1);
+        transform-origin: 50% 50%;
+    }
+
+    .effect-phoebe:hover figcaption::before {
+        opacity: 0.6;
+        transform: scale3d(1,1,1);
+    }
+
+    .effect-phoebe h2 {
+        margin-top: 1em;
+        transition: transform 0.35s;
+        transform: translate3d(0,40px,0);
+    }
+
+    .effect-phoebe:hover h2 {
+        transform: translate3d(0,0,0);
+    }
+
+    .effect-phoebe p a {
+        color: #fff;
+        font-size: 140%;
+        opacity: 0;
+        position: relative;
+        display: inline-block;
+        transition: opacity 0.35s, transform 0.35s;
+    }
+
+    .effect-phoebe p a:first-child {
+        transform: translate3d(-60px,-60px,0);
+    }
+
+    .effect-phoebe p a:nth-child(2) {
+        transform: translate3d(0,60px,0);
+    }
+
+    .effect-phoebe p a:nth-child(3) {
+        transform: translate3d(60px,-60px,0);
+    }
+
+    .effect-phoebe:hover p a {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+</style>
+</head>
+<body>
+    <div class="effect-phoebe">
+        <img src="3.jpg" alt=""/>
+        <figcaption>
+            <p>
+                <a href="#"><i class="fa fa-fw fa-user"></i></a>
+                <a href="#"><i class="fa fa-fw fa-heart"></i></a>
+                <a href="#"><i class="fa fa-fw fa-cog"></i></a>
+            </p>
+        </figcaption>			
+    </div>
+</body>
+</html>
