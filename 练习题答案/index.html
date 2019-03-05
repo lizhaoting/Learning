@@ -1,185 +1,121 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>悬浮效果菜单</title>
-<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-<style>
-*::before,*::after {
-	box-sizing:border-box;
+<meta charset="utf-8" />
+<title>Css3动画效果，超简单的loveHeart</title>
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+</head>
+<style type="text/css">
+*{
+padding: 0;
+margin: 0;
 }
-.leaderboard {
-	position:absolute;
-	top:20px;
-	left:10px;
-	width:375px;
-	height:200px;
-	background:#F0F0F0;
-	border-radius:10px;
-	box-shadow:0 7px 30px rgba(62,9,11,0.3);
+body,html{
+width: 100%;
+height: 100%;
+overflow: hidden;
+background: linear-gradient(to right,pink,white) no-repeat;
 }
-.leaderboard h1 {
-	font-size:18px;
-	height:30px;
-	line-height:30px;
-	text-align:center;
+.warp{
+margin: 50px auto;
+width: 80%;
+height: 100%;
 }
-.leaderboard h1 svg {
-	width:25px;
-	height:26px;
-	position:relative;
-	margin-right:0px;
-	vertical-align:baseline;
+.hearts span{
+position: absolute;
+top: 24px;
+left: 15px;
+font-family: "华文行楷";
+z-index: 999;
 }
-.leaderboard ol {
-	counter-reset:leaderboard;
+.hearts {
+float: left;
+width: 200px;
+height: 200px;
+position: relative;
+margin-top:100px;
+margin-left:200px;
+a***tion: heart 3s linear infinite normal;
 }
-.leaderboard ol li {
-	position:relative;
-	z-index:1;
-	font-size:13px;
-	font-family:微软雅黑;
-	counter-increment:leaderboard;
-	padding:18px 0px 10px 0px;
-	cursor:pointer;
+.hearts:before, .hearts:after {
+position: absolute;
+content: "";
+left: 70px; top: 0;
+width: 70px;
+height: 115px;
+background: #f00;
+-moz-border-radius: 50px 50px 0 0;
+border-radius: 50px 50px 0 0; 
+-webkit-transform: rotate(-45deg);
+-moz-transform: rotate(-45deg);
+-ms-transform: rotate(-45deg);
+-o-transform: rotate(-45deg);
+transform: rotate(-45deg);
+-webkit-transform-origin: 0 100%;
+-moz-transform-origin: 0 100%;
+-ms-transform-origin: 0 100%;
+-o-transform-origin: 0 100%;
+transform-origin: 0 100%;
 }
-.leaderboard ol li::before {
-	content:counter(leaderboard);
-	position:absolute;
-	z-index:2;
-	top:6px;
-	left:10px;
-	width:15px;
-	height:15px;
-	line-height:15px;
-	color:#4D6999;
-	background:#fff;
-	border-radius:20px;
-	text-align:center;
+.hearts:after {
+left: 0;
+-webkit-transform: rotate(45deg);
+-moz-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+-o-transform: rotate(45deg);
+transform: rotate(45deg);
+-webkit-transform-origin: 100% 100%;
+-moz-transform-origin: 100% 100%; 
+-ms-transform-origin: 100% 100%;
+-o-transform-origin: 100% 100%;
+transform-origin :100% 100%;
 }
-.leaderboard ol li mark {
-	position:absolute;
-	z-index:2;
-	top:-1px;
-	left:-10px;
-	width:100%;
-	padding:8px 10px 18px 50px;
-	margin:0;
-	background:none;
-	color:#fff;
+@keyframes heart{
+0%{
+transform: scale(0.5);
 }
-.leaderboard ol li mark::before,.leaderboard ol li mark::after {
-	content:'';
-	position:absolute;
-	z-index:1;
-	-webkit-transition:all .1s ease-in-out;
-	transition:all .1s ease-in-out;
-	opacity:0;
+100%{
+transform: scale(1.3);
 }
-.leaderboard ol li mark::after {
-	left:auto;
-	right:-9px;
-	border-left:none;
-	border-right:10px solid transparent;
 }
-.leaderboard ol li small {
-	position:relative;
-	z-index:2;
-	display:block;
-	text-align:right;
-}
-.leaderboard ol li::after {
-	content:'';
-	position:absolute;
-	z-index:1;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	background:none;
-	box-shadow:0 3px 0 rgba(0,0,0,0.08);
-	-webkit-transition:all .3s ease-in-out;
-	transition:all .3s ease-in-out;
-	opacity:0;
-}
-.leaderboard ol li {
-	background:#7E98BE;
-	border:1px solid lightgrey;
-	border-width:0px 1px 1px 1px;
-}
-.leaderboard ol li::after {
-	background:#637FB0;
-	border-radius:3px;
-}
-.leaderboard ol li:hover {
-	z-index:2;
-	overflow:visible;
-}
-.leaderboard ol li:hover::after {
-	opacity:1;
-	-webkit-transform:scaleX(1.06) scaleY(1.03);
-	transform:scaleX(1.06) scaleY(1.03);
-}
-.leaderboard ol li:hover mark::before,.leaderboard ol li:hover mark::after {
-	opacity:1;
-	-webkit-transition:all .35s ease-in-out;
-	transition:all .35s ease-in-out;
-}
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
-	margin:0;
-	padding:0;
-	border:0;
-	font-size:100%;
-	font:inherit;
-	vertical-align:baseline
-}
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
-	display:block
-}
-body {
-	line-height:1
-}
-ol,ul {
-	list-style:none
-}
-blockquote,q {
-	quotes:none
-}
-blockquote:before,blockquote:after,q:before,q:after {
-	content:'';
-	content:none
-}
-table {
-	border-collapse:collapse;
-	border-spacing:0
-}
-a:link,a:hover,a:visited,a:active {
-	text-decoration:none;
-	color:#fff;
+#heartTextCopy{
+float: left;
+padding-top: 100px;
+width: 600px;
+height: 500px;
+font-size: 19px;
+font-family: "仿宋";
+color: plum;
 }
 </style>
-</head>
 <body>
-<div class="leaderboard">
-    <h1>目       录</h1>
-    <ol class="part1">
-        <li><mark><a href="#">123</a></mark></li>
-        <li><mark><a href="#">123</a></mark></li>
-        <li><mark><a href="#">123</a></mark></li>
-        <li><mark><a href="#">123</a></mark></li>
-        <li><mark><a href="#">123</a></mark></li>
-    </ol>
+<div class="warp">
+<div class="heartText">
+<pre id="heartTextCopy"></pre>
+<div class="hearts">
+<span>LoveHeart</span>
 </div>
- 
-<script>
- 
-</script>
- 
+</div>
+</div>
+<pre id="heartText" style = "display: none;">
+落花也有纷飞的时候，夏日的风卷起的是记忆的花残，纷飞的却是放任的灵魂。
+思也，念也？
+青梅竹马，从小一起长到大。 突然有一天，他对她说：“嫁给我吧。” 但是她犹豫不决。 
+于是他们用剪刀石头布决定一切。 
+他赢了。 结婚后她问他，为什么那么有把握。 
+他淡淡地一笑：“七岁的时候我就知道你喜欢出石头。”
+</pre>
 </body>
+<script type="text/javascript">
+var txt = document.getElementById('heartText').innerHTML;
+var temp = 0;
+function herat(){
+if(temp > txt.length){
+temp = 0;
+}
+temp++;
+document.getElementById('heartTextCopy').innerHTML= txt.substring(0,temp);
+}
+setInterval(herat,200);
+</script>
 </html>
---------------------- 
-作者：front_end_fan 
-来源：CSDN 
-原文：https://blog.csdn.net/qq_39198420/article/details/77839361 
-版权声明：本文为博主原创文章，转载请附上博文链接！
