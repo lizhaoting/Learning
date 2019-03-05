@@ -1,91 +1,195 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="zh">
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-<meta name="viewport" content="width=device-width, initial-scale=1"> 
-<title>悬浮卡片</title>
-<style>
-    .effect-phoebe {
-        width: 480px;
-        height: 360px;
-    }
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>悬浮卡片</title>
+    <style type="text/css">
+		.team{
+		    padding: 30px 0 40px;
+		    background: #f7f5ec;
+		    text-align: center;
+		    overflow: hidden;
+		    position: relative;
+		}
+		.row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .card {
+            width: 200px;
+        }
+		.name {
+			margin: 5px;
+			font-weight: 600;
+			color: #FFF;
+			margin-bottom: 0;
+		}
+		.description {
+			font-size: 12px;
+			color: #595959;
+		}
+		.team .avatar{
+		    display: inline-block;
+		    width: 130px;
+		    height: 130px;
+		    z-index: 1;
+		    position: relative;
+		}
 
-    .effect-phoebe img {
-        opacity: 0.85;
-        transition: opacity 0.35s;
-    }
-
-    .effect-phoebe:hover img {
-        opacity: 0.6;
-    }
-
-    .effect-phoebe figcaption::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url(../img/triangle2.svg) no-repeat center center;
-        background-size: 100% 100%;
-        content: '';
-        transition: opacity 0.35s, transform 0.35s;
-        transform: scale3d(5,2.5,1);
-        transform-origin: 50% 50%;
-    }
-
-    .effect-phoebe:hover figcaption::before {
-        opacity: 0.6;
-        transform: scale3d(1,1,1);
-    }
-
-    .effect-phoebe h2 {
-        margin-top: 1em;
-        transition: transform 0.35s;
-        transform: translate3d(0,40px,0);
-    }
-
-    .effect-phoebe:hover h2 {
-        transform: translate3d(0,0,0);
-    }
-
-    .effect-phoebe p a {
-        color: #fff;
-        font-size: 140%;
-        opacity: 0;
-        position: relative;
-        display: inline-block;
-        transition: opacity 0.35s, transform 0.35s;
-    }
-
-    .effect-phoebe p a:first-child {
-        transform: translate3d(-60px,-60px,0);
-    }
-
-    .effect-phoebe p a:nth-child(2) {
-        transform: translate3d(0,60px,0);
-    }
-
-    .effect-phoebe p a:nth-child(3) {
-        transform: translate3d(60px,-60px,0);
-    }
-
-    .effect-phoebe:hover p a {
-        opacity: 1;
-        transform: translate3d(0,0,0);
-    }
-</style>
+		/* before */
+		.team .avatar:before{
+		    content: "";
+		    width: 100%;
+		    height: 0;
+		    border-radius: 50%;
+		    background: #8A469B;
+		    position: absolute;
+		    bottom: 135%;
+		    right: 0;
+		    left: 0;
+		    opacity: 0.2;
+		    transform: scale(3);
+		    transition: all 0.3s linear 0s;
+		}
+		.team:hover .avatar:before {
+			height: 100%;
+		}
+		.team:hover .teacher1 img {
+			opacity: 0;
+		}
+		.team:hover .teacher1:after {
+			background: transparent;
+		}
+		.teacher3 {
+			position: absolute;
+			left: 0;
+			top: 0;
+			opacity: 0;
+		}
+		.team:hover .teacher3 {
+			opacity: 1;
+			transform: scale(0.7);
+		}
+		.team .avatar:after {
+		    content: "";
+		    width: 100%;
+		    height: 100%;
+		    border-radius: 50%;
+		    background: #8A469B;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    z-index: -1;
+		}
+		.team .avatar img {
+		    width: 100%;
+		    height: auto;
+		    border-radius: 50%;
+		    transform: scale(1);
+		    transition: all 0.9s ease 0s;
+		}
+		.team:hover .avatar img {
+		    box-shadow: 0 0 0 14px #f7f5ec;
+		    transform: scale(0.7);
+		}
+		.team .content{
+			margin-bottom: 30px;
+		}
+		.team .title {
+		    font-size: 22px;
+		    font-weight: 700;
+		    color: #4e5052;
+		    letter-spacing: 1px;
+		    text-transform: capitalize;
+		    margin-bottom: 5px;
+		}
+		.team .bottom {
+		    width: 100%;
+		    padding: 0;
+		    margin: 0;
+		    background: #EA7F26;
+		    position: absolute;
+		    bottom: -100px;
+		    left: 0;
+		    transition: all 0.5s ease 0s;
+		}
+		.team:hover .bottom{
+			bottom: 0;
+		}
+		.teacher1 {
+			background-image: url('./teacher1.png');
+			background-size: cover;
+		}
+	</style>
 </head>
 <body>
-    <div class="effect-phoebe">
-        <img src="3.jpg" alt=""/>
-        <figcaption>
-            <p>
-                <a href="#"><i class="fa fa-fw fa-user"></i></a>
-                <a href="#"><i class="fa fa-fw fa-heart"></i></a>
-                <a href="#"><i class="fa fa-fw fa-cog"></i></a>
-            </p>
-        </figcaption>			
-    </div>
+
+<div class="demo">
+	<div class="row">
+		<div class="card">
+			<div class="team">
+				<div class="avatar teacher1">
+					<img src="./logo.png">
+				</div>
+				<div class="content">
+					<h3 class="title">侠课岛</h3>
+				</div>
+				<div class="bottom">
+					<p class="name">大姐姐</p>
+					<span class="description">移动端开发程序媛</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="team">
+				<div class="avatar">
+					<img src="./logo.png">
+					<img class="teacher3" src="./teacher3.png">
+				</div>
+				<div class="content">
+					<h3 class="title">侠课岛</h3>
+				</div>
+				<div class="bottom">
+					<p class="name">Eric</p>
+					<span class="description">前端开发工程师</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="team">
+				<div class="avatar">
+					<img src="./logo.png">
+				</div>
+				<div class="content">
+					<h3 class="title">侠课岛</h3>
+				</div>
+				<div class="bottom">
+					<p class="name">小码哥</p>
+					<span class="description">从没离开过</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="team">
+				<div class="avatar">
+					<img src="./logo.png">
+				</div>
+				<div class="content">
+					<h3 class="title">侠课岛</h3>
+				</div>
+				<div class="bottom">
+					<p class="name">阿星</p>
+					<span class="description">新技术爱好者</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
 </body>
 </html>
