@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>功能</title>
+    <style>
+        body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .main {
+            width: 200px;
+            height: 100px;
+            background-color: #8A469B;
+        }
+        @media only screen and (min-width : 600px) {
+            .main {
+                background-color: red;
+            }
+        }
+        @media only screen and (max-width : 600px) {
+            .main {
+                background-color: yellow;
+            }
+        }
+        @media screen and (width : 600px) , (width: 800px) {
+            .main {
+                background-color: green;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main"></div>
+</body>
+</html>
