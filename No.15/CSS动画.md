@@ -53,17 +53,118 @@
 }
 ```
 
-> **`4：animationname`**
+> **`4：animationname - 关键帧名称`**
+```css
+.main {
+    animation-name: around;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
 
-> **`5：duration`**
+@keyframes around {
+    from { css-code }
+    to { css-code }
 
-> **`6：timing-function`**
+    0% - 100% { css-code }
+}
+```
 
-> **`7：delay`**
+> **`5：duration - 动画持续时间`**
 
-> **`8：iteration-count`**
+- `单位 s / ms`
 
-> **`9：direction`**
+```css
+.main {
+    animation-name: around;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes around {
+    from { css-code }
+    to { css-code }
+
+    0% - 100% { css-code }
+}
+```
+
+> **`6：timing-function - 时间函数曲线`**
+
+```css
+.main {
+    animation-name: around;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+```
+
+- `时间区间 两套CSS样式之间`
+
+- `linear`
+
+- `ease`
+
+- `ease-in`
+
+- `ease-out`
+
+- `ease-in-out`
+
+- `cubic-bezier(n, n, n, n)`
+
+> **`7：delay - 动画开始延迟时间`**
+
+- `单位 s / ms`
+
+- `仅定义第一次开始延迟时间`
+
+```css
+.main {
+    animation-name: around;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+	animation-delay: 3s;
+}
+```
+
+> **`8：iteration-count - 动画播放次数`**
+
+```css
+.main {
+    animation-name: around;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 3s;
+}
+```
+
+- `n - 具体的播放次数`
+
+- `infinite - 无限循环`
+
+> **`9：direction - 动画播放方向`**
+
+```css
+.main {
+    animation-name: around;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 3s;
+    animation-direction: alternate;
+}
+```
+
+- `normal - 正常播放`
+
+- `reverse - 反向播放`
+
+- `alternate - 奇数次正向, 偶数次反向`
+
+- `alternate-reverse - 偶数次正向, 奇数次反向`
 
 > **`10：fill-mode`**
 

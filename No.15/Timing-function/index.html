@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Timing-function</title>
+    <style>
+        html, body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+        .main {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: relative;
+            animation-name: around;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+        @keyframes around {
+            0%  {
+                    top: 0%;
+                    left: 0%;
+                    background: red;
+                }
+            25% {
+                    top: 0%;
+                    left: calc(100% - 100px);
+                    background: blue;
+                }
+            50% {
+                    top: calc(100% - 100px);
+                    left: calc(100% - 100px);
+                    background: yellow;
+                }
+            75% {
+                    top: calc(100% - 100px);
+                    left: 0%;
+                    background: green;
+                }
+            100% {
+                    top: 0%;
+                    left: 0%;
+                    background: red;
+                }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+
+    </div>
+</body>
+</html>
