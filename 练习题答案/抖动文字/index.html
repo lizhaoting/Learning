@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>animate.css制作酷炫文字特效 - 站长素材</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+
+<style type="text/css">
+	.long-shadow, .medium-shadow {
+		border: none;
+		-o-text-overflow: clip;
+		text-overflow: clip;
+	}
+	.long-shadow {
+		-webkit-box-sizing: content-box;
+		-moz-box-sizing: content-box;
+		box-sizing: content-box;
+		text-shadow: 3px 3px 0 #4C6A92, 4px 4px 0 #4C6A92, 5px 5px 0 #4C6A92, 6px 6px 0 #4C6A92, 7px 7px 0 #4C6A92, 8px 8px 0 #4C6A92, 9px 9px 0 #4C6A92, 10px 10px 0 #4C6A92, 11px 11px 0 #4C6A92, 12px 12px 0 #4C6A92, 13px 13px 0 #4C6A92, 14px 14px 0 #4C6A92, 15px 15px 0 #4C6A92, 16px 16px 0 #4C6A92, 17px 17px 0 #4C6A92, 18px 18px 0 #4C6A92, 19px 19px 0 #4C6A92, 20px 20px 0 #4C6A92;
+	}
+	h1 .animateTitle1 {
+		font-size: 10vh;
+		letter-spacing: 2.7vh;
+		color: #FFF;
+		padding: 1em 0;
+	}
+	h4{ font-size:34px; font-weight:bold;}.text-danger{ color:#000000}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<h1 class="long-shadow"><span class="animateTitle1">ANIMA TEXT</span></h1>
+		<h2>演示DEMO</h2>
+		<div class="well"><h4 class="demo1 text-danger">ANIMATEXT</h4></div>
+		<h2>With Animate.css</h2>
+		<div class="well"><h4 class="demo2 text-danger">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4></div>
+		<h2>Word By Word</h2>
+		<div class="well"><h4 class="demo3 text-danger">ANIMATEXT</h4></div>
+		<h2>Random</h2>
+		<div class="well"><h4 class="demo5 text-danger">ANIMATEXT，</h4></div>
+		<h2>Reverse</h2>
+		<div class="well"><h4 class="demo4 text-danger">ANIMATEXT。</h4></div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dist/animatext.min.js"></script>
+<script type="text/javascript">
+	$('.animateTitle1').animatext({
+		speed: 300,
+		effect: 'flipInY',
+		reverse: false
+	  });
+	$(".demo1").animatext();
+	$(".demo2").animatext({speed: 150,
+		effect: 'flipInX',
+		infinite: true
+	});
+	$(".demo3").animatext({speed: 150,
+		mode: "words",
+		effect: 'swing',
+		infinite: true
+	});
+	$(".demo4").animatext({speed: 150,
+		effect: 'bounceIn',
+		reverse: true,
+		infinite: true
+	});
+	$(".demo5").animatext({speed: 150,
+		effect: 'tada',
+		random: true,
+		infinite: true
+	});
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>
