@@ -16,10 +16,18 @@
 - **`关键帧动画 - Animation - @keyframes `**
 	```css
 	@keyframes 动画名称 {
-	    时间点 { 元素状态 }
-	    时间点 { 元素状态 }
-	    时间点 { 元素状态 }
-	    时间点 { 元素状态 }
+	    时间点 {
+			元素状态
+		}
+	    时间点 {
+			元素状态
+		}
+	    时间点 {
+			元素状态
+		}
+	    时间点 {
+			元素状态
+		}
 	    …
 	}
 	```
@@ -166,95 +174,88 @@
 
 - `alternate-reverse - 偶数次正向, 奇数次反向`
 
-> **`10：fill-mode`**
+> **`10：fill-mode - 动画不播放时应用到元素的样式`**
+```css
+.main {
+    animation-name: around;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 3s;
+    animation-direction: alternate;
+	animation-fill-mode: forwards;
+}
+```
+- `none - 动画结束后恢复原有样式`
 
-> **`11：play-state`**
+- `forwards - 动画结束后动画将应用该属性值`
 
-> **`4：课后练习`**
-- Flex container存在下列哪几个描述, 分别代表什么
+- `backwards - 动画开始前应用第一帧的样式`
+
+- `both`
+
+> **`11：play-state - 控制动画运行或暂停`**
+
+- `paused`
+
+- `running`
+
+> **`10：课后练习`**
+- 关键帧动画动画的显著特点是
 	```css
-	A : Main axis
-	B : Cross axis
-	C : Row axis
-	D ：Column axis
+	A : 连续播放
+	B : 可以定义动画的中间状态
+	C : 只能被动触发
+	D ：实现复杂动画
 	```
-- Flex item存在下列哪几个描述, 分别代表什么
-	```css
-	A : Main size
-	B : Cross size
-	C : Row size
-	D ：Column size
-	```
-- item元素的实际宽度是多少
-	```css
-	.main {
-	    display: flex;
-	}
-	.main .item {
-	    flex-basis: 200px;
-	    width: 100px;
-	} 
-	```
-- Flex container具有哪几个属性, 分别代表什么
-
-- Flex item具有哪几个属性, 分别代表什么
-
-- class为two的容器宽度是多少? 并说明原因 (实操)
-	```css
-	.main {
-	    display: flex;
-	    background: #8A469B;
-	}
-	.main span{
-	    width: 800px;
-	    height: 50px;
-	    border: 1px solid #FFF;
-	    box-sizing: border-box;
-	    background: #EA7F26;
-	}
-	.zero {
-	    flex-shrink: 0;
-	}
-	.one {
-	    flex-shrink: 1;
-	}
-	.two {
-	    flex-shrink: 9;
-	}
-
-	<div class="main">
-        <span class="zero">1</span>
-        <span class="one">2</span>
-        <span class="two">3</span>
-    </div>
-	```
-
-- 计算出各个 li 元素实际宽度 (计算)
+- 实现一个鼠标悬浮触发@keyframes的例子
 	```css
 	.main {
-	    display: flex;
-	    width: 400px;
-	    margin: 0;
-	    padding: 0;
-	    list-style: none;
+		width: 100px;
+		height: 100px
 	}
-	.main li {
-	    width: 200px;
-	}
-	.main li:nth-child(1) {
-	    background: #888;
-	}
-	.main li:nth-child(2) {
-	    background: #ccc;
-	}
-	.main li:nth-child(3) {
-	    flex-shrink: 3;
-	    background: #aaa;
+
+	@keyframes change {
+		from {
+			transform: rotateZ(0deg)
+		}
+		to {
+			transform: rotateZ(90deg)
+		}
 	}
 	```
+- 使用Animation实现其中一种轮播图
 
-> **`5：总结`**
+  ![image](./1.gif)
+
+  ![image](./2.gif)
+
+
+- 使用CSS动画实现下图效果
+
+  ![image](./3.gif)
+
+  - `要求`
+  ```css
+  圆环外圈宽度高度： 100px
+
+  圆环径向举例：20px
+
+  背景颜色：#8A469B
+
+  圆环颜色：#EA7F26
+
+  摇柄上下运动贝塞尔曲线：cubic-bezier(.5, 0, .5, 1)
+  ```
+  - `提示`
+  ```css
+  水平方向和垂直方向速度叠加
+  
+  先完成垂直运动动画
+  ```
+	![image](./run.png)
+> **`12：总结`**
 
 ```
-本节课讲解了Flex弹性盒模型的基本概念, 简要介绍了Flex弹性盒模型的发展历程，最后重点介绍了Flex container六个属性以及Flex item的六个属性
+本节课介绍了CSS两种典型动画各自的特点, 重点介绍了CSS帧动画的六个常用属性, 最后结合练习题介绍了帧动画的常用场景
 ```

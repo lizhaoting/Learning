@@ -1,0 +1,94 @@
+@keyframes piston {
+    0% { margin-top: 0; }
+    50% { margin-top: 80px; }
+    100% { margin-top: 0; }
+}
+@keyframes arm {
+    0% { transform: rotate(0); }
+    25% { transform: rotate(-18deg); }
+    50% { transform: rotate(0); }
+    75% { transform: rotate(18deg); }
+    100% { transform: rotate(0); }
+}
+
+html {
+    height: 100%;
+}
+body {
+    margin: 60px 0 0;
+    text-align: center;
+    background: linear-gradient(to bottom, #8A469B, #8A469B);
+}
+
+#robot {
+    position: absolute;
+    top:50%; left:50%;
+    width: 540px;
+    height: 250px;
+    margin-top:-125px; margin-left:-270px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #444;
+}
+
+.piston {
+    float: left;
+    margin-right: 10px;
+    position: relative;
+    width: 100px; 
+    height: 250px;
+    background: rgba(0,0,0,.1);
+    border-radius: 10px 10px 50px 50px;
+}
+.piston:last-child {
+    margin: 0;
+}
+
+.piston .block {
+    position: relative;
+    width: 100px; 
+    height: 60px;
+    line-height: 60px;
+    background: #EA7F26;
+    border-radius: 10px;
+    animation: piston 1.2s cubic-bezier(.5,0,.5,1) infinite;
+}
+
+.piston .arm {
+    position: absolute;
+    top:50%; left:50%;
+    margin: -10px 0 0 -10px;
+    width: 20px;
+    height: 150px;
+    background: #EA7F26;
+    border-radius: 10px;
+    z-index: -1;
+    transform-origin: center 10px;
+    animation: arm 1.2s linear infinite;
+    animation-delay: inherit;
+}
+.piston .arm:before,
+.piston .arm:after{
+    content: '';
+    position: absolute;
+    right:0; left:0;
+    height: 16px;
+    background: #eee;
+    border-radius: 50%;
+    margin: 2px;
+}
+.piston .arm:before { top: 0; }
+.piston .arm:after { bottom: 0; }
+
+.piston .rotator {
+    position: absolute;
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    border-radius: 50%;
+    border: 20px solid #EA7F26;
+    box-sizing: border-box;
+    z-index: -1;
+}
