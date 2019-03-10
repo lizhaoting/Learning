@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>控制元素样式</title>
+    <style>
+        body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/index.html" target="_blank">
+        <img
+            id="image"
+            src = "./2.jpg"
+            onmouseover = "mouseOver()"
+            onmouseout = "mouseOut()"
+        />
+    </a>
+</body>
+<script type="text/javascript">
+    function mouseOver() {
+        document.getElementById('image').src ="./1.jpg"
+    }
+    function mouseOut() {
+        document.getElementById('image').src ="./2.jpg"
+    }
+    </script>
+</html>

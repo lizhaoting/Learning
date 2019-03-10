@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .item {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            border: 2px solid #dddddd;
+            border-width: 2px 2px 0 0;
+            margin-left: 100px;
+            margin-top: 100px;
+            background: linear-gradient(to top, #ddd 10%, transparent 10%), linear-gradient(to right, #ddd 10%, transparent 10%);
+            background-size: 100% 20%, 20%, 100%;
+        }
+
+        .qiu {
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+            border-radius: 50%;
+            position: absolute;
+            transition: all 0.8s;
+        }
+
+        .con {
+
+            width: 20px;
+            height: 20px;
+            background-color: transparent;
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            transition: all 0.8s;
+        }
+
+        .item:hover .con {
+            transform: translateX(200px);
+            transition-timing-function: linear;
+        }
+
+        .item:hover .qiu {
+            transform: translateY(200px);
+            transition-timing-function: cubic-bezier(.58, -0.42, 1, .65)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="item">
+        <i class="con"> <i class="qiu"> </i> </i>
+    </div>
+</body>
+
+</html>

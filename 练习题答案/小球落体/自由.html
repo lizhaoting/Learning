@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>32.拖拽，自由落体运动</title>
+	<style>
+		#box{
+			position:absolute;top:0; left:0;
+			width:60px;height:60px; cursor:pointer;
+			border-radius:50%; background:blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+ 
+	<script>
+		
+		var box = document.getElementById('box');
+		var maxL = window.innerWidth - box.offsetWidth;
+		var maxT = window.innerHeight - box.offsetHeight;
+		var timer = moveX = moveY = null;
+ 
+		console.log(maxL,maxT,box.offsetWidth,box.offsetHeight);
+		box.onmousedown = function(e){
+			var e = e || window.event;
+			var X = e.clientX;
+			var Y = e.clientY;
+			var initL = box.offsetLeft;
+			var initT = box.offsetTop;
+			clearInterval(timer);
+			timer = null;
+ 
+ 
+			document.onmousemove = function(e){
+				var e = e || window.event;
+ 
+				moveX = e.clientX-X;//X是减去上一次的值
+				moveY = e.clientY-Y;//Y是减去上一次的值
+				X = e.clientX;//保存作为下一次使用
+				Y = e.clientY;//保存作为下一次使用
+				initL +=moveX;
+				initT +=moveY;
+ 
+				initL = Math.min(initL,maxL);
+				initL = Math.max(initL,0);
+ 
+				initT = Math.min(initT,maxT);
+				initT = Math.max(initT,0);
+				console.log(maxL,maxT,initL,initT);
+				box.style.left = initL+'px';
+				box.style.top = initT+'px';
+ 
+ 
+			}
+ 
+			document.onmouseup = function(e){
+				document.onmousemove = null;
+				document.onmouseup = null;
+				var left = box.offsetLeft;
+				var top = box.offsetTop;
+				timer = setInterval(function(){
+					moveY+=3; //3可以理解为重力
+					left+=moveX;//x方向的速度
+					top+=moveY;//y方向的速度
+ 
+					if(top>maxT || top<0){
+						top =  Math.min(top,maxT);//限定最大值
+						top =  Math.max(top,0);//限定最小值
+						moveY *= -0.9;//摩擦力
+						moveX *= 0.95;//摩擦力
+					}
+					if(left>=maxL|| left<0){
+						left =  Math.min(left,maxL);//限定最大值
+						left =  Math.max(left,0);//限定最小值
+						moveX *= -0.9;//摩擦力
+						moveY *= 0.95;//摩擦力
+					}
+ 
+ 
+					if( Math.abs(moveX)<1 ){
+						moveX = 0;
+					}
+					if( Math.abs(moveY)<1){
+						moveY = 0;
+					}
+ 
+					if( moveY == 0 && moveX == 0 && top == maxT){
+						clearInterval(timer);
+					}
+ 
+					console.log( moveY,moveX);
+					
+					box.style.left = left+'px';
+					box.style.top = top+'px';
+				},15);
+			}
+ 
+			return false;
+		}
+ 
+		function getStyle(obj,attr){
+			if(window.getComputedStyle){
+				return getComputedStyle(obj)[attr];
+			}else{
+				return obj.currentStyle[attr];
+			}
+		}
+	</script>
+</body>
+</html>

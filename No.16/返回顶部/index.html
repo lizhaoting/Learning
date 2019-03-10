@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>返回顶部</title>
+    <style>
+        .main {
+            height: 200px;
+            width: 100%;
+            margin-bottom: 20px;
+            background-color: #8A469B;
+        }
+        .scrollToTop {
+            right: 0;
+            bottom: 20px;
+            font-size: 58px;
+            text-align: center;
+            color: #FFF;
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background-color: #EA7F26;
+            cursor: pointer;
+        }
+        .scrollToBottom {
+            right: 100px;
+            bottom: 20px;
+            font-size: 58px;
+            text-align: center;
+            color: #FFF;
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            line-height: 50px;
+            border-radius: 30px;
+            background-color: #EA7F26;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+
+    <div class="scrollToTop" onclick="scrollToTop()">
+        ^
+    </div>
+
+    <div class="scrollToBottom" onclick="scrollToBottom()">
+        v
+    </div>
+</body>
+<script>
+    function scrollToTop() {
+        var interval;
+        var distance = document.body.scrollHeight / 1000;
+        var end = document.body.scrollHeight;
+        var current = document.body.scrollHeight - distance;
+
+        interval = setInterval(function() {
+            window.scrollTo(0, current);
+            current = current - distance;
+            if(window.scrollY <= 0){
+                clearInterval(interval);
+            }
+        }, 10)
+    }
+    function scrollToBottom() {
+        window.scrollTo(0, document.body.scrollHeight)
+    }
+</script>
+</html>
