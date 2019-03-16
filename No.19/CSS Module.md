@@ -69,16 +69,99 @@
     }]
 }
 ```
+- `Vue scoped`
+
+```css
+<div data-v-2311c06a class="button-warp">
+
+</div>
+
+.button-warp[data-v-2311c06a]{
+    display: inline-block;
+}
+```
+
+- `React Css module`
+```css
+<div class="wrapper___2IPqp"></div>
+```
 
 > **`4：局部作用域`**
+```css
+module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+            fallback: "style-loader",
+            use: [
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true,
+                }
+              }
+            ],
+        })
+      }
+    ]
+}
+```
 
 > **`5: 全局作用域`**
+```css
+:global(.main) {
+  display: flex;
+}
+```
 
 > **`6: 哈希规则`**
+- `默认 - [hash:base64]`
+
+- `[path][name][local][hash:base64:n]`
+
+- `[path][hash:base64:n]`
+
+- `[name][hash:base64:n]`
+
+- `[local][hash:base64:n]`
 
 > **`7: 类组合`**
+```css
+.header {
+  background: #8A469B;
+}
 
-> **`8: 变量`**
+.footer {
+  composes: header;
+}
+```
+
+> **`8: 变量 - 搭配PostCSS`**
+```css
+npm install postcss-modules-values
+
+{
+    loader: "postcss-loader",
+    "options": {
+        plugins: [
+            require('postcss-modules-values'),
+        ]
+    }
+}
+```
+```css
+@value color: #8A469B;
+
+.header {
+  background: color;
+}
+
+.footer {
+  composes: header;
+  color: #FFF;
+}
+```
 
 > **`9：总结`**
 

@@ -1,0 +1,6 @@
+.header {
+  background: #8A469B;
+}
+:global(.main) {
+  display: flex;
+}

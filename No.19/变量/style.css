@@ -1,0 +1,14 @@
+@value color: #8A469B;
+
+.header {
+  background: color;
+}
+
+.footer {
+  composes: header;
+  color: #FFF;
+}
+
+:global(.main) {
+  display: flex;
+}

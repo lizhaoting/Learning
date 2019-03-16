@@ -1,0 +1,12 @@
+.header {
+  background: #8A469B;
+}
+
+.footer {
+  composes: header;
+  color: #FFF;
+}
+
+:global(.main) {
+  display: flex;
+}

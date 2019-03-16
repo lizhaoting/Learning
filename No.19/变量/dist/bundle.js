@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./style.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\nfunction app() {\r\n\tvar element = document.createElement('div');\r\n\telement.innerHTML = 'Hello Word!';\r\n\telement.classList.add('header');\r\n\treturn element;\r\n}\r\n\r\ndocument.body.appendChild(app());\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./style.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\nvar element = document.createElement('div');\r\n\telement.innerHTML = 'Hello Word!';\r\n\tconst className = _style_css__WEBPACK_IMPORTED_MODULE_0___default.a.footer;\r\n\tconsole.log(className);\r\n\tclassName.split(' ').map(s => {\r\n\t\telement.classList.add(s);\r\n\t})\r\n\r\ndocument.getElementById('app').appendChild(element);\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
@@ -105,7 +105,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./style.css?");
+eval("// removed by extract-text-webpack-plugin\nmodule.exports = {\"color\":\"#8A469B\",\"header\":\"style-header-2rqfu\",\"footer\":\"style-footer-3jYYK style-header-2rqfu\"};\n\n//# sourceURL=webpack:///./style.css?");
 
 /***/ })
 
