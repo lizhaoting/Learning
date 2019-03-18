@@ -34,13 +34,15 @@
 
 > **`2：Cookie`**
 
+![image](./cookie.jpg)
+
+- `HTML4 - 一般不需要考虑兼容`
+
 - `身份证 - 服务器可以针对不同用户, 做出不同的响应`
 
 - `浏览器储存在用户的机器上的纯文本, 没有可执行代码`
 
 - `浏览器默认携带当前访问网站的Cookie`
-
-	![image](./cookie.jpg)
 
 - `Cookie类型`
 	- `会话Cookie - 退出浏览器即删除`
@@ -75,11 +77,50 @@
 	- `跨站请求伪造CSRF`
 
 > **`3：SessionStorage`**
-- `HTML5新增的会话存储对象`
+	
+![image](./sessionStorageValue.jpg)
 
-- `临时保存同一窗口(标签页)的数据`
+- `基本概念`
 
-- `关闭窗口(标签页)删除数据`
+	- `Key - Value键值对`
+
+	- `HTML5新增的会话存储对象`
+
+		![image](./sessionStorage.jpg)
+
+	- `临时保存同一窗口(标签页)的数据`
+
+	- `关闭窗口(标签页)删除数据`
+
+- `特点`
+	- `同源策略 - 同一协议、同一主机名和同一端口下操作不同TabsessionStorage`
+
+	- `单标签页限制`
+
+	- `只在本地存储 - 不会跟随HTTP请求发送到服务器`
+
+	- `存储方式采用key、value键值对 - 字符串类型`
+
+	- `存储上限限制 - 5MB`
+
+- `属性`
+	- `sessionStorage.length - 键值对数量`
+
+	- `sessionStorage.key(int index) -> null`
+
+	- `sessionStorage.getItem(string key) -> null`
+
+	- `sessionStorage[string key]`
+
+	- `sessionStorage.setItem(string key, string value)`
+
+	- `sessionStorage.removeItem(string key)`
+
+	- `sessionStorage.clear()`
+
+- `Json对象`
+	- `JSON.stringify()`
+	- `JSON.parse()`
 
 > **`4：LocalStorage`**
 

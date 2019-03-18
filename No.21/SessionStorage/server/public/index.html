@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SessionStorage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="showSessionStorage()">sessionStorage</button>
+    &nbsp;&nbsp;&nbsp;
+    <button onclick="showSessionStorageLength()">length</button>
+    &nbsp;&nbsp;&nbsp;
+    <button onclick="setItem()">setItem</button>
+    &nbsp;&nbsp;&nbsp;
+    <button onclick="getItem()">getItem</button>
+    &nbsp;&nbsp;&nbsp;
+    <button onclick="key()">key</button>
+    &nbsp;&nbsp;&nbsp;
+    <button onclick="removeItem()">removeItem</button>
+    &nbsp;&nbsp;&nbsp;
+    <button onclick="removeAll()">removeAll</button>
+</body>
+<script>
+    // 检查兼容性
+    const sessionStorage = window.sessionStorage;
+
+    if (!sessionStorage) alert('您的浏览器不支持sessionStorage');
+
+
+    function showSessionStorage() {
+        console.log('sessionStorage length', sessionStorage);
+    }
+
+    function showSessionStorageLength() {
+        console.log('sessionStorage length', sessionStorage.length);
+    }
+
+    function setItem() {
+        sessionStorage.setItem('username', 'Eric');
+        sessionStorage.setItem('phone', 18773179042);
+        sessionStorage.setItem(1, 1);
+        sessionStorage.setItem(2, 2);
+    }
+
+    function getItem() {
+        console.log("getItem('username')", sessionStorage.getItem('username'));
+        console.log("getItem('email')", sessionStorage.getItem('email'));
+    }
+
+    function key() {
+        console.log('sessionStorage.key(0)', sessionStorage.key(0));
+        console.log('sessionStorage.key(1)', sessionStorage.key(1));
+        console.log('sessionStorage.key(2)', sessionStorage.key(2));
+        console.log('sessionStorage.key(3)', sessionStorage.key(3));
+        console.log('sessionStorage.key(4)', sessionStorage.key(4));
+    }
+
+    function removeItem() {
+        sessionStorage.removeItem('username');
+    }
+
+    function removeAll() {
+        sessionStorage.clear();
+    }
+
+</script>
+</html>
