@@ -123,6 +123,24 @@
 	- `JSON.parse()`
 
 > **`4：LocalStorage`**
+- `Key - Value键值对`
+
+- `HTML5新增的存储对象`
+
+	![image](./localstoragesupport.jpg)
+
+- `特点`
+	- `同源策略 - 同一协议、同一主机名和同一端口下操作不同TabsessionStorage`
+
+	- `单标签页限制`
+
+	- `只在本地存储 - 不会跟随HTTP请求发送到服务器`
+
+	- `存储方式采用key、value键值对 - 字符串类型`
+
+	- `存储上限限制 - 5MB`
+
+- `永久性存储`
 
 > **`5：WebSQL`**
 
