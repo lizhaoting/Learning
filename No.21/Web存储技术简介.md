@@ -1,4 +1,4 @@
-##  （二十一）Web存储技术(上)
+##  （二十一）Web存储技术简介
 
 > **`1：背景介绍`**
 - `Cookie - 网站身份证`
@@ -93,7 +93,7 @@
 	- `关闭窗口(标签页)删除数据`
 
 - `特点`
-	- `同源策略 - 同一协议、同一主机名和同一端口下操作不同TabsessionStorage`
+	- `同源策略 - 同一协议、同一主机名和同一端口统一Tab`
 
 	- `单标签页限制`
 
@@ -102,6 +102,8 @@
 	- `存储方式采用key、value键值对 - 字符串类型`
 
 	- `存储上限限制 - 5MB`
+
+	- `超出覆盖`
 
 - `属性`
 	- `sessionStorage.length - 键值对数量`
@@ -123,6 +125,9 @@
 	- `JSON.parse()`
 
 > **`4：LocalStorage`**
+
+![image](./localStorage.png)
+
 - `Key - Value键值对`
 
 - `HTML5新增的存储对象`
@@ -130,9 +135,9 @@
 	![image](./localstoragesupport.jpg)
 
 - `特点`
-	- `同源策略 - 同一协议、同一主机名和同一端口下操作不同TabsessionStorage`
+	- `同源策略 - localStorage`
 
-	- `单标签页限制`
+	- `无标签页限制`
 
 	- `只在本地存储 - 不会跟随HTTP请求发送到服务器`
 
@@ -140,14 +145,46 @@
 
 	- `存储上限限制 - 5MB`
 
-- `永久性存储`
+	- `无痕模式下不可读取`
 
-> **`5：WebSQL`**
+	- `永久性存储`
 
-> **`7：课后练习`**
+	- `超出报错`
 
-> **`8：总结`**
+- `属性`
 
-```
-本节课讲解了Flex弹性盒模型的基本概念, 简要介绍了Flex弹性盒模型的发展历程，最后重点介绍了Flex container六个属性以及Flex item的六个属性
+	- `localStorage.length - 键值对数量`
+
+	- `localStorage.key(int index) -> null`
+
+	- `localStorage.getItem(string key) -> null`
+
+	- `localStorage[string key]`
+
+	- `localStorage.setItem(string key, string value)`
+
+	- `localStorage.removeItem(string key)`
+
+	- `localStorage.clear()`
+
+- `注意事项`
+	- `Web中不可靠`
+
+	- `IOS浏览器中不可重复setItem, 先removeItem`
+
+> **`5：监听storage变化`**
+- `同源`
+
+	![image](./origin.png)
+	- `禁止不同源执行任何脚本`
+
+- `监听同源网页 - 同一网页无效`
+```css
+window.addEventListener("storage", function (event) {
+    console.log(event.key);
+    console.log(event.oldValue);
+    console.log(event.newValue);
+    console.log(event.url);
+    console.log(event.storageArea);
+});
 ```

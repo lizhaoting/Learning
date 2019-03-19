@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>创建表</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let database;
+    let userStore;
+    const request = window.indexedDB.open('first_database', 8);
+
+    /* 成功打开数据库 */
+    request.onsuccess = event => {
+        database = request.result;
+        console.log('onsuccess', request);
+    }
+
+    /* 打开数据库失败 */
+    request.onerror = event => {
+        console.log('onerror', event);
+    }
+
+    /* 版本号大于当前数据库版本 */
+    request.onupgradeneeded = event => {
+        database = event.target.result;
+        console.log('onupgradeneeded', event);
+        createStore();
+    }
+
+    /* 创建数据表 */
+    const createStore = () => {
+        if(!database.objectStoreNames.contains('user')) {
+	        userStore = database.createObjectStore('user', { keyPath: 'id' });
+	        userStore.createIndex('name', 'name', { unique: true });
+	    }
+	}
+</script>
+</html>

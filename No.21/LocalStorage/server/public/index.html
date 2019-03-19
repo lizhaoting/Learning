@@ -85,6 +85,15 @@
         localStorage.setItem('json', JSON.stringify({ name: 'eric' }));
         console.log('json origin', localStorage.getItem('json'));
         console.log('json', JSON.parse(localStorage.getItem('json')));
-    }
+    } 
+
+    window.addEventListener("storage", function (event) {
+        console.log(event.key);
+        console.log(event.oldValue);
+        console.log(event.newValue);
+        console.log(event.url);
+        console.log(event.storageArea);
+    });
+
 </script>
 </html>
