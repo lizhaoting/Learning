@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>localStorage</title>
+    <title>sessionStorage</title>
     <link rel="stylesheet" href="./bootstrap.css">
     <style>
         * {
@@ -22,9 +22,9 @@
     </style>
 </head>
 <body>
-    <button class="btn btn-primary" onclick="showlocalStorage()">localStorage</button>
+    <button class="btn btn-primary" onclick="showsessionStorage()">sessionStorage</button>
     &nbsp;&nbsp;&nbsp;
-    <button class="btn btn-primary" onclick="showlocalStorageLength()">length</button>
+    <button class="btn btn-primary" onclick="showsessionStorageLength()">length</button>
     &nbsp;&nbsp;&nbsp;
     <button class="btn btn-primary" onclick="setItem()">setItem</button>
     &nbsp;&nbsp;&nbsp;
@@ -40,51 +40,51 @@
 </body>
 <script>
     // 检查兼容性
-    const localStorage = window.localStorage;
+    const sessionStorage = window.sessionStorage;
 
-    if (!localStorage) alert('您的浏览器不支持localStorage');
+    if (!sessionStorage) alert('您的浏览器不支持sessionStorage');
 
 
-    function showlocalStorage() {
-        console.log('localStorage length', localStorage);
+    function showsessionStorage() {
+        console.log('sessionStorage length', sessionStorage);
     }
 
-    function showlocalStorageLength() {
-        console.log('localStorage length', localStorage.length);
+    function showsessionStorageLength() {
+        console.log('sessionStorage length', sessionStorage.length);
     }
 
     function setItem() {
-        localStorage.setItem('username', 'Eric');
-        localStorage.setItem('phone', 18773179042);
-        localStorage.setItem(1, 1);
-        localStorage.setItem(2, 2);
+        sessionStorage.setItem('username', 'Eric');
+        sessionStorage.setItem('phone', 18773179042);
+        sessionStorage.setItem(1, 1);
+        sessionStorage.setItem(2, 2);
     }
 
     function getItem() {
-        console.log("getItem('username')", localStorage.getItem('username'));
-        console.log("getItem('email')", localStorage.getItem('email'));
+        console.log("getItem('username')", sessionStorage.getItem('username'));
+        console.log("getItem('email')", sessionStorage.getItem('email'));
     }
 
     function key() {
-        console.log('localStorage.key(0)', localStorage.key(0));
-        console.log('localStorage.key(1)', localStorage.key(1));
-        console.log('localStorage.key(2)', localStorage.key(2));
-        console.log('localStorage.key(3)', localStorage.key(3));
-        console.log('localStorage.key(4)', localStorage.key(4));
+        console.log('sessionStorage.key(0)', sessionStorage.key(0));
+        console.log('sessionStorage.key(1)', sessionStorage.key(1));
+        console.log('sessionStorage.key(2)', sessionStorage.key(2));
+        console.log('sessionStorage.key(3)', sessionStorage.key(3));
+        console.log('sessionStorage.key(4)', sessionStorage.key(4));
     }
 
     function removeItem() {
-        localStorage.removeItem('username');
+        sessionStorage.removeItem('username');
     }
 
     function removeAll() {
-        localStorage.clear();
+        sessionStorage.clear();
     }
 
     function json() {
-        localStorage.setItem('json', JSON.stringify({ name: 'eric' }));
-        console.log('json origin', localStorage.getItem('json'));
-        console.log('json', JSON.parse(localStorage.getItem('json')));
+        sessionStorage.setItem('json', JSON.stringify({ name: 'eric' }));
+        console.log('json origin', sessionStorage.getItem('json'));
+        console.log('json', JSON.parse(sessionStorage.getItem('json')));
     }
 </script>
 </html>

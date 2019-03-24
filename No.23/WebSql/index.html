@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./bootstrap.css">
+    <title>WebSQL</title>
+    <style>
+        body {
+            margin: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn btn-primary" onclick="addDatabase()">打开数据库</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="createTable()">创建表</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="addData()">新增数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="updateData()">更新数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="searchData()">查询数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="deleteData()">删除数据</button>
+    <br />
+    <br />
+</body>
+<script>
+    let database;
+    const addDatabase = () => {
+        database = openDatabase('my_database222', '1.0', 'first', 2 * 1024, () => {
+            console.log('创建成功！');
+        });
+    }
+    const createTable = () => {
+        database.transaction(function (content) {  
+            content.executeSql('CREATE TABLE IF NOT EXISTS USER (id, name)');
+        }, err => {
+            console.log(err);
+        });
+    }
+    const addData = () => {
+        database.transaction(function (content) {  
+            content.executeSql('INSERT INTO USER (id, name) VALUES (2, "Eric")', [], (ct, result) => {
+                console.log(result);
+            });
+        }, err => {
+            console.log(err);
+        });
+    }
+    const searchData = () => {
+        database.transaction(function (content) {  
+            content.executeSql('SELECT * FROM USER', [], (ct, result) => {
+                console.log(result);
+            });
+        });
+    }
+    const deleteData = () => {
+        database.transaction(function (content) {  
+            content.executeSql('DELETE FROM USER WHERE id = 2', [], (ct, result) => {
+                console.log(result);
+            });
+        });
+    }
+    const updateData = () => {
+        database.transaction(function (content) {  
+            content.executeSql('UPDATE USER SET name=\'David\' WHERE id=2', [], (ct, result) => {
+                console.log(result);
+            });
+        });
+    }
+</script>
+</html>

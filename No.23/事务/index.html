@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./bootstrap.css">
+    <title>事务</title>
+    <style>
+        body {
+            margin: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn btn-primary" onclick="add()">新增数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="read()">读取数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="update()">更新数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="readAll()">遍历数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="deleteData()">删除数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="clearDate()">清空数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="closeDataBase()">关闭数据库</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="deleteDataBase()">删除数据库</button>
+</body>
+<script>
+    /* 计数器 */
+    let count = 1;
+
+    let database;
+    let userStore;
+    let transaction;
+    let table;
+    let transactionRequest;
+    const request = window.indexedDB.open('first_database', 1);
+
+    /* 成功打开数据库 */
+    request.onsuccess = event => {
+        database = request.result;
+        console.log('onsuccess', request);
+    }
+
+    /* 打开数据库失败 */
+    request.onerror = event => {
+        console.log('onerror', event);
+    }
+
+    /* 版本号大于当前数据库版本 */
+    request.onupgradeneeded = event => {
+        database = event.target.result;
+        console.log('onupgradeneeded', event);
+        createStore();
+    }
+
+    /* 创建数据表 */
+    const createStore = () => {
+        if(!database.objectStoreNames.contains('user')) {
+	        userStore = database.createObjectStore('user', { keyPath: 'id' });
+	    }
+	}
+
+    /* 新增数据 */
+    const add = () => {
+        count = count + 1;
+
+        transaction = database.transaction(['user'], 'readwrite')
+            .objectStore('user')
+            .add({ id: count, name: 'Eric', age: 28, email: 'Ericlee00@163.com' });
+
+        transaction.onsuccess = event => {
+            console.log('数据写入成功', event);
+        };
+
+        transaction.onerror = error => {
+            console.log('数据写入失败', error);
+        }
+    }
+
+    /* 读取数据 */
+    const read = () => {
+        transaction = database.transaction(['user']);
+        table = transaction.objectStore('user');
+        transactionRequest = table.get(2);
+
+        transactionRequest.onerror = event => {
+            console.log('数据读取失败', event);
+        };
+
+        transactionRequest.onsuccess = event => {
+            if (transactionRequest.result) {
+                console.log('数据读取成功', transactionRequest.result);
+            } else {
+                console.log('未读取到数据');
+            }
+        };
+    }
+
+    /* 更新数据 */
+    const update = () => {
+        
+        transactionRequest = database.transaction(['user'], 'readwrite')
+            .objectStore('user')
+            .put({ id: 100000, name: 'David', age: 35, email: 'David@xiakedao.com' });
+
+        transactionRequest.onsuccess = function (event) {
+            console.log('更新数据成功', event);
+        };
+
+        transactionRequest.onerror = error => {
+            console.log('更新数据失败', error);
+        }
+    }
+
+    /* 遍历数据 */
+    const readAll = () => {
+        table = database.transaction('user').objectStore('user');
+
+        table.openCursor().onsuccess = () => {
+            let cursor = event.target.result;
+
+            if (cursor) {
+                console.log('数据遍历', cursor);
+            cursor.continue();
+            } else {
+                console.log('数据遍历完成');
+            }
+        };
+    }
+
+    /* 删除数据 */
+    const deleteData = () => {
+        transactionRequest = database.transaction(['user'], 'readwrite')
+            .objectStore('user')
+            .delete(2);
+
+        transactionRequest.onsuccess = function (event) {
+            console.log('删除数据成功', event);
+        };
+
+        transactionRequest.onerror = error => {
+            console.log('删除数据失败', error);
+        }
+    }
+
+    /* 清空数据 */
+    const clearDate = () => {
+        transactionRequest = database.transaction(['user'], 'readwrite')
+            .objectStore('user')
+            .clear();
+
+        transactionRequest.onsuccess = function (event) {
+            console.log('清空数据成功', event);
+        };
+
+        transactionRequest.onerror = error => {
+            console.log('清空数据失败', error);
+        }
+    }
+
+    /* 关闭数据库 */
+    const closeDataBase = () => {
+        database.close();
+    }
+
+    /* 删除数据库 */
+    const deleteDataBase = () => {
+        indexedDB.deleteDatabase('first_database')
+    }
+</script>
+</html>

@@ -23,6 +23,12 @@
     <br />
     <br />
     <button class="btn btn-primary" onclick="readAll()">遍历数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="deleteData()">删除数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="clearDate()">清空数据</button>
 </body>
 <script>
     /* 计数器 */
@@ -101,7 +107,7 @@
         
         transactionRequest = database.transaction(['user'], 'readwrite')
             .objectStore('user')
-            .put({ id: 100000, name: 'David', age: 35, email: 'David@xiakedao.com' });
+            .put({ id: 10, name: 'David', age: 35, email: 'David@xiakedao.com' });
 
         transactionRequest.onsuccess = function (event) {
             console.log('更新数据成功', event);
@@ -126,6 +132,36 @@
                 console.log('数据遍历完成');
             }
         };
+    }
+
+    /* 删除数据 */
+    const deleteData = () => {
+        transactionRequest = database.transaction(['user'], 'readwrite')
+            .objectStore('user')
+            .delete(3);
+
+        transactionRequest.onsuccess = function (event) {
+            console.log('删除数据成功', event);
+        };
+
+        transactionRequest.onerror = error => {
+            console.log('删除数据失败', error);
+        }
+    }
+
+    /* 清空数据 */
+    const clearDate = () => {
+        transactionRequest = database.transaction(['user'], 'readwrite')
+            .objectStore('user')
+            .clear();
+
+        transactionRequest.onsuccess = function (event) {
+            console.log('清空数据成功', event);
+        };
+
+        transactionRequest.onerror = error => {
+            console.log('清空数据失败', error);
+        }
     }
 </script>
 </html>
