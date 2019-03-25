@@ -340,7 +340,7 @@ sass main.scss main.css
     A: color: red;
     ```
 
-  - 下面哪一中写法可以在scss文件中实现类名变量
+  - 下面哪一种写法可以在scss文件中实现类名变量
     ```
     A: .@classname
     B: .$classname
@@ -366,9 +366,9 @@ sass main.scss main.css
     }
     ```
     ```css
-    A:  green
+    A: green
 
-    B:  orange
+    B: orange
 
     C: red
 
