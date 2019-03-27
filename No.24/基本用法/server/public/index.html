@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebWorker</title>
+</head>
+<body>
+
+</body>
+<script>
+    const webWorker = new Worker('./main.js');
+
+    window.webWorker = webWorker;
+
+    webWorker.postMessage({ number: 30 });
+
+    webWorker.addEventListener('message', event => {
+        console.log('received webworker data', event.data);
+    }, false);
+
+    // webWorker.terminate();
+
+    webWorker.addEventListener('error', error => {
+        console.error(error.filename, error.lineno, error.message);
+    });
+</script>
+</html>

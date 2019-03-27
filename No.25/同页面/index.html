@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>同页面WebWorker</title>
+</head>
+<body>
+    <script id="samePageWorker" type="unknow">
+        this.addEventListener('message', event => {
+            console.log('received main worker data', event.data);
+        }, false);
+    </script>
+    <script>
+    const blob = new Blob([document.getElementById('samePageWorker').text]);
+    const url = window.URL.createObjectURL(blob);
+
+    const webWorker = new Worker(url);
+
+    webWorker.postMessage(123);
+    </script>
+</body>
+</html>
