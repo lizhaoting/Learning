@@ -65,7 +65,53 @@ this.addEventListener('message', event => {
 
 - `不能使用console`
 
-> **`14：总结`**
 ```css
-本节课从浏览器存储技术的历史讲起, 介绍了cookie、sessionStorage、localStorage、IndexedDb、WebSQL的技术背景和技术特征, 最后结合实例了四种Web存储技术的使用方法
+const shareWorker = new SharedWorker('./main.js');
+
+window.shareWorker = shareWorker;
+
+shareWorker.port.start();
+
+shareWorker.port.postMessage(1);
+
+shareWorker.port.onmessage = event => {
+    console.log(event.data);
+}
+```
+
+```css
+const shareWorker = new SharedWorker('./main.js');
+
+shareWorker.port.postMessage(1);
+
+shareWorker.port.onmessage = event => {
+	console.log(event.data);
+};
+
+shareWorker.port.start();
+```
+
+```css
+let temp = 1;
+
+this.onconnect = event => {
+    const port = event.ports[0];
+
+    port.start();
+
+    port.onmessage = e => {
+        temp = temp + e.data;
+        port.postMessage(temp);
+    }
+}
+```
+
+> **`5：课后练习`**
+- 使用WebWorker实现单词输入匹配功能(包含10000个英语单词)
+
+	![image](./word.png)
+
+> **`6：总结`**
+```css
+本节课介绍WebWorker特殊应用场景, 扩展了WebWorker的能力, 为跨页面通信提供了另外一种思路
 ```
