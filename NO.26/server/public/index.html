@@ -16,8 +16,19 @@
         console.log('连接成功！');
     }, false);
 
+    // SSEClient.addEventListener('connecttime', event => {
+    //     console.log('connecttime data', event.data);
+    // }, false);
+
     SSEClient.addEventListener('message', event => {
-        console.log('data', event.data);
+        console.log('message data', event.data);
     }, false);
+
+    // SSEClient.onerror = error => console.error('连接出错！', error);
+
+    // console.log(SSEClient.readyState);
+    // console.log(SSEClient.url);
+
+    // SSEClient.close();
 </script>
 </html>

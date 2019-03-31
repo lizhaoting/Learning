@@ -65,19 +65,67 @@
     id: 2
     ```
 
-- `类型`
+- `数据类型`
     - `空白 - :开头 - 作为注释忽略 - 维持服务器和客户端的长连接`
     - `data - data开头`
     - `id - 事件的标识符 - 重连标识(Last-Event-ID)`
-    - `event - 消息事件类型 - 未匹配触发默认messages事件`
+    - `event - 消息事件类型 - 没有event字段默认触发messages事件 - 自定义事件不会触发message`
     - `retry - 重连等待时间(ms) - 只接受整数`
 
-- `数据 - 纯文本`
+    ```css
+    SSEClient.addEventListener('connecttime', event => {
+        console.log('connecttime data', event.data);
+    }, false);
 
+    SSEClient.addEventListener('message', event => {
+        console.log('message data', event.data);
+    }, false);
+    ```
 
-> **`5：课后练习`**
-
-> **`6：总结`**
+> **`6：错误处理`**
 ```css
-本节课介绍WebWorker特殊应用场景, 扩展了WebWorker的能力, 为跨页面通信提供了另外一种思路
+SSEClient.onerror = error => console.error('连接出错！', error);
+```
+
+> **`7：关闭连接`**
+```css
+SSEClient.close();
+```
+
+> **`8：只读属性`**
+- `readyState`
+    - `0 CONNECTING `
+    - `1 OPEN`
+    - `2 CLOSED`
+    ```css
+    SSEClient.readyState
+    ```
+- `url`
+    ```css
+    SSEClient.url
+    ```
+
+> **`9：注意事项`**
+- `数据完整性 - Last-Event-ID`
+
+- `减少网络开销 - 必要时断开连接`
+
+> **`10：课后练习`**
+
+- `实现一个实时聊天系统`
+
+    ![image](./9.gif)
+
+    - `要求`
+    ```css
+    样式参考上图但不做限制, 鼓励添加动画实现更好的效果
+
+    cmd进入server运行node bin/www
+
+    SSE调用地址 - http://localhost:3000/sse
+    ```
+
+> **`11：总结`**
+```css
+本节课从广义上的网页长连接入手，介绍了WebSocket与SSE的主要特点, 重点介绍了SSE的使用方法, 最后结合课后练习展示了SSE与WebSocket最典型的应用场景
 ```

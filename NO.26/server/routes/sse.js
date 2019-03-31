@@ -15,6 +15,7 @@ router.get('/', function(req, res, next) {
     res.write("data: " + (new Date()) + "\n\n");
 
     interval = setInterval(function() {
+        res.write("event: connecttime\n");
         res.write("data: " + (new Date()) + "\n\n");
     }, 1000);
 

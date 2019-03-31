@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <style>
+        #canvas {
+            background-image: red;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="300px" height="150px" id="canvas"></canvas>
+</body>
+<script>
+    const canvas = document.getElementById('canvas');
+
+    /* 获得 2d 上下文对象 */
+    const ctx = canvas.getContext('2d');
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+
+    ctx.bezierCurveTo(0, 123, 100, -9, 100, 100);
+
+    ctx.stroke();
+</script>
+</html>
