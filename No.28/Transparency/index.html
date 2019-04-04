@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <style>
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            border: 1px solid #CDCDCD;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="400px" height="500px" id="canvas">
+        您的浏览器不支持Canvas
+        <img src="./backup.png" alt=""> 
+    </canvas>
+</body>
+<script>
+    const canvas = document.getElementById('canvas');
+
+    /* 获得 2d 上下文对象 */
+    const ctx = canvas.getContext('2d');
+
+    ctx.globalAlpha = 0.1;
+
+    /* 颜色 */
+    ctx.fillStyle = '#329FD9';
+    ctx.fillRect(0, 0, 400, 100);
+
+    /* 线性渐变 */
+    const linearGradient = ctx.createLinearGradient(0, 300, 400, 0);
+    linearGradient.addColorStop(0, "#8A469B");
+    linearGradient.addColorStop(0.5, "#FFFFFF");
+    linearGradient.addColorStop(1, "#EA7F26");
+    ctx.fillStyle = linearGradient;
+
+    ctx.fillRect(0, 100, 400, 100);
+
+    /* 径向渐变 - 同心圆 */
+    const radialGradient1 = ctx.createRadialGradient(200, 250, 10, 200, 250, 60);
+    radialGradient1.addColorStop(0, "#8A469B");
+    radialGradient1.addColorStop(1, "#EA7F26");
+    ctx.fillStyle = radialGradient1;
+
+    ctx.fillRect(0, 200, 400, 100);
+
+    /* 径向渐变 - 非同心圆 */
+    const radialGradient2 = ctx.createRadialGradient(60, 350, 10, 350, 350, 60);
+    radialGradient2.addColorStop(0, "#8A469B");
+    radialGradient2.addColorStop(1, "#EA7F26");
+    ctx.fillStyle = radialGradient2;
+
+    ctx.fillRect(0, 300, 400, 100);
+
+    /* Pattern对象 */
+    const img = new Image();
+    img.src = "./backup.png";
+    img.onload = () => {
+        const pattern = ctx.createPattern(img, 'repeat');
+        ctx.fillStyle = pattern;
+
+        ctx.fillRect(0, 400, 400, 100);
+    }
+</script>
+</html>

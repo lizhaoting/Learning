@@ -61,12 +61,52 @@
     - `设置之后成为默认属性`
 
 - `transparency - 透明度`
+    ```css
+    ctx.globalAlpha = 0.1;
+    ```
 
 - `line style - 线条样式`
-```css
-```
+    - `lineWidth - 线条宽度`
+        ```css
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.moveTo(10, 10);
+        ctx.lineTo(50, 50);
+        ctx.closePath();
+        ctx.stroke();
+        ```
+    - `lineCap - 线条端样式`
+        ```css
+        ctx.beginPath();
+        ctx.moveTo(20, 150);
+        ctx.lineTo(20, 250);
+        ctx.lineWidth = 20;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+        ```
+        - `butt - 平直的边缘 - 默认`
+        - `round - 圆形线帽 - 宽度一半`
+        - `square - 正方形线帽 - 宽度一半`
+    - `lineJoin - 线条连接处端样式 - 同一path`
+        - `miter - 尖角 - 默认`
+        - `bevel - 斜角`
+        - `round - 圆角`
+    - `miterLimit - 斜接长度(不做介绍)`
+    - `setLineDash - [实线长度, 间隙长度] - 虚线样式`
+    - `lineDashOffset - 起始偏移量`
+        ```css
+        ctx.lineWidth = 1;
+        ctx.setLineDash([45, 5]);
+        ctx.lineDashOffset = -5;
+        ctx.strokeRect(10, 450, 500, 100);
+        ```
+
+> **`2：绘制文本`**
 
 > **`11：课后练习`**
+
+- `了解RGB、RGBA和Opacity的关系与区别`
+
 - `使用Canvas绘制下图形状`
 
   ![image](./line.png)
@@ -74,6 +114,14 @@
   - `宽度300px`
   - `高度150px`
   - `40% black - 40% green - 20% yellow`
+
+- `使用Canvas绘制下图形状`
+
+  ![image](./split.png)
+
+  - `宽度600px`
+  - `高度600px`
+  - `Math.floor(255 - 25.5 * i)`
 
 > **`12：总结`**
 ```css
