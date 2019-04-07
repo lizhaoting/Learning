@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <style>
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            border: 1px solid #CDCDCD;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600px" height="600px" id="canvas">
+        您的浏览器不支持Canvas
+    </canvas>
+</body>
+<script>
+    const canvas = document.getElementById('canvas');
+
+    /* 获得 2d 上下文对象 */
+    const ctx = canvas.getContext('2d');
+
+    let radialGradient;
+    let distance = -50;
+    const speed = 5;
+
+    const draw = (axisX) => {
+        /* 清空画布(或部分清空) */
+        ctx.clearRect(0, 0, 600, 600);
+        radialGradient = ctx.createRadialGradient(distance, 300, 10, distance, 300, 50);
+        radialGradient.addColorStop(0, "#FFFFFF");
+        radialGradient.addColorStop(1, "#EA7F26");
+        ctx.fillStyle = radialGradient;
+
+        ctx.beginPath();
+        ctx.moveTo(distance, 300);
+
+        ctx.arc(distance, 300, 50, 0, 2 * Math.PI, false);
+
+        ctx.fill();
+
+        distance = distance + speed;
+        if (distance > 650) distance = -50;
+
+        requestAnimationFrame(draw);
+    }
+
+    requestAnimationFrame(draw);
+
+</script>
+</html>

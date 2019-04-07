@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <style>
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            border: 1px solid #CDCDCD;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="601px" height="601px" id="canvas">
+        您的浏览器不支持Canvas
+        <img src="./backup.png" alt=""> 
+    </canvas>
+</body>
+<script>
+
+    const polygon = (poly, context) => {
+        context.beginPath();
+        context.moveTo(poly[0], poly[1]);
+        for (var i = 2; i <= poly.length - 2; i += 2) {
+            context.lineTo(poly[i], poly[i + 1]);
+        }
+        context.closePath();
+        context.stroke();
+    }
+
+    const canvas = document.getElementById('canvas');
+
+    /* 获得 2d 上下文对象 */
+    const ctx = canvas.getContext('2d');
+
+    const pointList = [300, 0, 366, 210, 588, 210, 408, 342, 474, 546, 300, 420, 126, 546, 192, 342, 12, 210, 234, 210];
+    polygon(pointList, ctx);
+    ctx.clip();
+    
+    const img = new Image();
+    img.src = "./logo.png";
+    img.onload = () => {
+        const pattern = ctx.createPattern(img, 'repeat');
+        ctx.fillStyle = pattern;
+
+        ctx.drawImage(img, 0, 0, 610, 610);
+    }
+
+</script>
+</html>

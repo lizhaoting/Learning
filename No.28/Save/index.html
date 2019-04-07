@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <style>
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            border: 1px solid #CDCDCD;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600px" height="600px" id="canvas">
+        您的浏览器不支持Canvas
+        <img src="./backup.png" alt=""> 
+    </canvas>
+    <button onclick="toDataURL()">toDataURL</button>
+    <a id="download"></a>
+</body>
+<script>
+    const canvas = document.getElementById('canvas');
+
+    /* 获得 2d 上下文对象 */
+    const ctx = canvas.getContext('2d');
+
+    const linearGradient = ctx.createLinearGradient(0, 300, 400, 0);
+    linearGradient.addColorStop(0, "#8A469B");
+    linearGradient.addColorStop(0.5, "#FFFFFF");
+    linearGradient.addColorStop(1, "#EA7F26");
+    ctx.fillStyle = linearGradient;
+
+    /* Text */
+    ctx.font = "200px sans-serif";
+    ctx.fillText("侠课岛", 0, 200);
+
+    /* 存储状态 */
+    ctx.save();
+
+    /* 清空画布 */
+    ctx.fillStyle = '#000000';
+    ctx.clearRect(0, 0, 600, 600);
+    ctx.fillText("侠课岛", 0, 200);
+
+    /* 恢复状态 */
+    ctx.restore();
+    ctx.clearRect(0, 0, 600, 600);
+    ctx.fillText("侠课岛", 0, 200);
+
+    function toDataURL() {
+        const URL = canvas.toDataURL('image/png', .5);
+        console.log(URL);
+        const linkElement = document.getElementById('download');
+        linkElement.setAttribute('href', URL);
+        linkElement.setAttribute('download', `${Math.random()}.png`);
+        linkElement.click();
+    }
+</script>
+</html>

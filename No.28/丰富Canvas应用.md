@@ -102,8 +102,87 @@
         ```
 
 > **`2：绘制文本`**
+- `font`
+    - `font-style`
+    - `font-variant`
+    - `font-weight`
+    - `font-size`
+    - `font-family`
+    - `...`
+- `textAlign`
+    - `start - 默认`
+    - `end`
+    - `left`
+    - `right`
+    - `center`
+- `textBaseline`
+    - `top`
+    - `hanging`
+    - `middle`
+    - `alphabetic - 默认`
+    - `ideographic`
+    - `bottom`
+- `direction`
+    - `ltr`
+    - `rtl`
+    - `inherit - 默认`
+- `fillText`
+    - `fillText(text, x, y [, maxWidth])`
+- `strokeText`
+    - `strokeText(text, x, y [, maxWidth])`
 
-> **`11：课后练习`**
+> **`3：绘制图片`**
+- `基本用法`
+    ```css
+    const img = new Image();
+    img.src = "./backup.png";
+    img.onload = () => {
+        const pattern = ctx.createPattern(img, 'repeat');
+        ctx.fillStyle = pattern;
+
+        ctx.fillRect(0, 400, 400, 100);
+    }
+    ```
+- `绘制img元素图片`
+    ```css
+    const img = document.getElementById('image');
+    ```
+
+- `图片缩放`
+    ```css
+    const img2 = new Image();
+    img2.src = "./backup.png";
+    img2.onload = () => {
+        const pattern = ctx.createPattern(img2, 'repeat');
+        ctx.fillStyle = pattern;
+
+        ctx.drawImage(img2, 0, 200, 100, 100)
+    }
+    ```
+- `图片切片`
+    ```css
+    const img3 = new Image();
+    img3.src = "./backup.jpg";
+    img3.onload = () => {
+        const pattern = ctx.createPattern(img3, 'repeat');
+        ctx.fillStyle = pattern;
+
+        ctx.drawImage(img3, 0, 0, 640, 480);
+        ctx.drawImage(img3, 320, 240, 640, 480, 0, 0, 640, 480);
+    }
+    ```
+
+> **`4：状态保存`**
+- `save - 状态存储在栈中`
+
+- `restore - 栈中弹出恢复状态`
+
+- `toDataURL(type, encoderOptions) - 保存为图片`
+    - `type - 默认image/png`
+    - `encoderOptions图片质量 - image/jpeg/webp - 0 - 1`
+
+
+> **`5：课后练习`**
 
 - `了解RGB、RGBA和Opacity的关系与区别`
 
@@ -123,7 +202,11 @@
   - `高度600px`
   - `Math.floor(255 - 25.5 * i)`
 
-> **`12：总结`**
+- `将第27节气泡添加径向渐变(颜色不做限制)`
+
+  ![image](./bubble.png)
+
+> **`6：总结`**
 ```css
-本节课介绍了Canvas元素基本概念和坐标系统, 从线段、三角形、圆和贝塞尔曲线四个示例介绍了Canvas元素的基本绘制方法
+本节课介绍了Canvas填充、文本以及图片等多媒体样式应用, 结合状态保存与恢复介绍了Canvas如何绘制多彩的内容
 ```

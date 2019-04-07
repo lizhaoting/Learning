@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <style>
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            border: 1px solid #CDCDCD;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="640px" height="480px" id="canvas">
+        您的浏览器不支持Canvas
+        <img src="./backup.png" alt=""> 
+    </canvas>
+</body>
+<script>
+    const canvas = document.getElementById('canvas');
+
+    /* 获得 2d 上下文对象 */
+    const ctx = canvas.getContext('2d');
+
+    /* 图片切片 */
+    const img3 = new Image();
+    img3.src = "./backup.jpg";
+    img3.onload = () => {
+
+        ctx.drawImage(img3, 0, 0, 640, 480);
+        ctx.drawImage(img3, 160, 120, 320, 240, 160, 120, 320, 240);
+    }
+</script>
+</html>

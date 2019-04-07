@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <style>
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            border: 1px solid #CDCDCD;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600px" height="600px" id="canvas">
+        您的浏览器不支持Canvas
+        <img src="./backup.png" alt=""> 
+    </canvas>
+</body>
+<script>
+    const canvas = document.getElementById('canvas');
+
+    /* 获得 2d 上下文对象 */
+    const ctx = canvas.getContext('2d');
+
+    const linearGradient = ctx.createLinearGradient(0, 300, 400, 0);
+    linearGradient.addColorStop(0, "#8A469B");
+    linearGradient.addColorStop(0.5, "#FFFFFF");
+    linearGradient.addColorStop(1, "#EA7F26");
+    ctx.fillStyle = linearGradient;
+
+    /* Tanslate */
+    // ctx.translate(100, 100);
+    ctx.transform(1, 0, 0, 1, 100, 100);
+
+    /* Rotate */
+    // ctx.rotate(Math.PI / 180 * 45);
+    const deg = Math.PI / 180 * 45;
+    ctx.transform(Math.cos(deg), Math.sin(deg), -Math.sin(deg), Math.cos(deg), 0, 0);
+
+    /* Scale */
+    // ctx.scale(1, .5);
+    ctx.transform(1, 0, 0, 0.5, 0, 0);
+
+    /* Text */
+    ctx.font = "100px sans-serif";
+    ctx.fillText("侠课岛", 0, 100);
+
+
+</script>
+</html>

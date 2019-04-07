@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+</head>
+<body>
+</body>
+<script>
+    const globalCompositeOperation = [
+        "source-atop",
+        "source-in",
+        "source-out",
+        "source-over",
+        "destination-atop",
+        "destination-in",
+        "destination-out",
+        "destination-over",
+        "lighter",
+        "copy",
+        "xor",
+        'darken',
+    ];
+    for (n=0; n<globalCompositeOperation.length; n++) {
+        document.write("<div id='p_" + n + "' style='float:left;'>" + globalCompositeOperation[n] + "<br>");
+        var c = document.createElement("canvas");
+        c.width = 120;
+        c.height = 100;
+        document.getElementById("p_" + n).appendChild(c);
+        var ctx = c.getContext("2d");    
+        ctx.fillStyle = "blue";
+        ctx.fillRect(10, 10, 50, 50);
+        ctx.globalCompositeOperation = globalCompositeOperation[n];
+        ctx.beginPath();
+        ctx.fillStyle = "red";
+        ctx.fillRect(30, 30, 50, 50);
+        ctx.fill();
+        document.write("</div>");	
+    }
+
+</script>
+</html>
