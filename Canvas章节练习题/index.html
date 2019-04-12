@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <style>
+        body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        canvas {
+            border: 1px solid #434343;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+</body>
+<script>
+    // 构造函数
+    function Ball(radius, color){
+        if(radius === undefined) {
+            radius = 40;
+        }
+        if(color === undefined){
+            color = '#00ff00';
+        }
+        this.x = 0;
+        this.y = 0;
+        this.vx = 0;
+        this.vy = 0;
+        this.radius = radius;
+        this.rotation = 0;
+        this.mass = 1;
+        this.scaleX = 1;
+        this.scaleY = 1;
+        this.name = "";
+        this.color = color;
+        this.lineWidth = 1;
+    }
+    Ball.prototype.draw = function(ctx){
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.scale(this.scaleX, this.scaleY);
+        ctx.lineWidth = this.lineWidth;
+        ctx.fillStyle = this.color;
+        ctx.strokeStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(0, 0, this.radius, 0, Math.PI*2, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+    }
+    Ball.prototype.getBounds = function() {
+        return {
+            x: this.x - this.radius,
+            y: this.y - this.radius,
+            width: this.radius * 2,
+            height: this.radius * 2
+        };
+    }
+
+
+    // 获取绘画Context
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // 创建大小球实例
+    const smallBall = new Ball(40, '#8A469B');
+    smallBall.x = 400;
+    smallBall.y = 400;
+    smallBall.vx = Math.random() * 10;
+    smallBall.vy = Math.random() * 10;
+    const bigBall = new Ball(80, '#EA7F26');
+    bigBall.x = 400;
+    bigBall.y = 400;
+    bigBall.vx = Math.random() * 10;
+    bigBall.vy = Math.random() * 10;
+
+    // 绘制球
+    smallBall.draw(ctx);
+    bigBall.draw(ctx);
+
+    // 定义反弹系数
+    const ratio = -1;
+
+    // 边界检测
+    function checkCanvasBound(ball) {
+        if(ball.x + ball.radius > canvas.width){
+            ball.x = canvas.width - ball.radius;
+            ball.vx *= ratio;
+        } else if (ball.x - ball.radius < 0){
+            ball.x = ball.radius;
+            ball.vx *= ratio;
+        }
+        
+        if(ball.y + ball.radius > canvas.height){
+            ball.y = canvas.height - ball.radius;
+            ball.vy *= ratio;
+        } else if (ball.y - ball.radius < 0){
+            ball.y = ball.radius;
+            ball.vy *= ratio;
+        }
+    }
+
+    function rotate(x, y, sin, cos, reverse){
+        return {
+            x: (reverse) ? (x*cos + y*sin) : (x*cos - y*sin),
+            y: (reverse) ? (y*cos - x*sin) : (y*cos + x*sin)
+        }
+    }
+
+    // 碰撞检测
+    function checkCollision(ball0, ball1) {
+        // 获取两球球心距离
+        const dx = ball1.x - ball0.x;
+        const dy = ball1.y - ball0.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if(distance < ball0.radius + ball1.radius) {
+            const angle = Math.atan2(dy, dx);
+            const sin = Math.sin(angle);
+            const cos = Math.cos(angle);
+
+            // 小球速度分解
+            const ball0_vx_x = ball0.vx * sin;
+            const ball0_vx_y = ball0.vx * cos;
+            const ball0_vy_x = ball0.vy * sin;
+            const ball0_vy_y = ball0.vy * cos;
+
+            // 大球速度分解
+            const ball1_vx_x = ball1.vx * sin;
+            const ball1_vx_y = ball1.vx * cos;
+            const ball1_vy_x = ball1.vy * sin;
+            const ball1_vy_y = ball1.vy * cos;
+
+            // 根据碰撞速度公式计算碰撞后的速度
+            // v1 = [(m1-m2)v10 + 2m2v20] / (m1+m2)
+            // v2 = [(m2-m1)v20 + 2m1v10] / (m1+m2)
+            // 默认密度相同，质量为3倍关系
+            const m1 = 1;
+            const m2 = 8;
+            const ball0_vx_x_new = [( 1 - 7 ) * ball0_vx_x + 2 * 8 * ball1_vx_x] / (1 + 7);
+            const ball0_vx_y_new = [( 1 - 7 ) * ball0_vx_y + 2 * 8 * ball1_vx_y] / (1 + 7);
+            const ball0_vy_x_new = [( 1 - 7 ) * ball0_vy_x + 2 * 8 * ball1_vy_x] / (1 + 7);
+            const ball0_vy_y_new = [( 1 - 7 ) * ball0_vy_y + 2 * 8 * ball1_vy_y] / (1 + 7);
+
+            const ball1_vx_x_new = [( 1 - 7 ) * ball1_vx_x + 2 * 8 * ball0_vx_x] / (1 + 7);
+            const ball1_vx_y_new = [( 1 - 7 ) * ball1_vx_y + 2 * 8 * ball0_vx_y] / (1 + 7);
+            const ball1_vy_x_new = [( 1 - 7 ) * ball1_vy_x + 2 * 8 * ball0_vy_x] / (1 + 7);
+            const ball1_vy_y_new = [( 1 - 7 ) * ball1_vy_y + 2 * 8 * ball0_vy_y] / (1 + 7);
+
+            const ball0_vx = Math.sqrt(ball0_vx_x_new * ball0_vx_x_new + ball0_vx_y_new * ball0_vx_y_new);
+            const ball0_vy = Math.sqrt(ball0_vy_x_new * ball0_vy_x_new + ball0_vy_y_new * ball0_vy_y_new);
+
+            const ball1_vx = Math.sqrt(ball1_vx_x_new * ball1_vx_x_new + ball1_vx_y_new * ball1_vx_y_new);
+            const ball1_vy = Math.sqrt(ball1_vy_x_new * ball1_vy_x_new + ball1_vy_y_new * ball1_vy_y_new);
+
+            ball0.vx = ball0_vx;
+            ball0.vy = ball0_vy;
+            ball1.vx = ball1_vx;
+            ball1.vy = ball1_vy;
+        }
+    }
+
+    // 小球自由运动
+    function drawFrame() {
+        window.requestAnimationFrame(drawFrame, canvas);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        smallBall.x += smallBall.vx;
+        smallBall.y += smallBall.vy;
+        bigBall.x += bigBall.vx;
+        bigBall.y += bigBall.vy;
+        
+        // 检测边界
+        checkCanvasBound(smallBall);
+        checkCanvasBound(bigBall);
+
+        // 检测小球碰撞
+        checkCollision(smallBall, bigBall);
+        
+        smallBall.draw(ctx);
+        bigBall.draw(ctx);
+    }
+    drawFrame();
+</script>
+</html>
