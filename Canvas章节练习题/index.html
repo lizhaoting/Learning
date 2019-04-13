@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-    <canvas id="canvas" width="800" height="800"></canvas>
+    <canvas id="canvas" width="600" height="600"></canvas>
 </body>
 <script>
     // 构造函数
@@ -76,19 +76,27 @@
 
     // 创建大小球实例
     const smallBall = new Ball(40, '#8A469B');
-    smallBall.x = 400;
-    smallBall.y = 400;
-    smallBall.vx = Math.random() * 10;
-    smallBall.vy = Math.random() * 10;
-    const bigBall = new Ball(80, '#EA7F26');
-    bigBall.x = 400;
-    bigBall.y = 400;
-    bigBall.vx = Math.random() * 10;
-    bigBall.vy = Math.random() * 10;
+    smallBall.x = 40;
+    smallBall.y = 40;
+    smallBall.vx = Math.random() * 10 - 5;
+    smallBall.vy = Math.random() * 10 - 5;
+
+    const MiddleBall = new Ball(40, '#329FD9');
+    MiddleBall.x = 370;
+    MiddleBall.y = 370;
+    MiddleBall.vx = Math.random() * 10 - 5;
+    MiddleBall.vy = Math.random() * 10 - 5;
+
+    const bigBall = new Ball(40, '#EA7F26');
+    bigBall.x = 520;
+    bigBall.y = 520;
+    bigBall.vx = Math.random() * 10 - 5;
+    bigBall.vy = Math.random() * 10 - 5;
 
     // 绘制球
     smallBall.draw(ctx);
     bigBall.draw(ctx);
+    MiddleBall.draw(ctx);
 
     // 定义反弹系数
     const ratio = -1;
@@ -112,63 +120,58 @@
         }
     }
 
-    function rotate(x, y, sin, cos, reverse){
-        return {
-            x: (reverse) ? (x*cos + y*sin) : (x*cos - y*sin),
-            y: (reverse) ? (y*cos - x*sin) : (y*cos + x*sin)
-        }
-    }
-
     // 碰撞检测
     function checkCollision(ball0, ball1) {
         // 获取两球球心距离
         const dx = ball1.x - ball0.x;
         const dy = ball1.y - ball0.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         if(distance < ball0.radius + ball1.radius) {
-            const angle = Math.atan2(dy, dx);
-            const sin = Math.sin(angle);
-            const cos = Math.cos(angle);
-
             // 小球速度分解
-            const ball0_vx_x = ball0.vx * sin;
-            const ball0_vx_y = ball0.vx * cos;
-            const ball0_vy_x = ball0.vy * sin;
-            const ball0_vy_y = ball0.vy * cos;
+            const ball0_vx = ball0.vx;
+            const ball0_vy = ball0.vy;
 
-            // 大球速度分解
-            const ball1_vx_x = ball1.vx * sin;
-            const ball1_vx_y = ball1.vx * cos;
-            const ball1_vy_x = ball1.vy * sin;
-            const ball1_vy_y = ball1.vy * cos;
+            // 大球速度分解 - 假定每一帧为基础时间单位
+            const ball1_vx = ball1.vx;
+            const ball1_vy = ball1.vy;
 
             // 根据碰撞速度公式计算碰撞后的速度
             // v1 = [(m1-m2)v10 + 2m2v20] / (m1+m2)
             // v2 = [(m2-m1)v20 + 2m1v10] / (m1+m2)
             // 默认密度相同，质量为3倍关系
-            const m1 = 1;
-            const m2 = 8;
-            const ball0_vx_x_new = [( 1 - 7 ) * ball0_vx_x + 2 * 8 * ball1_vx_x] / (1 + 7);
-            const ball0_vx_y_new = [( 1 - 7 ) * ball0_vx_y + 2 * 8 * ball1_vx_y] / (1 + 7);
-            const ball0_vy_x_new = [( 1 - 7 ) * ball0_vy_x + 2 * 8 * ball1_vy_x] / (1 + 7);
-            const ball0_vy_y_new = [( 1 - 7 ) * ball0_vy_y + 2 * 8 * ball1_vy_y] / (1 + 7);
+            const m1 = ball0.radius / ball0.radius;
+            const m2 = Math.pow(ball1.radius / ball0.radius, 3);
+            const ball0_vx_new = [( m1 - m2 ) * ball0_vx + 2 * m2 * ball1_vx] / (m1 + m2);
+            const ball0_vy_new = [( m1 - m2 ) * ball0_vy + 2 * m2 * ball1_vy] / (m1 + m2);
 
-            const ball1_vx_x_new = [( 1 - 7 ) * ball1_vx_x + 2 * 8 * ball0_vx_x] / (1 + 7);
-            const ball1_vx_y_new = [( 1 - 7 ) * ball1_vx_y + 2 * 8 * ball0_vx_y] / (1 + 7);
-            const ball1_vy_x_new = [( 1 - 7 ) * ball1_vy_x + 2 * 8 * ball0_vy_x] / (1 + 7);
-            const ball1_vy_y_new = [( 1 - 7 ) * ball1_vy_y + 2 * 8 * ball0_vy_y] / (1 + 7);
+            const ball1_vx_new = [( m2 - m1 ) * ball1_vx + 2 * m1 * ball0_vx] / (m1 + m2);
+            const ball1_vy_new = [( m2 - m1 ) * ball1_vy + 2 * m1 * ball0_vy] / (m1 + m2);
 
-            const ball0_vx = Math.sqrt(ball0_vx_x_new * ball0_vx_x_new + ball0_vx_y_new * ball0_vx_y_new);
-            const ball0_vy = Math.sqrt(ball0_vy_x_new * ball0_vy_x_new + ball0_vy_y_new * ball0_vy_y_new);
+            ball0.vx = ball0_vx_new;
+            ball0.vy = ball0_vy_new;
+            ball1.vx = ball1_vx_new;
+            ball1.vy = ball1_vy_new;
+        }
+    }
 
-            const ball1_vx = Math.sqrt(ball1_vx_x_new * ball1_vx_x_new + ball1_vx_y_new * ball1_vx_y_new);
-            const ball1_vy = Math.sqrt(ball1_vy_x_new * ball1_vy_x_new + ball1_vy_y_new * ball1_vy_y_new);
+    // 画线
+    function drawLine(ball0, ball1) {
+        // 获取两球球心距离
+        const dx = ball1.x - ball0.x;
+        const dy = ball1.y - ball0.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-            ball0.vx = ball0_vx;
-            ball0.vy = ball0_vy;
-            ball1.vx = ball1_vx;
-            ball1.vy = ball1_vy;
+        if(distance < ball0.radius + ball1.radius + 150) {
+            ctx.save();
+            ctx.strokeStyle = "#595959";
+            ctx.lineWidth = 10;
+            ctx.beginPath();
+            ctx.moveTo(ball0.x, ball0.y);
+            ctx.lineTo(ball1.x, ball1.y);
+            ctx.closePath()
+            ctx.stroke()
+            ctx.restore();
         }
     }
 
@@ -181,16 +184,27 @@
         smallBall.y += smallBall.vy;
         bigBall.x += bigBall.vx;
         bigBall.y += bigBall.vy;
+        MiddleBall.x += MiddleBall.vx;
+        MiddleBall.y += MiddleBall.vy;
         
         // 检测边界
         checkCanvasBound(smallBall);
         checkCanvasBound(bigBall);
+        checkCanvasBound(MiddleBall);
 
         // 检测小球碰撞
         checkCollision(smallBall, bigBall);
+        checkCollision(smallBall, MiddleBall);
+        checkCollision(MiddleBall, bigBall);
+        
+        // 画线
+        drawLine(smallBall, bigBall);
+        drawLine(smallBall, MiddleBall);
+        drawLine(MiddleBall, bigBall);
         
         smallBall.draw(ctx);
         bigBall.draw(ctx);
+        MiddleBall.draw(ctx);
     }
     drawFrame();
 </script>
