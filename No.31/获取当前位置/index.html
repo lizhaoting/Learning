@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取当前位置</title>
+</head>
+<body>
+    <button onclick="getLocation()">获取地理坐标</button>
+</body>
+<script>
+const getLocation = () => {
+    const options = {
+        enableHighAccuracy: false,
+        timeout: 10000, 
+        maximumAge: 1000
+    }
+    if(navigator.geolocation) {
+        //浏览器支持geolocation
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+    } else {
+        //浏览器不支持geolocation
+        alert('当前浏览器不支持getLocation');
+    }
+}
+
+//成功回调
+function onSuccess(position) {
+    const longitude = position.coords.longitude;
+    const latitude = position.coords.latitude;
+
+    console.log('position', { longitude, latitude });
+}
+
+//失败回调
+const onError = error => {
+    switch(error.code){
+        case 1:
+        alert("位置服务被拒绝");
+        break;
+
+        case 2:
+        alert("暂时获取不到位置信息");
+        break;
+
+        case 3:
+        alert("获取信息超时");
+        break;
+
+        case 4:
+        alert("未知错误");
+        break;
+    }
+}
+</script>
+</html>

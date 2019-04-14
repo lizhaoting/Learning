@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+        body, html,#map {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin:0;
+        }
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=znI9Uo57c0pGit65UxtMoKR2jYZUtMY8"></script>
+	<title>百度地图展示</title>
+</head>
+<body>
+	<div id="map"></div>
+</body>
+</html>
+<script type="text/javascript">
+    let watchId = undefined;
+
+    // 创建Map实例
+	const map = new BMap.Map("map");
+    // 初始化地图,设置中心点坐标和地图级别
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+    //开启鼠标滚轮缩放
+	map.enableScrollWheelZoom(true);
+
+    const getLocation = () => {
+        const options = {
+            enableHighAccuracy: false, 
+            maximumAge: 1000
+        }
+        if(navigator.geolocation) {
+            //浏览器支持geolocation
+            watchId = navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            //浏览器不支持geolocation
+            alert('当前浏览器不支持getLocation');
+        }
+    }
+
+    function showPosition(position) {
+        const longitude = position.coords.longitude;
+        const latitude = position.coords.latitude;
+        map.centerAndZoom(new BMap.Point(longitude, latitude), 11);
+        console.log('position', { longitude, latitude });
+    }
+
+    const cancel = () => {
+        if(watchId) navigator.geolocation.clearWatch(watchId);
+    }
+
+    getLocation();
+</script>

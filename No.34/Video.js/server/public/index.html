@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Video.js</title>
+    <style>
+        body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.3.0/video-js.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.3.0/video.min.js"></script>
+</head>
+<body>
+    <video
+        width="800"
+        src="./video.mp4"
+        loop
+        controls
+        autoplay
+        id="video"
+        class="video-js vjs-default-skin"
+    >
+    </video>
+</body>
+<script>
+    const options = {
+        controls: true,      
+        height: 500, 
+        width: 500,
+        loop: true,
+    };
+    const player = videojs('video', options, function onPlayerReady() {
+        this.play();
+        this.on('ended', function() {
+            videojs.log('播放结束');
+        });
+    });
+</script>
+</html>

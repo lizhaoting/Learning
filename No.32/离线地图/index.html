@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./libs//leaflet.js"></script>
+    <link rel="stylesheet" href="./libs/leaflet.css">
+    <title>Leaflet</title>
+    <style>
+        body, #map {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+</body>
+<script>
+var map = L.map('map').setView([0, 0], 4);
+
+L.tileLayer('./map/{z}/{x}/{y}.png', {
+    minZoom: 1,
+    maxZoom: 4,
+}).addTo(map);
+
+L.marker([78, -80]).addTo(map)
+    .bindPopup('Marker')
+    .openPopup();
+</script>
+</html>
