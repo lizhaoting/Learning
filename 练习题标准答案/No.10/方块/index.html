@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .main div {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #fff;
+        }
+        .photoshop {
+            grid-area: photoshop;
+            background: #02BCD4;
+        }
+        .invision {
+            grid-area: invision;
+            background: #02BCD4;
+        }
+        .UX {
+            grid-area: UX;
+            background: #02BCD4;
+        }
+        .Design {
+            width: 100px !important;
+            height: 100px !important;
+            grid-area: Design;
+            background: #02BCD4;
+        }
+        .PHP {
+            grid-area: PHP;
+            background: #019688;
+        }
+        .Rust {
+            grid-area: Rust;
+            background: #019688;
+        }
+        .HTML {
+            grid-area: HTML;
+            background: #019688;
+        }
+        .Javascript {
+            grid-area: Javascript;
+            background: #019688;
+        }
+        .Layout {
+            grid-area: Layout;
+            background: #02BCD4;
+        }
+        .Dev {
+            width: 100px !important;
+            height: 100px !important;
+            grid-area: Dev;
+            background: #019688;
+        }
+        .Ruby {
+            grid-area: Ruby;
+            background: #019688;
+        }
+        .CSS {
+            grid-area: CSS;
+            background: #019688;
+        }
+        .Go {
+            grid-area: Go;
+            background: #019688;
+        }
+        .Motion {
+            width: 100px !important;
+            height: 100px !important;
+            grid-area: Motion;
+            background: #673AB7;
+        }
+        .Maya {
+            grid-area: Maya;
+            background: #673AB7;
+        }
+        .Nuke {
+            grid-area: Nuke;
+            background: #673AB7;
+        }
+        .Cinema {
+            grid-area: Cinema;
+            background: #673AB7;
+        }
+        .Effects {
+            grid-area: Effects;
+            background: #673AB7;
+        }
+        .left {
+            grid-area: left;
+            background: #EA7F26;
+        }
+        .right {
+            grid-area: right;
+            background: #EA7F26;
+        }
+        .footer {
+            grid-area: 3 / 1 / 4 / 6;
+            background: #8A469B;
+        }
+        .main {
+            color: #fff;
+            font-size: 10px;
+            height: 400px;
+            width: 300px;
+            display: grid;
+            grid-template-columns: 50px 50px auto 50px 50px;
+            grid-template-rows: 50px auto 50px;;
+            grid-template-areas:
+                "photoshop invision UX . . . ."
+                ". Design Design . Rust . ."
+                ". Design Design PHP HTML . ."
+                ". Javascript Layout Dev Dev . ."
+                ". Ruby CSS Dev Dev . ."
+                ". Go Motion Motion Maya Nuke ."
+                ". . Motion Motion Cinema . ."
+                ". . . Effects . . .";
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="photoshop">photoshop</div>
+        <div class="invision">invision</div>
+        <div class="UX">UX</div>
+        <div class="Design">Design</div>
+        <div class="PHP">PHP</div>
+        <div class="Rust">Rust</div>
+        <div class="HTML">HTML</div>
+        <div class="Javascript">Javascript</div>
+        <div class="Layout">Layout</div>
+        <div class="Dev">Web Dev</div>
+        <div class="Ruby">Ruby</div>
+        <div class="CSS">CSS</div>
+        <div class="Go">Go</div>
+        <div class="Motion">Motion</div>
+        <div class="Maya">Maya</div>
+        <div class="Nuke">Nuke</div>
+        <div class="Cinema">Cinema</div>
+        <div class="Effects">After Effects</div>
+    </div>
+</body>
+</html>

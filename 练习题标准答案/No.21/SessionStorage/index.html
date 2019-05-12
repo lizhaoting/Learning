@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sessionStorage</title>
+    <link rel="stylesheet" href="./bootstrap.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn btn-primary" onclick="setItem()">增</button>
+    &nbsp;&nbsp;&nbsp;
+    <button class="btn btn-primary" onclick="getItem()">查</button>
+    &nbsp;&nbsp;&nbsp;
+    <button class="btn btn-primary" onclick="changeItem()">改</button>
+    &nbsp;&nbsp;&nbsp;
+    <button class="btn btn-primary" onclick="removeItem()">删</button>
+</body>
+<script>
+    // 检查兼容性
+    const sessionStorage = window.sessionStorage;
+
+    const item = {
+        key: Date.parse(new Date()),
+        value: {
+            finished: false,
+            content: '完成侠客岛No.22小节学习',
+        }
+    };
+
+    function setItem() {
+        sessionStorage.setItem(item.key, JSON.stringify(item.value));
+    }
+
+    function getItem() {
+        console.log("getItem", sessionStorage.getItem(item.key));
+    }
+
+    function removeItem() {
+        sessionStorage.removeItem(item.key);
+    }
+
+    function changeItem() {
+        sessionStorage.setItem(item.key, JSON.stringify({
+            ...item.value,
+            finished: true,
+        }));
+    }
+
+</script>
+</html>

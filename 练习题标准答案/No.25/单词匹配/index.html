@@ -1,0 +1,165 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style type="text/css">
+        .search
+        {
+            left: 0;
+            position: relative;
+        }
+        #auto_div
+        {
+            display: none;
+            width: 300px;
+            border: 1px #74c0f9 solid;
+            background: #FFF;
+            position: absolute;
+            top: 24px;
+            left: 0;
+            color: #323232;
+        }
+    </style>
+    <script type="text/javascript">
+        var worker;
+        var test_list = [];
+        var old_value = "";
+        var currentSelIndex = -1;
+        var oldSelIndex = -1;
+        var worker = new Worker("main.js");
+
+        //自动完成
+        function AutoComplete(auto, search, mylist, event) {
+            if ($("#" + search).val() != old_value || old_value == "" 
+                || event.keyCode == 40 || event.keyCode == 38 || event.keyCode == 13) {
+                var autoNode = $("#" + auto);
+                var carlist = new Array();
+                old_value = $("#" + search).val();
+
+                if (old_value.trim() === '') return;
+
+                if (typeof(Worker) !== "undefined") {
+                    if (worker) worker.postMessage({ value: old_value });
+                    worker.onmessage = function (event) {
+                        carlist = event.data.carlist;
+                        if (carlist.length == 0) {
+                            autoNode.hide();
+                            return;
+                        }
+                        autoNode.empty();
+                        for (i in carlist) {
+                            var wordNode = carlist[i];
+
+                            var newDivNode = $("<div>").attr("id", i);
+                            newDivNode.attr("style", "font:14px/25px arial;height:25px;padding:0 8px;cursor: pointer;");
+
+                            newDivNode.html(wordNode).appendTo(autoNode);
+
+                            newDivNode.mouseover(function () {
+                                if (currentSelIndex != -1) {
+                                    autoNode.children("div").eq(currentSelIndex).css("background-color", "white");
+                                }
+
+                                currentSelIndex = $(this).attr("id");
+                                $(this).css("background-color", "#ebebeb");
+                            });
+                            newDivNode.mouseout(function () {
+                                $(this).css("background-color", "white");
+                            });
+
+
+                            newDivNode.click(function () {
+                                var comText = autoNode.hide().children("div").eq(currentSelIndex).text();
+                                currentSelIndex = -1;
+                                $("#" + search).val(comText);
+                            })
+                            if (carlist.length > 0) {
+                                autoNode.show();
+                            } else {
+                                autoNode.hide();
+                                currentSelIndex = -1;
+                            }
+                        }
+                        
+                        var listLength = carlist.length;
+                        if(event.keyCode == 40 || event.keyCode == 38){    
+                            if(event.keyCode == 40 )
+                            {
+                                if (currentSelIndex == listLength - 1) {
+                                    currentSelIndex = 0;
+                                }
+                                else {
+                                    currentSelIndex = currentSelIndex + 1;
+                                    if (currentSelIndex > listLength - 1) {
+                                        currentSelIndex = 0;
+                                    }
+                                }
+                            }
+                            if(event.keyCode == 38 )
+                            {
+                                if (currentSelIndex == -1) {
+                                    currentSelIndex = listLength - 1;
+                                }
+                                else {
+                                    currentSelIndex = currentSelIndex - 1;
+                                    if (currentSelIndex < 0) {
+                                        currentSelIndex = listLength - 1;
+                                    }
+                                }
+                            }
+                            if (currentSelIndex != -1) {
+                                autoNode.children("div").eq(currentSelIndex).css("background-color", "#4778DA");
+                                selectedFlag = true;
+                            }
+                            if (oldSelIndex != -1) {
+                                autoNode.children("div").eq(oldSelIndex).css("background-color", "#ffffff");
+                            }
+                        }
+                        if(event.keyCode == 13)
+                        {
+                            var comText = autoNode.hide().children("div").eq(currentSelIndex).text();
+                            currentSelIndex = -1;
+
+                            $("#" + search).val(comText);
+                            autoNode.hide();
+                        }
+                    };
+                }
+            }
+
+            document.onclick = function (e) {
+                var e = e ? e : window.event;
+                var tar = e.srcElement || e.target;
+                if (tar.id != search) {
+                    if ($("#" + auto).is(":visible")) {
+                        $("#" + auto).css("display", "none")
+                    }
+                }
+            }
+        }
+
+        $(function () {
+            old_value = $("#search_text").val();
+            $("#search_text").focus(function (event) {
+                if ($("#search_text").val() == "") {
+                    AutoComplete("auto_div", "search_text", test_list, event);
+                }
+            });
+
+            $("#search_text").keyup(function (event) {
+                AutoComplete("auto_div", "search_text", test_list, event);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="search">
+        <input type="text" id="search_text" />
+        <div id="auto_div">
+        </div>
+    </div>
+</body>
+</html>

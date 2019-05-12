@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-size: 48px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        #header,
+        #main,
+        #foot {
+            height: 100px;
+            width: 1200px;
+            background-color: #CDCDCD;
+            line-height: 100px;
+            margin: 0 auto;
+            min-width: 300px;
+        }
+        #header ul {
+            width: 80%;
+        }
+        #header ul li {
+            float: left;
+            width: 20%;
+            list-style: none;
+            font-size: 20px;
+        }
+        #header div {
+            display: none;
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            float: right;
+            line-height: 50px;
+            font-size: 20px;
+        }
+        #main {
+            height: 520px;
+            line-height: 520px;
+
+        }
+        #main .left {
+            width: 25%;
+            height: 500px;
+            background-color: #FFFF99;
+            float: left;
+        }
+        #main .center {
+            width: 50%;
+            height: 500px;
+            background-color: #EE8888;
+            float: left;
+        }
+        #main .right {
+            width: 25%;
+            height: 500px;
+            background-color: #FFFF99;;
+            float: left;
+        }
+        @media screen and (max-width: 1200px) {
+            #header,
+            #main,
+            #foot {
+                width: 100%;
+            }
+        }
+        @media screen and (max-width:900px) {
+            #main .right {
+                display: none;
+            }
+            #main .left {
+                width: 35%;
+            }
+            #main .center {
+                width: 65%;
+                border-right: hidden;
+            }
+        }
+        @media screen and (max-width: 550px) {
+            #main {
+                height: 920px;
+            }
+
+            #main .left {
+                float: none;
+                width: 100%;
+                height: 250px;
+                line-height: 250px;
+            }
+            #main .center {
+                float: none;
+                width: 100%;
+                height: 400px;
+                line-height: 400px;
+            }
+            #main .right {
+                display: block;
+                float: none;
+                width: 100%;
+                height: 250px;
+                line-height: 250px;
+            }
+        }
+        #header ul {
+            display: none;
+        }
+        #header div {
+            display: block;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </header>
+
+    <section id="main">
+        <div class="left">
+            
+        </div>
+        <div class="center">
+            
+        </div>
+        <div class="right">
+            
+        </div>
+    </section>
+
+    <footer id="foot">
+        
+    </footer>
+
+</body>
+
+</html>

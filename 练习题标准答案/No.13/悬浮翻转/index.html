@@ -1,0 +1,95 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Document</title>
+  <style type="text/css" media="screen">
+    body {
+        overflow: hidden;
+        color: white;
+        font-family: 'Lucida Grande', Verdana, Arial;
+        font-size: 12px;
+    }
+
+    #container {
+      width: 100%;
+      height: 700px;
+      -webkit-perspective: 800;
+      perspective-origin: 50% 200px;
+    }
+    #stage {
+      width: 100%;
+      height: 100%;
+      transition: transform 2s;
+      transform-style: preserve-3d;
+    }
+    
+    #shape {
+      position: relative;
+      top: 160px;
+      margin: 0 auto;
+      height: 200px;
+      width: 200px;
+      transform-style: preserve-3d;
+    }
+    
+    .plane {
+      cursor: pointer;
+      position: absolute;
+      height: 70px;
+      width: 200px;
+      border: 1px solid white;
+      box-sizing: border-box;
+      text-align: center;
+      font-family: Times, serif;
+      font-size: 34px;
+      font-weight: bold;
+      color: #FFF;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #shape.backfaces .plane {
+      backface-visibility: visible;
+    }
+    
+    #shape {
+      animation: spin 8s infinite linear;
+    }
+
+    .cube > .font {
+        opacity: .6;
+        transition-duration: 1s;
+        transform-origin: 0 -50%;
+        transform: translateZ(100px);
+    }
+
+    #container:hover .font{
+        transform: rotateY(-90deg);
+    }
+
+    .cube > .right {
+        opacity: .6;
+        transform-origin: 50% 50%;
+        transition-duration: 1s;
+        transform: rotateY(90deg) translateZ(100px);
+    }
+
+    #container:hover .right{
+        transform: rotateY(0deg) translateZ(200px);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="stage">
+      <div id="shape" class="cube backfaces">
+        <div class="plane font">侠课岛</div>
+        <div class="plane right">侠课岛</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

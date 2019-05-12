@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div class="container">
+    <div id="inputList">
+        <input title="todo" id="txt" type="text" onkeypress="enterPress(event)"/>
+    </div>
+    <h3>还有 <span id="count" class="warning">0</span> 项未完成</h3>
+    <div id="showList" class="show">
+    </div>
+    <h3>已经完成 <span id="overCount" class="success">0</span> 项</h3>
+    <div id="overList" class="show">
+    </div>
+</div>
+<script src="js/todolist.js"></script>
+</body>
+</html>

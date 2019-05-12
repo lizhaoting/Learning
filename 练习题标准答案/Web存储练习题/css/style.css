@@ -1,0 +1,61 @@
+.lists{
+    padding: 20px;
+    margin: 10px;
+    border-left: 10px #4078C0 solid;
+}
+.overLists {
+    padding: 20px;
+    margin: 10px;
+    color: #8F8F8F;
+    border-left: 10px #4078C0 solid;
+}
+.show {
+    width: 500px;
+    margin:0 auto;
+}
+#inputList {
+    width: 392px;
+}
+#showList {
+    border-bottom: 1px solid #8B8B8B;
+    padding-bottom: 20px;
+}
+
+.success {
+    color: #5CB85C;
+}
+.warning {
+    color: #D9534F;
+}
+
+#txt {
+    padding: 5px 10px 5px 10px;
+    width: 300px;
+    font-size: large;
+    border: 1px solid #B8B8B8;
+}
+#txt:focus {
+    border:1px solid #3385FF;
+}
+#btn1 {
+    width: 70px;
+    height: 35px;
+    margin-left:-5px;
+}
+.container {
+    width: 650px;
+    margin:100px auto;
+    padding: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+body {
+    margin:0;
+    padding: 0;
+}
+#my {
+    float: right;
+    color:#B8B8B8;
+    padding: 30px 10px 0 0;
+}

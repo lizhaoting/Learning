@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <style>
+        .kefuddd{
+    position: fixed; right: 0px; width: auto; top: 180px; padding: 10px 5px; z-index: 22; background-color: #EFEFEF; box-shadow: 0px 1px 10px #999999; border: 1px solid #e1e1e8;
+}
+.cnendksk{display: none;}
+.kefu_imgs{height: 50px; width: 50px; display: block; background: url("../images/kefu.png") no-repeat center; background-size: cover;  }
+.kefuddd:hover .cnendksk{  display: block;}
+.kefuddd:hover .kefu_imgs{ display: none;}
+ 
+.kf_box{ position: fixed;
+    top: 10%;
+    left: 30%;
+    width: 600px;
+    background: #ffffff;
+    z-index: 999;
+    border: 1px solid #999999;
+    box-shadow: 1px 2px 10px #666666;
+    display: none;
+}
+.kr_title{
+    width: 98%;
+    padding: 0 1%;
+    height: 50px;
+    line-height: 50px;
+    background-color:#007ec1;
+     border: 1px solid #007ec1;
+    font-size: 16px;
+    color: #ffffff;
+}
+.kr_title span{ float: right; width: 50px; height: 50px; text-align: center; cursor: pointer;}
+.kr_content{ width: 98%;
+    padding: 20px 1%;
+    border: 1px solid #007ec1;
+}
+.kf_tool_box{ width: 100%; height: 35px; background-color: #e1e1e8; line-height: 35px;}
+.kf_tool_box i{ margin: 0 5px;}
+.kr_answer{ width: 100%; height: 350px; overflow-y:auto; }
+.kr_question{ width: 100%;resize:none; height:80px; overflow-y: auto; border: none; border-top: 2px solid #007ec1; padding-top: 10px;}
+.kr_buttoms{ width: 100%; padding-top: 20px; text-align: right;}
+.kr_buttoms_fasong{ width: 80px;height: 30px; cursor: pointer; font-size: 14px; line-height: 30px; text-align: center; color: #ffffff; border: none; background-color: #007DDB; }
+.kr_buttoms_close{ width: 80px;height: 30px;cursor: pointer;   font-size: 14px;line-height: 30px; text-align: center;color: #ffffff; border: none; background-color: #af4040;}
+.wenti_form input,select{ width: 98%; height: 32px; line-height: 32px; border: 1px solid #999999; border-radius: 5px; padding: 3px; font-size: 14px;
+     }
+.wenti_form textarea{ width: 98%; height: 100px; border: 1px solid #999999; border-radius: 5px; padding: 3px; resize: none;font-size: 14px;}
+.kr_answer_message{ float: left; background-color: #d2edfa; border-radius:5px; margin:10px;padding: 5px 10px; clear: both }
+::-webkit-scrollbar-track-piece {
+background-color:#f8f8f8;
+}
+ 
+::-webkit-scrollbar {
+    width:5px;
+    height:5px;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb {
+    background-color:#dddddd;
+    background-clip:padding-box;
+    min-height:28px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color:#bbb;
+}
+.emojstext{ width: 300px; height: 200px; position: absolute; z-index: 999; background: #ffffff;}
+.emojstext span{ float: left;}
+    </style>
+</head>
+<body>
+    <div class="kefuddd">
+        <div class="kefu_imgs"></div>
+        <div class='cnendksk'>
+            <p class="zaixiankefu" style="text-align: center; cursor: pointer;"><img src="__STATIC__/images/kefu.png" style="height: 50px;"><br>在线客服</p>
+            <!--<p class="wentijiaosss" style="text-align: center; color: #0a6999; cursor: pointer;">-->
+                <!--提交问题-->
+            <!--</p>-->
+            <p style="text-align: center;">
+                人工服务<br>
+                400-686-6006
+            </p>
+            <p style="text-align: center;">
+                电子邮箱<br>
+                <span style="font-size: 12px;">service@mcloudlink.com</span>
+            </p>
+        </div>
+     
+    </div>
+    <div class="kf_box" id="zaixiankefu">
+        <div class="kr_title">客服系统
+            <span class="kf_close">关闭</span>
+        </div>
+        <div class="kr_content">
+            <div class="kr_answer" id="kr_answer">Hi,您好，欢迎进入云集通自助服务系统。</div>
+            <div class="kf_tool_box" style='position: relative;'>
+                <i class="Hui-iconfont Hui-iconfont-picture"><input  id='upload_picture' type='file' style=" width: 20px; height: 20px; opacity: 0; overflow: hidden; position: absolute; top: 6px; left: 0; z-index: 9999; cursor: pointer;"></i>
+                <i class="Hui-iconfont Hui-iconfont-face"></i>
+            </div>
+            <div class="emojstext" style='display: none;'>
+                    <span style="color:rgb(240,237,150);">🙉</span>
+                    <span style="color:rgb(240,237,155);">👶</span>
+                    <span style="color:rgb(240,237,160);">👨</span>
+                    <span style="color:rgb(240,237,165);">👵</span>
+                    <span style="color:rgb(240,237,170);">🙀</span>
+                    <span style="color:rgb(240,237,175);">🙊</span>
+                    <span style="color:rgb(240,237,180);">👦</span>
+                    <span style="color:rgb(240,237,185);">👩</span>
+                    <span style="color:rgb(240,237,190);">😄</span>
+                    <span style="color:rgb(240,237,195);">😃</span>
+                    <span style="color:rgb(240,237,200);">😀</span>
+                    <span style="color:rgb(240,237,215);">😉</span>
+                    <span style="color:rgb(240,237,220);">😚</span>
+                    <span style="color:rgb(240,237,225);">😗</span>
+                    <span style="color:rgb(240,237,230);">😙</span>
+                    <span style="color:rgb(240,237,235);">😜</span>
+                    <span style="color:rgb(240,237,240);">😝</span>
+                    <span style="color:rgb(240,237,245);">😛</span>
+                    <span style="color:rgb(240,237,250);">😁</span>
+                    <span style="color:rgb(240,237,255);">😔</span>
+                    <span style="color:rgb(240,231,255);">😌</span>
+                    <span style="color:rgb(240,231,250);">😒</span>
+                    <span style="color:rgb(240,231,245);">😞</span>
+                    <span style="color:rgb(240,231,240);">😣</span>
+                    <span style="color:rgb(240,231,235);">😢</span>
+                    <span style="color:rgb(240,231,230);">😂</span>
+                    <span style="color:rgb(240,231,225);">😭</span>
+                    <span style="color:rgb(240,231,220);">😪</span>
+                    <span style="color:rgb(240,231,215);">😥</span>
+                    <span style="color:rgb(240,231,210);">😰</span>
+                    <span style="color:rgb(240,231,205);">😅</span>
+                    <span style="color:rgb(240,231,200);">😩</span>
+                    <span style="color:rgb(240,231,195);">😫</span>
+                    <span style="color:rgb(240,231,190);">😨</span>
+                    <span style="color:rgb(240,231,185);">😱</span>
+                    <span style="color:rgb(240,231,180);">😠</span>
+                    <span style="color:rgb(240,231,175);">😤</span>
+                    <span style="color:rgb(240,231,170);">😖</span>
+                    <span style="color:rgb(240,231,165);">😆</span>
+                    <span style="color:rgb(240,231,160);">😋</span>
+                    <span style="color:rgb(240,231,155);">😷</span>
+                    <span style="color:rgb(240,231,150);">😎</span>
+                    <span style="color:rgb(240,231,145);">😴</span>
+                    <span style="color:rgb(240,231,140);">😵</span>
+                    <span style="color:rgb(240,231,135);">😟</span>
+                    <span style="color:rgb(240,231,130);">😦</span>
+                    <span style="color:rgb(240,231,125);">😧</span>
+                    <span style="color:rgb(240,231,120);">😈</span>
+                    <span style="color:rgb(240,231,115);">👿</span>
+                    <span style="color:rgb(240,231,110);">😮</span>
+                    <span style="color:rgb(240,231,105);">😬</span>
+                    <span style="color:rgb(240,231,100);">😐</span>
+                    <span style="color:rgb(240,231,95);">😕</span>
+                    <span style="color:rgb(240,231,90);">😯</span>
+                    <span style="color:rgb(240,231,85);">😶</span>
+                    <span style="color:rgb(240,231,80);">😇</span>
+                    <span style="color:rgb(240,231,75);">😏</span>
+                    <span style="color:rgb(240,231,70);">😑</span>
+                    <span style="color:rgb(240,231,65);">👲</span>
+                    <span style="color:rgb(240,231,60);">👳</span>
+                    <span style="color:rgb(240,231,55);">👮</span>
+                    <span style="color:rgb(240,231,50);">👷</span>
+                    <span style="color:rgb(240,231,45);">💂</span>
+                    <span style="color:rgb(240,231,40);">👶</span>
+                    <span style="color:rgb(240,231,35);">👦</span>
+                    <span style="color:rgb(240,231,30);">👧</span>
+                    <span style="color:rgb(240,231,25);">👨</span>
+                    <span style="color:rgb(240,231,20);">👩</span>
+                    <span style="color:rgb(240,231,15);">👴</span>
+                    <span style="color:rgb(240,231,10);">👵</span>
+                    <span style="color:rgb(240,231,5);">👱</span>
+                    <span style="color:rgb(240,231,0);">👼</span>
+            </div>
+            <div class="kr_question" id='test' contentEditable="true">ddddd</div>
+     
+            <!-- <textarea class="kr_question" placeholder="请输入你要了解的问题"></textarea> -->
+            <div class="kr_buttoms">
+                <button class="kr_buttoms_fasong sends">发送</button>
+                <button class="kr_buttoms_close">关闭</button>
+            </div>
+        </div>
+    </div>
+     
+    <div class="kf_box" id="tijiaowenti">
+        <div class="kr_title">客服系统-问题提交
+            <span class="kf_close">关闭</span>
+        </div>
+        <form name="wenti" class="wenti_form">
+            <div class="kr_content">
+                <div class="kr_answer" style="height: auto;">
+                    <p>
+                        <select name="cid">
+                            <option value="">问题类型</option>
+                        </select>
+                    </p>
+                    <p><input type="text" name="" value="" placeholder="输入标题"></p>
+                    <p><input type="text" name="" value="" placeholder="输入姓名"></p>
+                    <p><input type="text" name="" value="" placeholder="输入手机号码"></p>
+                    <p><input type="text" name="" value="" placeholder="输入电子邮箱"></p>
+                    <p><input type="text" name="" value="" placeholder="附件"></p>
+                    <p>
+                        <textarea name="w_desc" placeholder="问题描述"></textarea>
+                    </p>
+                </div>
+                <div class="kr_buttoms">
+                    <button class="kr_buttoms_fasong tijiaowentid">发送</button>
+                    <button class="kr_buttoms_close">关闭</button>
+                </div>
+            </div>
+        </form>
+    </div>
+     
+    <script type="text/javascript">
+     
+        //光标位置插入文本，图片，表情等
+        function insertHtmlAtCaret(html,lastEditRange='') {
+            var range;
+            if (window.getSelection || lastEditRange) {
+                // IE9 and non-IE
+                if(lastEditRange==''){
+                    sel = window.getSelection();
+                }
+               // console.log(sel);
+                if ((sel.getRangeAt && sel.rangeCount) || lastEditRange) {
+                    range = sel.getRangeAt(0);
+                    if(lastEditRange){
+                        range =  lastEditRange
+                    }
+                    if(!lastEditRange && sel.anchorNode.parentNode.className!='kr_question'){
+                        return false;
+                    }
+                    range.deleteContents();
+                    // Range.createContextualFragment() would be useful here but is
+                    // non-standard and not supported in all browsers (IE9, for one)
+                    var el = document.createElement("div");
+                    el.innerHTML = html;
+                    var frag = document.createDocumentFragment(), node, lastNode;
+                    while ((node = el.firstChild)) {
+                        lastNode = frag.appendChild(node);
+                    }
+                    range.insertNode(frag);
+                    // Preserve the selection
+                    if (lastNode) {
+                        range = range.cloneRange();
+                        range.setStartAfter(lastNode);
+                        range.collapse(true);
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                    }
+                }
+            } else if (document.selection && document.selection.type != "Control") {
+                // IE < 9
+                document.selection.createRange().pasteHTML(html);
+            }
+        }
+    </script>
+    <script>
+     
+     
+     
+        var is_back = true;
+            $(".zaixiankefu").click(function () {
+                $("#zaixiankefu").animate({
+                    top: 150, opacity: 'show'
+                }, 500);
+                is_back = false;
+            });
+     
+            $(".wentijiaosss").click(function () {
+                $("#tijiaowenti").animate({
+                    top: 150, opacity: 'show'
+                }, 500);
+            });
+     
+            $(".kr_buttoms_close,.kf_close").click(function (e) {
+                $("#zaixiankefu,#tijiaowenti").animate({
+                    top: 80, opacity: 'show'
+                }, 500);
+                $(".kf_box").hide();
+                is_back=true;
+                return false;
+            });
+     
+            $(".kr_buttoms_fasong").click(function () {
+                return false;
+            });
+     
+     
+        $(".sends").click(function () {
+            var content = $(".kr_question").html();
+            $(".kr_question").html('');
+            $.ajax({
+                type:'post',
+                url:'{:url("publics/huifu")}',
+                data:{content:content},
+                success:function (data) {
+                    data = JSON.parse(data);
+                    if (data.code==1){
+                        is_back = true;
+                    }
+                    else{
+                        is_back = false;
+                    }
+                    var data2 = data.data;
+                    var wen_str = '<div class="kr_answer_message" style="float: right;">'+content+'</div>';
+                    $(".kr_answer").append(wen_str);
+                    var da_str = '<div class="kr_answer_message">'+data2.ddesc+'</div>';
+                    $(".kr_answer").append(da_str);
+                    var ele = document.getElementById('kr_answer');
+                    ele.scrollTop = ele.scrollHeight;
+                }
+            })
+        });
+        $(".kr_question").keydown(function name(event) {
+            if(event.keyCode == 13 && !(event.shiftKey)){
+                $(".sends").trigger('click')
+                return false;
+            }
+        })
+        
+        //插入图片
+        $("#upload_picture").change(function(){
+            var pic = document.getElementById('upload_picture').files[0];
+            var formData = new FormData();
+            formData.append("file", pic);
+            formData.append('folder','kefu');
+            formData.append('size',2014);
+            $.ajax({
+                    type:'POST',
+                    url:"{:url('publics/uploadfile')}",
+                    cache:false,
+                    data:formData,
+                    processData : false,
+                    contentType : false,
+                    dataType:'json',
+                    success:function (data) {
+                        if(data.code==0){
+                            var file_path = "/uploads/kefu/"+data.data.path;
+                            insertHtmlAtCaret('<img class="imgs" src="'+file_path+'" style=" max-width:50%;" />');
+                        }
+                    }
+     
+                });
+        })
+     
+        //表情
+        var lastEditRange;
+        $(".Hui-iconfont-face").click(function (params) {
+            var selection = getSelection()
+            lastEditRange = selection.getRangeAt(0)
+            $(".emojstext").show()
+        })
+        $(".emojstext>span").click(function(){
+           insertHtmlAtCaret(this.outerHTML,lastEditRange)
+           $(".emojstext").hide()
+        })
+     
+        $("body").on('click','.imgs',function (params) {
+           var paths = $(this).attr('src');
+           var htmls = '<div id="img_big" style="width:auto; height:auto; position: fixed; z-index:99999; top:20%; left:20%; box-shadow: 0px 1px 10px #000000;"><img src="'+paths+'" title="双击关闭" /></div>';
+           $("#img_big").remove();
+           $('.kr_content').append(htmls);
+           $("#img_big").dblclick(function (params) {
+            $("#img_big").remove();
+           })
+        })
+     
+     
+        var timeid = setInterval(function () {
+            if (is_back==false){
+                $.ajax({
+                    type:'post',
+                    url:'{:url("publics/huifu")}',
+                    data:{content:'more'},
+                    success:function (data) {
+                        data = JSON.parse(data);
+                        if (data.code==1){
+                            is_back = true;
+                        }else{
+                            is_back=false;
+                        }
+                        var da_str = '';
+                        if (data.data !='') {
+                            data.data.forEach(function (item) {
+                                da_str += '<div class="kr_answer_message">'+item.ddesc+'</div>';
+                            })
+                        }
+     
+                        $(".kr_answer").append(da_str);
+                        var ele = document.getElementById('kr_answer');
+                        ele.scrollTop = ele.scrollHeight;
+                    }
+                })
+            }
+     
+            var da_str = '';
+            da_str += '<div class="kr_answer_message">'+Math.random()+'</div>';
+
+            $(".kr_answer").append(da_str);
+            var ele = document.getElementById('kr_answer');
+            ele.scrollTop = ele.scrollHeight;
+        },1000)
+     
+     
+        
+     
+     
+    </script>
+</body>
+</html>

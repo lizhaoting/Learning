@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <title>Document</title>
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+    </head>
+    <body>
+        <div class="container">
+			<section class="main">
+				<div id="container" class="container">
+					<div index=0></div>
+					<div index=1></div>
+					<div index=2></div>
+					<div index=3></div>
+					<div index=4></div>
+					<div index=5></div>
+					<div index=6></div>
+					<div index=7></div>
+					<div index=8></div>
+					<div index=9></div>
+					<div index=10>
+						<h4><span></span></h4>
+						<span class="sb-toggle"></span>
+						<h5><span>侠课岛</span></h5>											
+					</div>
+				</div>
+			</section>
+        </div>
+		<script type="text/javascript">
+			const container = document.getElementById("container");
+			const childrenList = Array.from(container.children || []);
+			let isExpand = false;
+
+			container.addEventListener('click', e => {
+				let index = parseFloat(e.target.getAttribute('index'));
+				if (isNaN(index)) index = 10;
+				if (index === 10) {
+					expand();
+					return;
+				}
+				childrenList[index].style.transform = '';
+				moveLeft(index);
+				moveright(index);
+			})
+
+			function moveLeft(i) {
+				const startDeg = -90;
+				let index = i;
+				const baseDeg = (index + 1) * 15 + startDeg;
+				function setRotate() {
+					if (index < 0) return;
+					childrenList[index].style.transform = `rotate(${(index + 1) * 15 + startDeg - baseDeg}deg)`;
+					index--;
+					setRotate();
+				}
+				setRotate();
+			}
+
+			function moveright(i) {
+				const startDeg = -90;
+				let index = i + 1;
+				const baseDeg = (index + 1) * 15 + startDeg;
+				function setRotate() {
+					if (index >= childrenList.length) return;
+					childrenList[index].style.transform = `rotate(${(index + 1) * 15 + startDeg - baseDeg + 30}deg)`;
+					index++;
+					setRotate();
+				}
+				setRotate();
+			}
+
+			function expand() {
+				let startDeg = -90;
+				let index = 0;
+				const setRotate = (list) => {
+					if (list.length === index) return;
+					const current = list[index];
+					if (isExpand) {
+						current.style.transform = '';
+					} else {
+						current.style.transform = `rotate(${(index + 1) * 15 + startDeg}deg)`;
+					}
+					index++;
+					setRotate(list);
+				}
+				setRotate(childrenList);
+				isExpand = !isExpand;
+			}
+		</script>
+    </body>
+</html>

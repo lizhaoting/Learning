@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="./bootstrap.css">
+  <style>
+    body {
+      text-align: center;
+      margin-top: 10%;
+    }
+  </style>
+<body>
+  <p>result: <output id="result"></output></p>
+
+  <button class="btn btn-primary" onclick="startWorker()">Start Worker</button>
+  <button class="btn btn-primary" onclick="stopWorker()">Stop Worker</button>
+
+  <br /><br />
+  <input type="text" value=""/>
+<script>
+  var worker;
+  function startWorker () {
+    if (typeof(Worker) !== "undefined") {
+      if (typeof(worker) === "undefined") {
+        worker = new Worker("main.js");
+      }
+      worker.onmessage = function (event) {
+        document.getElementById("result").innerHTML = event.data;
+      };
+    } else {
+      document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+    }
+  }
+
+  function stopWorker () {
+    worker.terminate();
+  }
+</script>
+</body>
+</html>

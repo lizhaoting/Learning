@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+	<style type="text/css">
+		body {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 0;
+		}
+		#demo {
+			text-align: center;
+			font-size: 100px;
+			font-weight: bold;
+			color: #8A469B;
+		}
+		#demo div {
+			opacity: 0;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h4 id="demo">
+			<div>A</div>
+			<div>n</div>
+			<div>i</div>
+			<div>m</div>
+			<div>a</div>
+			<div>t</div>
+			<div>e</div>				
+		</h4></div>
+	</div>
+</body>
+<script>
+	const childrenList = Array.from(document.getElementById("demo").children || []);
+	const setAnimate = (list) => {
+		if (list.length === 0) return;
+		const current = list.splice((Math.random() * list.length) >> 0, 1);
+		current[0].classList.add('animated');
+		current[0].classList.add('tada');
+		current[0].style.opacity = 1;
+		setTimeout(() => {
+			setAnimate(list);
+		}, 150);
+	}
+	setAnimate(childrenList);
+</script>
+</html>

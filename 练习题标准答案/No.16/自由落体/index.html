@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 60px;
+			height: 60px;
+			cursor: pointer;
+			border-radius: 50%;
+			background: #8A469B;
+			transform: translateX(-50%);
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+		var box = document.getElementById('box');
+		var maxL = window.innerWidth - box.offsetWidth;
+		var maxT = window.innerHeight - box.offsetHeight;
+		var timer = moveX = moveY = null;
+ 
+		box.onmousedown = function(e) {
+			var e = e || window.event;
+			var X = e.clientX;
+			var Y = e.clientY;
+			var initL = box.offsetLeft;
+			var initT = box.offsetTop;
+			clearInterval(timer);
+			timer = null;
+ 
+			document.onmouseup = function(e){
+				document.onmousemove = null;
+				document.onmouseup = null;
+				var left = box.offsetLeft;
+				var top = box.offsetTop;
+				timer = setInterval(() => {
+					moveY += 3;
+					top += moveY;
+ 
+					if(top > maxT || top < 0) {
+						top =  Math.min(top, maxT);
+						top =  Math.max(top, 0);
+						moveY *= -0.8;
+					}
+ 
+					if( Math.abs(moveY) < 1) {
+						moveY = 0;
+					}
+ 
+					if( moveY == 0 && top == maxT) {
+						clearInterval(timer);
+					}
+					
+					box.style.left = left+'px';
+					box.style.top = top+'px';
+				}, 15);
+			}
+			return false;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./bootstrap.css">
+    <title>事务</title>
+    <style>
+        body {
+            margin: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn btn-primary" onclick="add()">新增数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="read()">读取数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="update()">更新数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="deleteData()">删除数据</button>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick="closeDataBase()">关闭数据库</button>
+</body>
+<script>
+    let database;
+    let userStore;
+    let transaction;
+    let table;
+    let transactionRequest;
+    const request = window.indexedDB.open('mission_finished', 1);
+
+    /* 成功打开数据库 */
+    request.onsuccess = event => {
+        database = request.result;
+        console.log('onsuccess', request);
+    }
+
+    /* 打开数据库失败 */
+    request.onerror = event => {
+        console.log('onerror', event);
+    }
+
+    /* 版本号大于当前数据库版本 */
+    request.onupgradeneeded = event => {
+        database = event.target.result;
+        console.log('onupgradeneeded', event);
+        createStore();
+    }
+
+    /* 创建数据表 */
+    const createStore = () => {
+        if(!database.objectStoreNames.contains('mission')) {
+	        userStore = database.createObjectStore('mission');
+	    }
+	}
+
+    /* 新增数据 */
+    const add = () => {
+        transaction = database.transaction(['mission'], 'readwrite')
+            .objectStore('mission')
+            .add({ 
+                id: Date.parse(new Date()),
+                content: '完成侠客岛No.23小节学习',
+             });
+
+        transaction.onsuccess = event => {
+            console.log('数据写入成功', event);
+        };
+
+        transaction.onerror = error => {
+            console.log('数据写入失败', error);
+        }
+    }
+
+    /* 读取数据 */
+    const read = () => {
+        table = database.transaction('mission').objectStore('mission');
+
+        table.openCursor().onsuccess = () => {
+            let cursor = event.target.result;
+
+            if (cursor) {
+                console.log('数据读取', {
+                    id: cursor.key,
+                    value: cursor.value
+                });
+            cursor.continue();
+            } else {
+                console.log('数据读取完成');
+            }
+        };
+    }
+
+    /* 更新数据 */
+    const update = () => {
+        
+        transactionRequest = database.transaction(['mission'], 'readwrite')
+            .objectStore('mission')
+            .put({
+                id: Date.parse(new Date()),
+                content: '完成侠客岛No.24小节学习',
+            });
+
+        transactionRequest.onsuccess = function (event) {
+            console.log('更新数据成功', event);
+        };
+
+        transactionRequest.onerror = error => {
+            console.log('更新数据失败', error);
+        }
+    }
+
+    /* 删除数据 */
+    const deleteData = () => {
+        transactionRequest = database.transaction(['mission'], 'readwrite')
+            .objectStore('mission')
+            .delete(1);
+
+        transactionRequest.onsuccess = function (event) {
+            console.log('删除数据成功', event);
+        };
+
+        transactionRequest.onerror = error => {
+            console.log('删除数据失败', error);
+        }
+    }
+
+    /* 关闭数据库 */
+    const closeDataBase = () => {
+        database.close();
+    }
+</script>
+</html>

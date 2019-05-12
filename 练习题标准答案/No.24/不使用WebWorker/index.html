@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="./bootstrap.css">
+  <style>
+    body {
+      text-align: center;
+      margin-top: 10%;
+    }
+  </style>
+<body>
+  <p>result: <output id="result"></output></p>
+
+  <button class="btn btn-primary" onclick="startRun()">Start</button>
+  <button class="btn btn-primary" onclick="stopRun()">Stop</button>
+
+  <br /><br /><input type="text" value=""/>
+<script>
+  let stop = false;
+
+  function startRun() {
+    timedCount();
+  }
+
+  function stopRun() {
+    stop = true;
+  }
+
+  function timedCount() {
+    if (stop) return;
+    for (var i = 0; i < 10000000000; i++) {
+      if (i % 100000 === 0) {
+        document.getElementById("result").innerHTML = i;
+      }
+    }
+  }
+</script>
+</body>
+</html>
