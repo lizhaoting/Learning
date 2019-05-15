@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: #E0E0E0;
+        }
+        .top {
+            width: 400px;
+            height: 120px;
+            background-image: url(./bg.jpg);
+            transform: rotateX(-180deg);
+            transform-origin: bottom;
+            transition-duration: 1s;
+        }
+        .top .font {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #FFF;
+            z-index: -1;
+            backface-visibility: hidden;
+        }
+        .top .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url(./bg.jpg);
+        }
+        .center {
+            position: relative;
+            width: 400px;
+            height: 160px;
+            transition-duration: .8s;
+        }
+        .center .font {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #FFF;
+            z-index: 9;
+            backface-visibility: hidden;
+        }
+        .center .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url(./bg.jpg);
+            background-position-y: -120px;
+        }
+        .center .font .title {
+            background: #2E4265;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFF;
+            height: 50px;
+        }
+        .bottom {
+            width: 400px;
+            height: 120px;
+            transform: rotateX(180deg);
+            transform-origin: top;
+            transition-duration: 1.2s;
+            position: relative;
+        }
+        .bottom .font {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #FFF;
+            z-index: -1;
+            backface-visibility: hidden;
+        }
+        .bottom .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url(./bg.jpg);
+            background-position-y: -280px;
+        }
+        .container {
+            width: 400px;
+            height: 400px;
+            perspective: 400px;
+            transition-duration: 1s;
+            margin: auto;
+            transform: rotateY(0deg);
+            transform-style: preserve-3d;
+        }
+        .container:hover {
+            transform: rotateY(180deg);
+        }
+        .container:hover .top {
+            transform: rotateX(0deg);
+        }
+        .container:hover .bottom {
+            transform: rotateX(0deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <div class="font"></div>
+            <div class="back"></div>
+        </div>
+        <div class="center">
+            <div class="font">
+                <div class="title">侠课岛</div>
+            </div>
+            <div class="back"></div>
+        </div>
+        <div class="bottom">
+            <div class="font"></div>
+            <div class="back"></div>
+        </div>
+    </div>
+</body>
+</html>

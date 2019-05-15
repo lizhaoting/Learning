@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>炫彩文字</title>
+    <style>
+        .main {
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 128px;
+            font-weight: 600;
+        }
+        .linear {
+            color: green;
+            background-image: linear-gradient(to left, rgb(16, 121, 148), rgb(230, 211, 13) 25%, rgb(18, 136, 165) 50%, rgb(231, 213, 10) 75%, rgb(16, 121, 148));
+            background-size: 200% 100%;
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-position: 0 0;
+            transition-duration: 4s;
+        }
+        .linear:hover {
+            background-position: -100% 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main linear">
+        侠课岛
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.demo,
+        .img,
+        .border,
+        .mask {
+			width: 300px;
+			height: 300px;
+		}
+		.demo {
+			display: block;
+			position: relative;
+			margin:50px auto;
+		}
+		.img {
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			border-radius: 50%;
+		}
+		.border {
+			position: absolute;
+			border: 10px solid #1AD180;
+			border-left-color: #E07514;
+			border-top-color: #E07514;
+			top: 0;
+			left: 0;
+			border-radius: 50%;
+			transition:all .5s ease-in;
+			box-sizing: border-box;
+		}
+		.mask {
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-radius: 50%;
+			transition: all .5s ease-in;
+			transition: all .5s ease-in;
+			color: rgba(255, 255, 255, 0);
+		}
+		.demo:hover .mask {
+			background-color: rgba(0, 0, 0, 0.5);
+			color: rgba(255, 255, 255, 1);
+		}
+        .demo:hover .line {
+			background-color: rgba(255, 255, 255, 1);
+		}
+		.demo:hover .border {
+			transform: rotate(180deg);
+			transform: rotate(180deg);
+		}
+		.info {
+			position: absolute;
+			width: 100%;
+			top: 40%;
+			left: 0;
+			text-align: center;
+			transform: translateY(-50%);
+		}
+        h2 {
+            margin-bottom: 80px;
+        }
+        .line {
+            margin: auto;
+            height: 1px;
+            background-color: color: rgba(255, 255, 255, 0);
+            width: 200px;
+        }
+	</style>
+
+</head>
+<body>
+	<a href="#" class="demo">
+		<div class="img" style="background-image:url(./logo.png)"></div>
+		<div class="mask">
+			<div class="info">
+                <h2>侠课岛</h2>
+                <p class="line"></p>
+				<p>短视频在线学习</p>
+			</div>
+		</div>
+		<div class="border"></div>
+	</a>
+</body>
+</html></pre>
+
+<p>
