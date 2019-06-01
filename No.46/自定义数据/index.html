@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button">button</button>
+</body>
+<script>
+    var myButton = document.getElementById('button');
+    myButton.onclick = function(e) {
+        debugger;
+    }
+    var event = new CustomEvent('myEvent', { 'detail': {
+        time: new Date().toLocaleDateString()
+    } });
+
+    myButton.addEventListener('myEvent', function (e) {
+        debugger;
+    }, false);
+
+    myButton.dispatchEvent(event);
+    myButton = null;
+</script>
+</html>
