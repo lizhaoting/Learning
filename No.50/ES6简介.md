@@ -24,8 +24,79 @@
 
 > **`3：ES6新特征`**
 - `扩展`
-    - `变量的扩展：let、const(块级作用域)`
-    - `变量的解构`
+    - `变量的扩展`
+        - `let - 声明变量 - 只在let命令所在的代码块内有效 - 块级作用域 - 不存在变量提升`
+            ```javascript
+            {
+                let a = 10;
+                var b = 10;
+            }
+            a  /* ReferenceError: a is not defined. */
+            b  /* 10 */
+            ```
+        - `const - 只读常量 - 保证该变量指向得内存地址不变(复杂类型只读特征可能失效)`
+            ```javascript
+            const a = 10;
+
+            a = 3;  /* TypeError: Assignment to constant variable. */
+            ```
+    - `解构 - 按照一定模式从数组和对象中提取值对变量进行赋值 - 解构失败返回undefined`
+
+        - `数组的解构`
+            ```javascript
+            let [a, b, c] = [1, 2, 3];
+            /* a = 1; b = 2; c = 3 */
+
+            let [foo, [[bar], baz]] = [1, [[2], 3]];
+            /* foo = 1; bar = 2; baz = 3 */
+
+            let [ , , third] = ["foo", "bar", "baz"];
+             /* third = 'baz' */
+
+            let [x, , y] = [1, 2, 3];
+            /* x = 1; y = 3 */
+
+            let [head, ...tail] = [1, 2, 3, 4];
+            /* head = 1; tail = [2, 3, 4] */
+
+            let [a, [b], d] = [1, [2, 3], 4];
+            /* a = 1; b = 2; d = 4 */
+
+            [a, b] = [b, a];
+            /* 位置互换 */
+
+            /* 指定默认值 */
+            let [x, y = 'b'] = ['a'];
+            /* x = 'a'; y = 'b' */
+
+            function f() {
+                console.log('参数错误！');
+            }
+
+            let [x = f()] = [];
+            ```
+
+        - `对象的解构 - 没有顺序, 匹配属性名`
+            ```javascript
+            let { bar, foo } = { foo: 'aaa', bar: 'bbb' };
+            /* foo = 'aaa'; bar = 'bbb' */
+
+            let { log, sin, cos } = Math;
+            /* log = Math.log; sin = Math.sin; cos = Math.cos */
+
+            let obj = {
+                p: [
+                    'Hello',
+                    { y: 'World' }
+                ]
+            };
+            let { p: [x, { y }] } = obj;
+            /* x = 'hello'; y = 'word'; */
+
+            let {foo: {bar}} = {baz: 'baz'};
+            /* TypeError: Cannot destructure property `bar` of 'undefined' or 'null'. */
+            ```
+
     - `字符串的扩展`
         - `Unicode - \u0000 ~ \uFFFF`
         ```javascript
