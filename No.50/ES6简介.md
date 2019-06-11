@@ -96,7 +96,6 @@
             let {foo: {bar}} = {baz: 'baz'};
             /* TypeError: Cannot destructure property `bar` of 'undefined' or 'null'. */
             ```
-
     - `字符串的扩展`
         - `Unicode - \u0000 ~ \uFFFF`
         ```javascript
@@ -277,7 +276,258 @@
         
         /* true */
         ```
+
+
+        - `flags - 返回正则表达式的修饰符`
+        ```javascript
+        /abc/ig.flags
+        
+        /* gi */
+        ```
+
+
+        - `s - 匹配一切字符(.不能匹配回车、换行等行终止符)`
+        ```javascript
+        /foo.bar/s.test('foo\nbar');
+        ```
+
+        - `组别名`
+        ```javascript
+        const RE_DATE = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/;
+
+        const matchObj = RE_DATE.exec('1999-12-31');
+
+        const year = matchObj.groups.year;
+        matchObj[1];
+        /* 1999 */
+
+        const month = matchObj.groups.month;
+        matchObj[2];
+        /* 12 */
+
+        const day = matchObj.groups.day;
+        matchObj[3];
+        /* 31 */
+
+
+        let { groups: { one, two } } = /^(?<one>.*):(?<two>.*)$/u.exec('foo:bar');
+        ```
+
+
+        - `matchAll - 返回正则表达式所有匹配 - 迭代器`
+        ```javascript
+        for(s of 'abcabcabc'.matchAll('ab')) {
+            console.log(s)
+        }
+        ```
+    - `数值的扩展`
+        - `二进制、八进制表示法`
+        ```javascript
+        /* 0b(0B) */
+        Number('0b111');
+
+        /* 0o(0O) */
+        Number('0o10');
+        ```
+
+
+        - `Number.isFinite - 检查一个数值是否为有限 - 不做隐式转换`
+        ```javascript
+        Number.isFinite(15);
+        /* true */
+        Number.isFinite(NaN);
+        /* false */
+        Number.isFinite(Infinity);
+        /* false */
+        Number.isFinite(true);
+        /* false */
+
+
+        isFinite("25");
+        /* true */
+        ```
+
+        - `Number.isNaN - 检查一个值是否为NaN - 不做隐式转换`
+        ```javascript
+        Number.isNaN(15);
+        /* false */
+        Number.isNaN(NaN);
+        /* true */
+        Number.isNaN('NaN');
+        /* false */
+
+
+        isNaN('NaN');
+        /* true */
+        ```
+
+        - `Number.parseInt、Number.parseFloat - 全局方法移植`
+
+
+        - `Number.isInteger - 判断一个数值是否为整数`
+        ```javascript
+        Number.isInteger(25);
+        /* true */
+
+        Number.isInteger('15');
+        /* false */
+
+        Number.isInteger(3.0000000000000002);
+        /* true */
+        ```
+
+
+        - `Number.EPSILON - JavaScript 能够表示的最小精度`
+        ```javascript
+        Number.EPSILON === Math.pow(2, -52);
+        /* true */
+        ```
+
+        - `Number.isSafeInteger - 安全 '整数'`
+        ```javascript
+        Math.pow(2, 53) === Math.pow(2, 53) + 1
+        /* true */
+
+        Number.isSafeInteger('a');
+        /* false */
+        Number.isSafeInteger(null);
+        /* false */
+        Number.isSafeInteger(NaN);
+        /* false */
+        Number.isSafeInteger(3);
+        /* true */
+        Number.isSafeInteger(1.2);
+        /* false */
+        ```
+
+
+        - `Math.trunc - 去除小数部分 - Number隐式转换`
+        ```javascript
+        Math.trunc(-4.9);
+        /* -4 */
+
+        Math.trunc('123.456');
+        /* 123 */
+
+        Math.trunc('foo');
+        /* NAN */
+        ```
+
+        - `Math.sign - 判断正数、负数与0 - Number隐式转换`
+            - `参数为正数 - 返回+1`
+
+            - `参数为负数 - 返回-1`
+
+            - `参数为 0 - 返回0`
+
+            - `参数为-0 - 返回-0`
+
+            - `其他值 - 返回NaN`
+        ```javascript
+        Math.sign(true);
+        /* +1 */
+        Math.sign(false);
+        /* 0 */
+        Math.sign(null);
+        /* 0 */
+        Math.sign('9');
+        /* 9 */
+        ```
+
+        - `Math.cbrt - 立方根 - Number隐式转换`
+
+
+        - `Math.clz32() - 返回32 位无符号整数 - Number隐式转换`
+
+
+        - `对数方法 - Number隐式转换`
+
+
+        - `指数运算符`
+        ```javascript
+        2 ** 2
+        /* 4 */
+        2 ** 3
+        /* 8 */
+        
+        2 ** 3 ** 2
+        /* 2 ** (3 ** 2) */
+        ```
     - `数组的扩展`
+        - `扩展运算符 - 将一个数组转为用逗号分隔的参数序列`
+            ```javascript
+            console.log(1, ...[2, 3, 4], 5);
+            /* 1 2 3 4 5 6 */
+            ```
+
+
+            - `浅拷贝`
+            ```javascript
+            const array1 = [ 1, 2 ];
+
+            const array2 = [ ...array1 ];
+            ```
+
+
+            - `合并数组`
+            ```javascript
+            [...arr1, ...arr2, ...arr3];
+            ```
+
+
+            - `解构`
+            ```javascript
+            const [first, ...rest] = [1, 2, 3, 4, 5];
+            first
+            /* 1 */
+            rest
+            /* [2, 3, 4, 5] */
+            ```
+
+
+            - `拆分字符串 - 识别四字节编码`
+            ```javascript
+            [...'hello']
+            /* [ "h", "e", "l", "l", "o" ] */
+            ```
+
+
+            - `转换Iterator接口的对象`
+            ```javascript
+            [...'abcabcabc'.matchAll('ab')];
+            let nodeList = document.querySelectorAll('div');
+            let array = [...nodeList];
+            ```
+
+        - `Array.from - 类数组(包含length)的对象和迭代器对象转换为数组`
+            ```javascript
+            let arrayLike = {
+                '0': 'a',
+                '1': 'b',
+                '2': 'c',
+                length: 3
+            };
+
+            Array.from(arrayLike);
+            /* ['a', 'b', 'c'] */
+
+
+            let divList = document.querySelectorAll('div');
+            Array.from(divList);
+
+            Array.from([1, 2, 3])
+            /* [1, 2, 3] */
+
+            Array.from({ length: 3 });
+            /* [ undefined, undefined, undefined ] */
+
+            Array.from([1, 2, 3], (x) => x * x);
+
+            ```
+
+        - `Array.of - 将一组值, 转换为数组`
+            ```javascript
+            ```
     - `函数的扩展`
     - `对象的扩展`
 - `新特征`

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rotate3d</title>
+    <style>
+        body{
+            font-family: Monospace;
+            background: #f0f0f0;
+            margin: 0px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript" src="./libs/three.js"></script>
+<script type="text/javascript" src="./libs/OrbitControls.js"></script>
+<script type="text/javascript">
+    var container;
+    var camera, scene, renderer;
+    var orbitControls, clock, delta;
+    var line;
+    main();
+    render();
+    function main(){
+        container = document.createElement('div')
+        document.body.appendChild(container);
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(
+            45,
+            window.innerWidth/window.innerHeight, 
+            1, 
+            100000
+        );
+        camera.position.set(0, 0, 300);
+        camera.lookAt(new THREE.Vector3(0,0,0));
+        renderer = new THREE.WebGLRenderer({antialias:true});
+        renderer.setClearColor(new THREE.Color(0x000000));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+        orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
+        orbitControls.target = new THREE.Vector3(0, 0, 0);
+        orbitControls.autoRotate = false;
+        clock = new THREE.Clock();
+        var ambientLight = new THREE.AmbientLight( 0x606060 );
+        scene.add( ambientLight );
+        var directionalLight = new THREE.DirectionalLight( 0xffffff );
+        directionalLight.position.set( 1, 0.75, 0.5 ).normalize();
+        scene.add( directionalLight );
+        var size =100;
+		var axesHelper = new THREE.AxisHelper( size );
+        console.log(axesHelper);
+		scene.add( axesHelper );
+        plane1();
+        plane2();
+        plane3();
+        line();
+        rotatePlane();
+        cube();
+    }
+    function plane1(){
+        var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
+        var planeMat = new THREE.MeshBasicMaterial({
+            // color:0xFF0000,
+            opacity: 0.5,
+            color:0x0000FF,
+            side: THREE.DoubleSide,
+            wireframe: true,
+        });
+        var planeMesh = new THREE.Mesh(planeGeo, planeMat);
+        planeMesh.position.set(0, 0, 0);
+        planeMesh.rotation.x = -0.5 * Math.PI;
+        scene.add(planeMesh);
+    }
+    function plane2(){
+        var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
+        var planeMat = new THREE.MeshBasicMaterial({
+            // color:0x0000FF,
+            color:0xFF0000,
+            side: THREE.DoubleSide,
+            wireframe: true,
+        });
+        var planeMesh = new THREE.Mesh(planeGeo, planeMat);
+        planeMesh.position.set(0, 0, 0);
+        planeMesh.rotation.x = 0 * Math.PI;
+        scene.add(planeMesh);
+    }
+    function plane3(){
+        var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
+        var planeMat = new THREE.MeshBasicMaterial({
+            // color:0x666666,
+            color:0x008000,
+            side: THREE.DoubleSide,
+            wireframe: true,
+        });
+        var planeMesh = new THREE.Mesh(planeGeo, planeMat);
+        planeMesh.position.set(0, 0, 0);
+        planeMesh.rotation.y = .5 * Math.PI;
+        scene.add(planeMesh);
+    }
+
+    // 添加线条
+    function line() {
+        var material = new THREE.LineBasicMaterial({ color:0xFFFFFF , linewidth: 100});
+        var geometry = new THREE.Geometry();
+        geometry.vertices.push(new THREE.Vector3(100, 100, -100));
+        geometry.vertices.push(new THREE.Vector3(0,0,0));
+        line = new THREE.Line(geometry, material);
+        scene.add(line);   
+    }
+
+    // 添加旋转平面
+    function rotatePlane() {
+        var planeGeo = new THREE.PlaneGeometry(200, 200, 10, 10);
+        var planeMat = new THREE.MeshBasicMaterial({
+            // color:0x666666,
+            color:0x666666,
+            side: THREE.DoubleSide,
+            wireframe: false,
+        });
+        var planeMesh = new THREE.Mesh(planeGeo, planeMat);
+        planeMesh.position.set(0, 0, 0);
+
+        var axis = new THREE.Vector3(-1, 1, -1);
+        var rotWorldMatrix = new THREE.Matrix4();
+        rotWorldMatrix.makeRotationAxis(axis.normalize(), 45 * Math.PI / 180 );
+        rotWorldMatrix.multiply(planeMesh.matrix);
+        planeMesh.matrix = rotWorldMatrix;
+        planeMesh.rotation.setFromRotationMatrix(planeMesh.matrix);
+
+
+        // 模拟X旋转
+        // planeMesh.rotation.x = (1 / 4) * Math.PI;
+
+        // 模拟Y旋转
+        // planeMesh.rotation.y = (1 / 4) * Math.PI;
+
+        // 模拟Z旋转
+        // planeMesh.rotation.z = (1 / 4) * Math.PI;
+
+        scene.add(planeMesh);
+    }
+
+    function cube() {
+        var cube1 = new THREE.Mesh(new THREE.CubeGeometry(2, 2, 2),
+        new THREE.MeshBasicMaterial({
+            color: 0xffffff
+        }));
+        cube1.position.set(5, 0, 200);
+        scene.add(cube1);
+        var cube2 = new THREE.Mesh(new THREE.CubeGeometry(2, 2, 2),
+        new THREE.MeshBasicMaterial({
+            color: 0xffffff
+        }));
+        cube2.position.set(-5, 0, 200);
+        scene.add(cube2);
+    }
+
+    function render(){
+        delta = clock.getDelta();
+        orbitControls.update(delta);
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+    }
+
+</script>
+
+</body>
+</html>
