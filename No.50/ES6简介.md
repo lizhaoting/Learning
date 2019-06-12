@@ -530,6 +530,94 @@
             ```
     - `函数的扩展`
     - `对象的扩展`
+        - `属性的简洁表示法`
+        ```javascript
+        const foo = 'bar';
+        const baz = {
+            foo,
+            hello() {
+                console.log('我的名字是', this.name);
+            }
+        };
+        baz;
+        /* { foo: "bar", hello: ƒ } */
+        ```
+
+        - `属性名表达式`
+        ```javascript
+        const obj = {};
+        obj['a' + 'bc'] = 123;
+
+        obj;
+        /* { abc: 123 } */
+        ```
+
+        `方法的name属性`
+        ```javascript
+        const person = {
+            sayName() {
+                console.log('hello!');
+            },
+        };
+
+        person.sayName.name;
+        /* "sayName" */
+        ```
+
+
+        - `可枚举性 - enumerable`
+            - `for...in - 忽略`
+            - `Object.keys() - 忽略`
+            - `JSON.stringify() - 忽略`
+            - `Object.assign() - 忽略`
+        ```javascript
+        let obj = { foo: 123 };
+        Object.getOwnPropertyDescriptor(obj, 'foo');
+
+        /*
+        {
+            value: 123,
+            writable: true,
+            enumerable: true,
+            configurable: true
+        }
+        */
+        ```
+
+        - `属性遍历`
+            - `for...in - 遍历对象自身的和继承的可枚举属性(不含 Symbol)`
+            ```javascript
+            for ( s in { [Symbol()]:0, b:0, 10:0, 2:0, a:0 }) {
+                console.log(s)
+            }
+            /* 2 10 b a */
+            ```
+
+            - `Object.keys - 包括对象自身的(不含继承的)所有可枚举属性(不含 Symbol 属性)的键名`
+            ```javascript
+            Object.keys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 });
+            /* ["2", "10", "b", "a"] */
+            ```
+
+            - `Object.getOwnPropertyNames - 包含对象自身的所有(不可枚举属性)属性(不含 Symbol)的键名`
+            ```javascript
+            Object.getOwnPropertyNames({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
+            /* ["2", "10", "b", "a"] */
+            ```
+
+            - `Object.getOwnPropertySymbols - 对象自身的所有Symbol属性的键名`
+            ```javascript
+            Object.getOwnPropertySymbols({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
+            /* [Symbol()] */
+            ```
+
+            - `Reflect.ownKeys - 包含对象自身的所有键名`
+            ```javascript
+            Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
+            /* ['2', '10', 'b', 'a', Symbol()] */
+            ```
+
+            - `顺序 - 数字 - 字符 - Symbol`
 - `新特征`
     - `Symbol`
     - `Set、Map`
