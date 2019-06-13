@@ -619,24 +619,57 @@
 
             - `顺序 - 数字 - 字符 - Symbol`
 
-        - `super 关键字 - 指向当前对象的原型对象`
-        ```javascript
-        const proto = {
-            foo: 'hello'
-        };
+        - `super 关键字 - 指向当前对象的原型对象(只能用在对象的方法之中)`
+            ```javascript
+            const proto = {
+                foo: 'hello'
+            };
 
-        const obj = {
-            foo: 'world',
-            find() {
-                return super.foo;
+            const obj = {
+                foo: 'world',
+                find() {
+                    return super.foo;
+                }
+            };
+
+            obj.__proto__ = proto;
+            // Object.setPrototypeOf(obj, proto);
+
+            obj.find();
+            /* "hello" */
+
+
+            const obj = {
+                foo: super.foo
             }
-        };
+            /* SyntaxError: 'super' keyword unexpected here */
 
-        Object.setPrototypeOf(obj, proto);
 
-        obj.find();
-        /* "hello" */
-        ```
+            const obj = {
+                foo: () => super.foo
+            }
+            /* SyntaxError: 'super' keyword unexpected here */
+
+
+            const obj = {
+                foo: function () {
+                    return super.foo
+                }
+            }
+            /* SyntaxError: 'super' keyword unexpected here */
+            ```
+
+        - `扩展运算符`
+            - `解构赋值`
+            ```javascript
+            let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
+            x;
+            /* 1 */
+            y;
+            /* 2 */
+            z;
+            /* { a: 3, b: 4 } */
+            ```
 - `新特征`
     - `Symbol`
     - `Set、Map`
