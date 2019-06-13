@@ -618,6 +618,25 @@
             ```
 
             - `顺序 - 数字 - 字符 - Symbol`
+
+        - `super 关键字 - 指向当前对象的原型对象`
+        ```javascript
+        const proto = {
+            foo: 'hello'
+        };
+
+        const obj = {
+            foo: 'world',
+            find() {
+                return super.foo;
+            }
+        };
+
+        Object.setPrototypeOf(obj, proto);
+
+        obj.find();
+        /* "hello" */
+        ```
 - `新特征`
     - `Symbol`
     - `Set、Map`
