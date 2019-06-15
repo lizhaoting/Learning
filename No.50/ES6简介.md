@@ -527,42 +527,194 @@
 
         - `Array.of - 将一组值, 转换为数组`
             ```javascript
+            Array();
+            /* [] */
+
+            Array(3);
+            /* [, , ,] */
+
+            Array(3, 11, 8);
+            /* [3, 11, 8] */
+
+
+            Array.of();
+            /* [] */
+
+            Array.of(undefined);
+            /* [undefined] */
+
+            Array.of(1);
+            /* [1] */
+
+            Array.of(1, 2);
+            /* [1, 2] */
             ```
-    - `函数的扩展`
+
+
+        - `copyWithin - 将指定位置的成员复制到其他位置 - 修改当前数组`
+            - `Array.prototype.copyWithin(target, start = 0, end = this.length)`
+
+            - `target(必需)：从该位置开始替换数据(负值表示倒数)`
+
+            - `start(可选)：从该位置开始读取数据(默认为 0), 负值表示从末尾开始计算`
+
+            - `end(可选)：到该位置前停止读取数据(默认为数组长度), 负值表示从末尾开始计算`
+
+            ```javascript
+            [1, 2, 3, 4, 5].copyWithin(0, 3);
+            /* [4, 5, 3, 4, 5] */
+
+            [1, 2, 3, 4, 5].copyWithin(0, 3, 4);
+            /* [4, 2, 3, 4, 5] */
+
+            [1, 2, 3, 4, 5].copyWithin(0, -2, -1);
+            /* -2 + length = 3 */
+            /* -1 + length = 4 */
+            /* [4, 2, 3, 4, 5] */
+            ```
+
+        - `find - 找出第一个符合条件的数组成员`
+        ```javascript
+        [1, 4, -5, 10].find((value, index, arr) => value < 0);
+        /* -5 */
+        ```
+
+        - `findIndex - 找出第一个符合条件的数组成员位置`
+        ```javascript
+        [1, 4, -5, 10].findIndex((value, index, arr) => value < 0);
+        /* 2 */
+        ```
+
+        - `fill - 使用给定值填充一个数组`
+        ```javascript
+        ['a', 'b', 'c'].fill(7);
+        /* [7, 7, 7] */
+
+        new Array(3).fill(7);
+        /* [7, 7, 7] */
+
+        ['a', 'b', 'c'].fill(7, 1, 2);
+        /* ['a', 7, 'c'] */
+        ```
+
+
+        - `entries、keys、values - 遍历数组, 返回一个遍历器对象`
+        ```javascript
+        for (let index of ['a', 'b'].keys()) {
+            console.log(index);
+        }
+        /* 0 */
+        /* 1 */
+
+        for (let elem of ['a', 'b'].values()) {
+            console.log(elem);
+        }
+        /* 'a' */
+        /* 'b' */
+
+        for (let [index, elem] of ['a', 'b'].entries()) {
+            console.log(index, elem);
+        }
+        /* 0 "a" */
+        /* 1 "b" */
+
+        let letter = ['a', 'b', 'c'];
+        let entries = letter.entries();
+        console.log(entries.next().value);
+        /* [0, 'a'] */
+        console.log(entries.next().value);
+        /* [1, 'b'] */
+        console.log(entries.next().value);
+        /* [2, 'c'] */
+        ```
+
+
+        - `includes - 某个数组是否包含给定的值 - 第二个参数表示起始位置`
+        ```javascript
+        [1, 2, 3].includes(4);
+        /* false */
+
+        [1, 2, NaN].includes(NaN);
+        /* true */
+
+        [1, 2, 3].includes(3, 3);
+        /* false */
+
+        [1, 2, 3].includes(3, -1);
+        /* true */
+        ```
+
+
+        - `flat - 数组降低维度`
+        ```javascript
+        [1, 2, [3, 4]].flat();
+        /* [1, 2, 3, 4] */
+
+        [1, 2, [3, [4, 5]]].flat(2);
+        /* [1, 2, 3, 4, 5] */
+
+        [1, [2, [3]]].flat(Infinity);
+        /* [1, 2, 3] */
+
+        [1, 2, , 4, 5].flat();
+        /* [1, 2, 4, 5] */
+
+        [2, 3, 4].flatMap((x) => [x, x * 2]);
+        /* [2, 4, 3, 6, 4, 8] */
+        ```
+
+
+        - `flatMap - 执行map再执行flat`
+        ```javascript
+        [2, 3, 4].flatMap((x) => [x, x * 2]);
+        /* [2, 4, 3, 6, 4, 8] */
+        ```
+
+        - `数组空位 - ES6将空位转为undefined, ES5不同方法处理方式不一致`
+        ```javascript
+        Array(3);
+        /* [, , ,] */
+
+        Array.from(['a',,'b']);
+        /* [ "a", undefined, "b" ] */
+
+        [...['a',,'b']];
+        /* [ "a", undefined, "b" ] */
+        ```
     - `对象的扩展`
         - `属性的简洁表示法`
-        ```javascript
-        const foo = 'bar';
-        const baz = {
-            foo,
-            hello() {
-                console.log('我的名字是', this.name);
-            }
-        };
-        baz;
-        /* { foo: "bar", hello: ƒ } */
-        ```
+            ```javascript
+            const foo = 'bar';
+            const baz = {
+                foo,
+                hello() {
+                    console.log('我的名字是', this.name);
+                }
+            };
+            baz;
+            /* { foo: "bar", hello: ƒ } */
+            ```
 
         - `属性名表达式`
-        ```javascript
-        const obj = {};
-        obj['a' + 'bc'] = 123;
+            ```javascript
+            const obj = {};
+            obj['a' + 'bc'] = 123;
 
-        obj;
-        /* { abc: 123 } */
-        ```
+            obj;
+            /* { abc: 123 } */
+            ```
 
-        `方法的name属性`
-        ```javascript
-        const person = {
-            sayName() {
-                console.log('hello!');
-            },
-        };
+        - `方法的name属性`
+            ```javascript
+            const person = {
+                sayName() {
+                    console.log('hello!');
+                },
+            };
 
-        person.sayName.name;
-        /* "sayName" */
-        ```
+            person.sayName.name;
+            /* "sayName" */
+            ```
 
 
         - `可枚举性 - enumerable`
@@ -570,52 +722,52 @@
             - `Object.keys() - 忽略`
             - `JSON.stringify() - 忽略`
             - `Object.assign() - 忽略`
-        ```javascript
-        let obj = { foo: 123 };
-        Object.getOwnPropertyDescriptor(obj, 'foo');
+            ```javascript
+            let obj = { foo: 123 };
+            Object.getOwnPropertyDescriptor(obj, 'foo');
 
-        /*
-        {
-            value: 123,
-            writable: true,
-            enumerable: true,
-            configurable: true
-        }
-        */
-        ```
+            /*
+            {
+                value: 123,
+                writable: true,
+                enumerable: true,
+                configurable: true
+            }
+            */
+            ```
 
         - `属性遍历`
             - `for...in - 遍历对象自身的和继承的可枚举属性(不含 Symbol)`
-            ```javascript
-            for ( s in { [Symbol()]:0, b:0, 10:0, 2:0, a:0 }) {
-                console.log(s)
-            }
-            /* 2 10 b a */
-            ```
+                ```javascript
+                for ( s in { [Symbol()]:0, b:0, 10:0, 2:0, a:0 }) {
+                    console.log(s)
+                }
+                /* 2 10 b a */
+                ```
 
             - `Object.keys - 包括对象自身的(不含继承的)所有可枚举属性(不含 Symbol 属性)的键名`
-            ```javascript
-            Object.keys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 });
-            /* ["2", "10", "b", "a"] */
-            ```
+                ```javascript
+                Object.keys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 });
+                /* ["2", "10", "b", "a"] */
+                ```
 
             - `Object.getOwnPropertyNames - 包含对象自身的所有(不可枚举属性)属性(不含 Symbol)的键名`
-            ```javascript
-            Object.getOwnPropertyNames({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
-            /* ["2", "10", "b", "a"] */
-            ```
+                ```javascript
+                Object.getOwnPropertyNames({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
+                /* ["2", "10", "b", "a"] */
+                ```
 
             - `Object.getOwnPropertySymbols - 对象自身的所有Symbol属性的键名`
-            ```javascript
-            Object.getOwnPropertySymbols({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
-            /* [Symbol()] */
-            ```
+                ```javascript
+                Object.getOwnPropertySymbols({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
+                /* [Symbol()] */
+                ```
 
             - `Reflect.ownKeys - 包含对象自身的所有键名`
-            ```javascript
-            Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
-            /* ['2', '10', 'b', 'a', Symbol()] */
-            ```
+                ```javascript
+                Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
+                /* ['2', '10', 'b', 'a', Symbol()] */
+                ```
 
             - `顺序 - 数字 - 字符 - Symbol`
 
@@ -659,8 +811,8 @@
             /* SyntaxError: 'super' keyword unexpected here */
             ```
 
-        - `扩展运算符`
-            - `解构赋值`
+
+        - `解构赋值 - 浅拷贝 - 不能复制继承自原型对象的属性`
             ```javascript
             let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
             x;
@@ -669,7 +821,566 @@
             /* 2 */
             z;
             /* { a: 3, b: 4 } */
+
+
+            let { ...z } = null;
+            /* TypeError: Cannot destructure 'undefined' or 'null'. */
+            let { ...z } = undefined;
+            /* TypeError: Cannot destructure 'undefined' or 'null'. */
+
+            let { ...x, y, z } = { x: 1, y: 2, a: 3, b: 4 };
+            /* Uncaught SyntaxError: Rest element must be last element */
             ```
+
+        - `扩展运算符`
+            ```javascript
+            let z = { a: 3, b: 4 };
+            let n = { ...z };
+            n;
+            /* { a: 3, b: 4 } */
+
+            let foo = { ...['a', 'b', 'c'] };
+            foo
+            /* { 0: "a", 1: "b", 2: "c" } */
+
+            {...'hello'}
+            /* { 0: "h", 1: "e", 2: "l", 3: "l", 4: "o" } */
+
+            let ab = { ...a, ...b };
+            let ab = Object.assign({}, a, b);
+
+            let aWithXGetter = {
+                ...a,
+                get x() {
+                    throw new Error('not throw yet');
+                }
+            };
+            /*  */
+            ```
+
+        - `新增方法`
+            - `Object.is - 比较两个值是否严格相等`
+                ```javascript
+                Object.is('foo', 'foo')
+                /* true */
+
+                Object.is({}, {})
+                /* false */
+
+                +0 === -0;
+                /* true */
+                NaN === NaN;
+                /* false */
+
+                Object.is(+0, -0);
+                /* false */
+                Object.is(NaN, NaN);
+                /* true */
+                ```
+
+
+            - `Object.assign - 对象可枚举属性合并 - 后面的属性会覆盖前面的属性 - 隐式转换`
+                ```javascript
+                let target = { a: 1, b: 1 };
+
+                const source1 = { b: 2, c: 2 };
+                const source2 = { c: 3 };
+
+                Object.assign(target, source1, source2);
+                target;
+                /* {a:1, b:2, c:3} */
+
+                target = { ...target, ...source1, ...source2 };
+
+
+                Object.assign(undefined);
+                Object.assign(null);
+                /* Cannot convert undefined or null to object */
+
+                /* 非首位跳过 */
+                Object.assign(obj, undefined) === obj;
+                Object.assign(obj, null) === obj;
+
+                /* 非对象只有字符串有效果 */
+                const v1 = 'abc';
+                const v2 = true;
+                const v3 = 10;
+
+                const obj = Object.assign({}, v1, v2, v3);
+                /* { "0": "a", "1": "b", "2": "c" } */
+
+                /* 处理数组 */
+                Object.assign([1, 2, 3], [4, 5])
+                /* [4, 5, 3] */
+
+
+                /* 取值函数 */
+                const source = {
+                    get foo() { return 1 }
+                };
+                const target = {};
+
+                Object.assign(target, source);
+                /* { foo: 1 } */
+                ```
+            - `Object.getOwnPropertyDescriptors - 返回所有自身属性(非继承属性)的描述对象`
+                ```javascript
+                const obj = {
+                    foo: 123,
+                    get bar() {
+                        return 'abc'
+                    }
+                };
+
+                Object.getOwnPropertyDescriptors(obj);
+                /*
+                { 
+                    foo: {
+                        value: 123,
+                        writable: true,
+                        enumerable: true,
+                        configurable: true },
+                    bar: {
+                        get: [Function: get bar],
+                        set: undefined,
+                        enumerable: true,
+                        configurable: true
+                    }
+                }
+                */
+
+
+                /* 拷贝set、get */
+                const source = {
+                    set foo(value) {
+                        console.log(value);
+                    }
+                };
+
+                const target2 = {};
+                Object.defineProperties(target2, Object.getOwnPropertyDescriptors(source));
+
+                /* 继承 */
+                const obj = Object.create(
+                    prot,
+                    Object.getOwnPropertyDescriptors({
+                        foo: 123,
+                    })
+                );
+                ```
+            - `__proto__ - 读取或设置当前对象的prototype对象`
+                ```javascript
+                // ES5
+                const obj = {
+                    method: function() { ... }
+                };
+                obj.__proto__ = someOtherObj;
+
+                // ES6
+                var obj = Object.create(someOtherObj);
+                obj.method = function() { ... };
+                ```
+
+            - `setPrototypeOf - ES6 正式推荐的设置原型对象的方法`
+                ```javascript
+                let proto = {};
+                let obj = { x: 10 };
+                Object.setPrototypeOf(obj, proto);
+
+                proto.y = 20;
+                proto.z = 40;
+
+                obj.x;
+                /* 10 */
+                obj.y;
+                /* 20 */
+                obj.z;
+                /* 40 */
+
+                Object.setPrototypeOf(1, {}) === 1;
+                /* true */
+                Object.setPrototypeOf('foo', {}) === 'foo';
+                /* true */
+                Object.setPrototypeOf(true, {}) === true;
+                /* true */
+
+                Object.setPrototypeOf(undefined(null), {})
+                /* TypeError: Object.setPrototypeOf called on null or undefined */
+                ```
+            - `getPrototypeOf - 读取一个对象的原型对象 - 隐式转换`
+                ```javascript
+                function Rectangle() {
+                    /* ... */
+                }
+
+                const rec = new Rectangle();
+
+                Object.getPrototypeOf(rec) === Rectangle.prototype;
+                /* true */
+
+                Object.getPrototypeOf(null)
+                /* TypeError: Cannot convert undefined or null to object */
+                ```
+
+            - `Object.keys - 返回参数对象自身的(不含继承的)所有可遍历属性的键名`
+                ```javascript
+                var obj = { foo: 'bar', baz: 42 };
+                Object.keys(obj)
+                /* ["foo", "baz"] */
+                ```
+
+            - `Object.values - 返回参数对象自身的(不含继承的)所有可遍历属性的键值`
+                ```javascript
+                const obj = { 100: 'a', 2: 'b', 7: 'c' };
+                Object.values(obj);
+                /* ["b", "c", "a"] */
+
+                /* Object.create方法的第二个参数添加的对象属性如果不显式声明默认不可遍历 */
+                const obj = Object.create(
+                    {},
+                    {
+                        p: {
+                                value: 42,
+                                enumerable: true
+                        }
+                    }
+                );
+                Object.values(obj);
+                /* [42] */
+
+                /* 过滤Symbol */
+                Object.values({ [Symbol()]: 123, foo: 'abc' });
+                /* ['abc'] */
+
+                Object.values('foo')
+                /* ['f', 'o', 'o'] */
+
+                Object.values(42)；
+                /* [] */
+                Object.values(true);
+                /* [] */
+                ```
+            - `entries - 返回参数对象自身的(不含继承的)所有可遍历属性的键值对`
+                ```javascript
+                const obj = { foo: 'bar', baz: 42 };
+                Object.entries(obj)
+                /* [ ["foo", "bar"], ["baz", 42] ] */
+
+                const obj = { foo: 'bar', baz: 42 };
+                const map = new Map(Object.entries(obj));
+                map;
+                /* Map { foo: "bar", baz: 42 } */
+                ```
+
+            - `fromEntries - entries逆操作`
+                ```javascript
+                Object.fromEntries([
+                    ['foo', 'bar'],
+                    ['baz', 42]
+                ])
+                /* { foo: "bar", baz: 42 } */
+
+                const entries = new Map([
+                    ['foo', 'bar'],
+                    ['baz', 42]
+                ]);
+
+                Object.fromEntries(entries);
+                /* { foo: "bar", baz: 42 } */
+
+                Object.fromEntries(new URLSearchParams('foo=bar&baz=qux'))
+                /* { foo: "bar", baz: "qux" } */
+                ```
+    - `函数的扩展`
+
+        - `参数的默认值`
+            ```javascript
+            function log(x, y = 'World') {
+                console.log(x, y);
+            }
+
+            log('Hello');
+            /* Hello World */
+
+            log('Hello', 'China');
+            /* Hello China */
+
+            log('Hello', '');
+            /* Hello */
+
+            function foo({ x, y = 5 }) {
+                console.log(x, y);
+            }
+
+            foo({});
+            /* undefined 5 */
+
+            foo({x: 1});
+            /* 1 5 */
+
+            foo({x: 1, y: 2});
+            /* 1 2 */
+
+            foo();
+            /* TypeError: Cannot read property 'x' of undefined */
+
+            function foo({x, y = 5} = {}) {
+                console.log(x, y);
+            }
+
+            foo();
+            /* undefined 5 */
+            ```
+            - `参数变量已经默认声明, 不能用let或const再次声明`
+            ```javascript
+            function foo(x = 5) {
+                let x = 1;
+                const x = 2;
+            }
+            /* SyntaxError: Identifier 'x' has already been declared */
+            ```
+
+            - `函数不能有同名参数`
+            ```javascript
+            function foo(x, x, y = 1) {
+                /* ... */
+            }
+            /* SyntaxError: Duplicate parameter name not allowed in this context */
+            ```
+
+            - `参数默认值是惰性求值`
+            ```javascript
+            let x = 99;
+            function foo(p = x + 1) {
+                console.log(p);
+            }
+
+            foo();
+            /* 100 */
+
+            x = 100;
+            foo();
+            /* 101 */
+            ```
+
+            - `参数默认值一般用于尾部`
+
+            - `length属性 - 返回没有指定默认值的参数个数`
+            ```javascript
+            (function (a) {}).length;
+            /* 1 */
+            (function (a = 5) {}).length;
+            /* 0 */
+            (function (a, b, c = 5) {}).length;
+            /* 2 */
+
+            (function (a = 0, b, c) {}).length;
+            /* 0 */
+            (function (a, b = 1, c) {}).length;
+            /* 1 */
+
+            (function(...args) {}).length;
+            /* 0 */
+            ```
+
+            - `设置了参数的默认值, 参数会形成一个单独的作用域`
+            ```javascript
+            var x = 1;
+
+            function f(x, y = x) {
+                console.log(y);
+            }
+
+            f(2);
+            /* 2 */
+
+
+            let x = 1;
+
+            function f(y = x) {
+                let x = 2;
+                console.log(y);
+            }
+
+            f();
+            /* 1 */
+
+            function bar(func = () => foo) {
+                let foo = 'inner';
+                console.log(func());
+            }
+
+            bar();
+            /* ReferenceError: foo is not defined */
+
+            var x = 1;
+            function foo(x, y = function() { x = 2; }) {
+                var x = 3;
+                y();
+                console.log(x);
+            }
+
+            foo();
+            /* 3 */
+            x;
+            /* 1 */
+
+
+            function throwIfMissing() {
+                throw new Error('Missing parameter');
+            }
+
+            function foo(mustBeProvided = throwIfMissing()) {
+                return mustBeProvided;
+            }
+
+            foo();
+            /* Error: Missing parameter */
+            ```
+
+        - `rest 参数 - 只能有一个参数 - 部分场景可以代替arguments`
+            ```javascript
+            function add(...values) {
+            let sum = 0;
+
+            for (var val of values) {
+                sum += val;
+            }
+
+            return sum;
+            }
+
+            add(2, 5, 3);
+            /* 10 */
+
+            function sortNumbers() {
+                return Array.prototype.slice.call(arguments).sort();
+            }
+
+            const sortNumbers = (...numbers) => numbers.sort();
+            ```
+        - `严格模式 - 使用了默认值、解构赋值、或者扩展运算符不能使用严格模式`
+
+        - `name - 返回函数名`
+            ```javascript
+            function foo() {}
+            foo.name;
+            /* "foo" */
+
+            var f = function () {};
+            f.name // ""
+            // ES6
+            f.name // "f"
+            ```
+
+        - `箭头函数`
+            ```javascript
+            /* 单个参数 */
+            var f = v => v;
+            var f = function (v) {
+                return v;
+            };
+
+            /* 多个参数 */
+            var sum = (num1, num2) => num1 + num2;
+            var sum = function(num1, num2) {
+                return num1 + num2;
+            };
+
+            /* return */
+            var sum = (num1, num2) => { return num1 + num2; }
+
+            /* 返回对象 */
+            let getTempItem = id => { id: id, name: "Temp" };
+            /* Unexpected token : */
+            let getTempItem = id => ({ id: id, name: "Temp" });
+
+            /* 结合解构 */
+            const full = ({ first, last }) => first + ' ' + last;
+
+            /* rest */
+            const numbers = (...nums) => nums;
+            numbers(1, 2, 3, 4, 5);
+            /* [1,2,3,4,5] */
+            ```
+            - `函数体内的this对象指向定义时所在的对象而不是使用时所在的对象`
+            ```javascript
+            function foo() {
+                setTimeout(() => {
+                    console.log('id:', this.id);
+                }, 100);
+            }
+
+            var id = 21;
+
+            foo.call({ id: 42 });
+            /* 42 */
+
+            function foo() {
+                return () => {
+                    return () => {
+                        return () => {
+                            console.log('id:', this.id);
+                        };
+                    };
+                };
+            }
+
+            var f = foo.call({id: 1});
+
+            var t1 = f.call({id: 2})()();
+            var t2 = f().call({id: 3})();
+            var t3 = f()().call({id: 4});
+            /* 1 */
+
+            /* 对象不构成作用域 */
+            const cat = {
+                lives: 9,
+                jumps: () => {
+                    this.lives--;
+                }
+            }
+            ```
+
+            - `不可以当作构造函数`
+
+            - `不可以使用arguments对象(rest代替)`
+
+            - `不可以使用yield命令`
+
+        - `尾调用优化(严格模式) - 最后一步是调用另一个函数 - 不适用外部变量时只保留内层函数的调用帧`
+        ```javascript
+        function f(x) {
+            return g(x);
+        }
+        ```
+
+        - `尾递归`
+        ```javascript
+        function factorial(n) {
+            if (n === 1) return 1;
+            return n * factorial(n - 1);
+        }
+
+        factorial(5);
+
+        /* 尾递归 */
+        function factorial(n, total) {
+            if (n === 1) return total;
+            return factorial(n - 1, n * total);
+        }
+
+        factorial(5, 1)
+        ```
+
+        - `函数参数的尾逗号 - 方便代码版本管理`
+        ```javascript
+        func(
+            'foo',
+            'bar',
+        );
+        ```
+
 - `新特征`
     - `Symbol`
     - `Set、Map`
@@ -680,6 +1391,35 @@
     - `Generator`
     - `Async`
     - `Class`
+
+> **`练习题`**
+- `下面两种写法有什么差别`
+```javascript
+function m1({x = 0, y = 0} = {}) {
+  return [x, y];
+}
+
+function m2({x, y} = { x: 0, y: 0 }) {
+  return [x, y];
+}
+```
+
+- `下面代码的执行结果是`
+```javascript
+function Timer() {
+  this.s1 = 0;
+  this.s2 = 0;
+  setInterval(() => this.s1++, 1000);
+  setInterval(function () {
+    this.s2++;
+  }, 1000);
+}
+
+var timer = new Timer();
+
+setTimeout(() => console.log('s1: ', timer.s1), 3100);
+setTimeout(() => console.log('s2: ', timer.s2), 3100);
+```
 
 > **`7：总结`**
 ```css
