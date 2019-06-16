@@ -1382,7 +1382,8 @@
         ```
 
 - `新特征`
-    - `Symbol`
+    - `Symbol - 表示独一无二的值`
+        - `undefined、null、Boolean、String、Number、Object、Symbol`
     - `Set、Map`
     - `Proxy`
     - `Reflect`
