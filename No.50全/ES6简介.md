@@ -47,11 +47,11 @@
             let [a, b, c] = [1, 2, 3];
             /* a = 1; b = 2; c = 3 */
 
-            let [foo, [[bar], baz]] = [1, [[2], 3]];
-            /* foo = 1; bar = 2; baz = 3 */
+            let [week, [[month], year]] = [1, [[2], 3]];
+            /* week = 1; month = 2; year = 3 */
 
-            let [ , , third] = ["foo", "bar", "baz"];
-             /* third = 'baz' */
+            let [ , , third] = ["week", "month", "year"];
+             /* third = 'year' */
 
             let [x, , y] = [1, 2, 3];
             /* x = 1; y = 3 */
@@ -78,8 +78,8 @@
 
         - `对象的解构 - 没有顺序, 匹配属性名`
             ```javascript
-            let { bar, foo } = { foo: 'aaa', bar: 'bbb' };
-            /* foo = 'aaa'; bar = 'bbb' */
+            let { month, week } = { week: 'aaa', month: 'bbb' };
+            /* week = 'aaa'; month = 'bbb' */
 
             let { log, sin, cos } = Math;
             /* log = Math.log; sin = Math.sin; cos = Math.cos */
@@ -93,9 +93,37 @@
             let { p: [x, { y }] } = obj;
             /* x = 'hello'; y = 'word'; */
 
-            let {foo: {bar}} = {baz: 'baz'};
-            /* TypeError: Cannot destructure property `bar` of 'undefined' or 'null'. */
+            let {week: {month}} = {year: 'year'};
+            /* TypeError: Cannot destructure property `month` of 'undefined' or 'null'. */
             ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     - `字符串的扩展`
         - `Unicode - \u0000 ~ \uFFFF`
         ```javascript
@@ -288,7 +316,7 @@
 
         - `s - 匹配一切字符(.不能匹配回车、换行等行终止符)`
         ```javascript
-        /foo.bar/s.test('foo\nbar');
+        /week.month/s.test('week\nbar');
         ```
 
         - `组别名`
@@ -310,7 +338,7 @@
         /* 31 */
 
 
-        let { groups: { one, two } } = /^(?<one>.*):(?<two>.*)$/u.exec('foo:bar');
+        let { groups: { one, two } } = /^(?<one>.*):(?<two>.*)$/u.exec('week:month');
         ```
 
 
@@ -320,139 +348,163 @@
             console.log(s)
         }
         ```
-    - `数值的扩展`
-        - `二进制、八进制表示法`
-        ```javascript
-        /* 0b(0B) */
-        Number('0b111');
-
-        /* 0o(0O) */
-        Number('0o10');
-        ```
 
 
-        - `Number.isFinite - 检查一个数值是否为有限 - 不做隐式转换`
-        ```javascript
-        Number.isFinite(15);
-        /* true */
-        Number.isFinite(NaN);
-        /* false */
-        Number.isFinite(Infinity);
-        /* false */
-        Number.isFinite(true);
-        /* false */
 
 
-        isFinite("25");
-        /* true */
-        ```
-
-        - `Number.isNaN - 检查一个值是否为NaN - 不做隐式转换`
-        ```javascript
-        Number.isNaN(15);
-        /* false */
-        Number.isNaN(NaN);
-        /* true */
-        Number.isNaN('NaN');
-        /* false */
 
 
-        isNaN('NaN');
-        /* true */
-        ```
-
-        - `Number.parseInt、Number.parseFloat - 全局方法移植`
 
 
-        - `Number.isInteger - 判断一个数值是否为整数`
-        ```javascript
-        Number.isInteger(25);
-        /* true */
-
-        Number.isInteger('15');
-        /* false */
-
-        Number.isInteger(3.0000000000000002);
-        /* true */
-        ```
 
 
-        - `Number.EPSILON - JavaScript 能够表示的最小精度`
-        ```javascript
-        Number.EPSILON === Math.pow(2, -52);
-        /* true */
-        ```
-
-        - `Number.isSafeInteger - 安全 '整数'`
-        ```javascript
-        Math.pow(2, 53) === Math.pow(2, 53) + 1
-        /* true */
-
-        Number.isSafeInteger('a');
-        /* false */
-        Number.isSafeInteger(null);
-        /* false */
-        Number.isSafeInteger(NaN);
-        /* false */
-        Number.isSafeInteger(3);
-        /* true */
-        Number.isSafeInteger(1.2);
-        /* false */
-        ```
 
 
-        - `Math.trunc - 去除小数部分 - Number隐式转换`
-        ```javascript
-        Math.trunc(-4.9);
-        /* -4 */
+- `数值的扩展`
+    - `二进制、八进制表示法`
+    ```javascript
+    /* 0b(0B) */
+    Number('0b111');
 
-        Math.trunc('123.456');
-        /* 123 */
-
-        Math.trunc('foo');
-        /* NAN */
-        ```
-
-        - `Math.sign - 判断正数、负数与0 - Number隐式转换`
-            - `参数为正数 - 返回+1`
-
-            - `参数为负数 - 返回-1`
-
-            - `参数为 0 - 返回0`
-
-            - `参数为-0 - 返回-0`
-
-            - `其他值 - 返回NaN`
-        ```javascript
-        Math.sign(true);
-        /* +1 */
-        Math.sign(false);
-        /* 0 */
-        Math.sign(null);
-        /* 0 */
-        Math.sign('9');
-        /* 9 */
-        ```
-
-        - `Math.cbrt - 立方根 - Number隐式转换`
+    /* 0o(0O) */
+    Number('0o10');
+    ```
 
 
-        - `Math.clz32() - 返回32 位无符号整数 - Number隐式转换`
+    - `Number.isFinite - 检查一个数值是否为有限 - 不做隐式转换`
+    ```javascript
+    Number.isFinite(15);
+    /* true */
+    Number.isFinite(NaN);
+    /* false */
+    Number.isFinite(Infinity);
+    /* false */
+    Number.isFinite(true);
+    /* false */
 
 
-        - `对数方法 - Number隐式转换`
+    isFinite("25");
+    /* true */
+    ```
+
+    - `Number.isNaN - 检查一个值是否为NaN - 不做隐式转换`
+    ```javascript
+    Number.isNaN(15);
+    /* false */
+    Number.isNaN(NaN);
+    /* true */
+    Number.isNaN('NaN');
+    /* false */
 
 
-        - `指数运算符`
-        ```javascript
-        2 ** 2
-        /* 4 */
-        2 ** 3
-        /* 8 */
-        
-        2 ** 3 ** 2
-        /* 2 ** (3 ** 2) */
-        ```
+    isNaN('NaN');
+    /* true */
+    ```
+
+    - `Number.parseInt、Number.parseFloat - 全局方法移植`
+
+
+    - `Number.isInteger - 判断一个数值是否为整数`
+    ```javascript
+    Number.isInteger(25);
+    /* true */
+
+    Number.isInteger('15');
+    /* false */
+
+    Number.isInteger(3.0000000000000002);
+    /* true */
+    ```
+
+
+    - `Number.EPSILON - JavaScript 能够表示的最小精度`
+    ```javascript
+    Number.EPSILON === Math.pow(2, -52);
+    /* true */
+    ```
+
+    - `Number.isSafeInteger - 安全 '整数'`
+    ```javascript
+    Math.pow(2, 53) === Math.pow(2, 53) + 1
+    /* true */
+
+    Number.isSafeInteger('a');
+    /* false */
+    Number.isSafeInteger(null);
+    /* false */
+    Number.isSafeInteger(NaN);
+    /* false */
+    Number.isSafeInteger(3);
+    /* true */
+    Number.isSafeInteger(1.2);
+    /* false */
+    ```
+
+
+    - `Math.trunc - 去除小数部分 - Number隐式转换`
+    ```javascript
+    Math.trunc(-4.9);
+    /* -4 */
+
+    Math.trunc('123.456');
+    /* 123 */
+
+    Math.trunc('week');
+    /* NAN */
+    ```
+
+    - `Math.sign - 判断正数、负数与0 - Number隐式转换`
+        - `参数为正数 - 返回+1`
+
+        - `参数为负数 - 返回-1`
+
+        - `参数为 0 - 返回0`
+
+        - `参数为-0 - 返回-0`
+
+        - `其他值 - 返回NaN`
+    ```javascript
+    Math.sign(true);
+    /* +1 */
+    Math.sign(false);
+    /* 0 */
+    Math.sign(null);
+    /* 0 */
+    Math.sign('9');
+    /* 9 */
+    ```
+
+    - `Math.cbrt - 立方根 - Number隐式转换`
+
+
+    - `Math.clz32() - 返回32 位无符号整数 - Number隐式转换`
+
+
+    - `对数方法 - Number隐式转换`
+
+
+    - `指数运算符`
+    ```javascript
+    2 ** 2
+    /* 4 */
+    2 ** 3
+    /* 8 */
+    
+    2 ** 3 ** 2
+    /* 2 ** (3 ** 2) */
+    ```
+
+
+
+
+
+
+
+
+
+
+
+
     - `数组的扩展`
         - `扩展运算符 - 将一个数组转为用逗号分隔的参数序列`
             ```javascript
@@ -681,18 +733,30 @@
         [...['a',,'b']];
         /* [ "a", undefined, "b" ] */
         ```
+
+
+
+
+
+
+
+
+
+
+
+
     - `对象的扩展`
         - `属性的简洁表示法`
             ```javascript
-            const foo = 'bar';
-            const baz = {
-                foo,
+            const week = 'week';
+            const year = {
+                week,
                 hello() {
                     console.log('我的名字是', this.name);
                 }
             };
-            baz;
-            /* { foo: "bar", hello: ƒ } */
+            year;
+            /* { week: "week", hello: ƒ } */
             ```
 
         - `属性名表达式`
@@ -723,8 +787,8 @@
             - `JSON.stringify() - 忽略`
             - `Object.assign() - 忽略`
             ```javascript
-            let obj = { foo: 123 };
-            Object.getOwnPropertyDescriptor(obj, 'foo');
+            let obj = { week: 123 };
+            Object.getOwnPropertyDescriptor(obj, 'week');
 
             /*
             {
@@ -774,13 +838,13 @@
         - `super 关键字 - 指向当前对象的原型对象(只能用在对象的方法之中)`
             ```javascript
             const proto = {
-                foo: 'hello'
+                week: 'hello'
             };
 
             const obj = {
-                foo: 'world',
+                week: 'world',
                 find() {
-                    return super.foo;
+                    return super.week;
                 }
             };
 
@@ -792,20 +856,20 @@
 
 
             const obj = {
-                foo: super.foo
+                week: super.week
             }
             /* SyntaxError: 'super' keyword unexpected here */
 
 
             const obj = {
-                foo: () => super.foo
+                week: () => super.week
             }
             /* SyntaxError: 'super' keyword unexpected here */
 
 
             const obj = {
-                foo: function () {
-                    return super.foo
+                week: function () {
+                    return super.week
                 }
             }
             /* SyntaxError: 'super' keyword unexpected here */
@@ -839,8 +903,8 @@
             n;
             /* { a: 3, b: 4 } */
 
-            let foo = { ...['a', 'b', 'c'] };
-            foo
+            let week = { ...['a', 'b', 'c'] };
+            week
             /* { 0: "a", 1: "b", 2: "c" } */
 
             {...'hello'}
@@ -861,7 +925,7 @@
         - `新增方法`
             - `Object.is - 比较两个值是否严格相等`
                 ```javascript
-                Object.is('foo', 'foo')
+                Object.is('week', 'week')
                 /* true */
 
                 Object.is({}, {})
@@ -916,18 +980,18 @@
 
                 /* 取值函数 */
                 const source = {
-                    get foo() { return 1 }
+                    get week() { return 1 }
                 };
                 const target = {};
 
                 Object.assign(target, source);
-                /* { foo: 1 } */
+                /* { week: 1 } */
                 ```
             - `Object.getOwnPropertyDescriptors - 返回所有自身属性(非继承属性)的描述对象`
                 ```javascript
                 const obj = {
-                    foo: 123,
-                    get bar() {
+                    week: 123,
+                    get month() {
                         return 'abc'
                     }
                 };
@@ -935,13 +999,13 @@
                 Object.getOwnPropertyDescriptors(obj);
                 /*
                 { 
-                    foo: {
+                    week: {
                         value: 123,
                         writable: true,
                         enumerable: true,
                         configurable: true },
-                    bar: {
-                        get: [Function: get bar],
+                    month: {
+                        get: [Function: get month],
                         set: undefined,
                         enumerable: true,
                         configurable: true
@@ -952,7 +1016,7 @@
 
                 /* 拷贝set、get */
                 const source = {
-                    set foo(value) {
+                    set week(value) {
                         console.log(value);
                     }
                 };
@@ -964,7 +1028,7 @@
                 const obj = Object.create(
                     prot,
                     Object.getOwnPropertyDescriptors({
-                        foo: 123,
+                        week: 123,
                     })
                 );
                 ```
@@ -999,7 +1063,7 @@
 
                 Object.setPrototypeOf(1, {}) === 1;
                 /* true */
-                Object.setPrototypeOf('foo', {}) === 'foo';
+                Object.setPrototypeOf('week', {}) === 'week';
                 /* true */
                 Object.setPrototypeOf(true, {}) === true;
                 /* true */
@@ -1024,9 +1088,9 @@
 
             - `Object.keys - 返回参数对象自身的(不含继承的)所有可遍历属性的键名`
                 ```javascript
-                var obj = { foo: 'bar', baz: 42 };
+                var obj = { week: 'month', year: 42 };
                 Object.keys(obj)
-                /* ["foo", "baz"] */
+                /* ["week", "year"] */
                 ```
 
             - `Object.values - 返回参数对象自身的(不含继承的)所有可遍历属性的键值`
@@ -1049,10 +1113,10 @@
                 /* [42] */
 
                 /* 过滤Symbol */
-                Object.values({ [Symbol()]: 123, foo: 'abc' });
+                Object.values({ [Symbol()]: 123, week: 'abc' });
                 /* ['abc'] */
 
-                Object.values('foo')
+                Object.values('week')
                 /* ['f', 'o', 'o'] */
 
                 Object.values(42)；
@@ -1062,34 +1126,34 @@
                 ```
             - `entries - 返回参数对象自身的(不含继承的)所有可遍历属性的键值对`
                 ```javascript
-                const obj = { foo: 'bar', baz: 42 };
+                const obj = { week: 'month', year: 42 };
                 Object.entries(obj)
-                /* [ ["foo", "bar"], ["baz", 42] ] */
+                /* [ ["week", "month"], ["year", 42] ] */
 
-                const obj = { foo: 'bar', baz: 42 };
+                const obj = { week: 'month', year: 42 };
                 const map = new Map(Object.entries(obj));
                 map;
-                /* Map { foo: "bar", baz: 42 } */
+                /* Map { week: "month", year: 42 } */
                 ```
 
             - `fromEntries - entries逆操作`
                 ```javascript
                 Object.fromEntries([
-                    ['foo', 'bar'],
-                    ['baz', 42]
+                    ['week', 'month'],
+                    ['year', 42]
                 ])
-                /* { foo: "bar", baz: 42 } */
+                /* { week: "month", year: 42 } */
 
                 const entries = new Map([
-                    ['foo', 'bar'],
-                    ['baz', 42]
+                    ['week', 'month'],
+                    ['year', 42]
                 ]);
 
                 Object.fromEntries(entries);
-                /* { foo: "bar", baz: 42 } */
+                /* { week: "month", year: 42 } */
 
-                Object.fromEntries(new URLSearchParams('foo=bar&baz=qux'))
-                /* { foo: "bar", baz: "qux" } */
+                Object.fromEntries(new URLSearchParams('week=month&year=qux'))
+                /* { week: "month", year: "qux" } */
                 ```
     - `函数的扩展`
 
@@ -1108,32 +1172,32 @@
             log('Hello', '');
             /* Hello */
 
-            function foo({ x, y = 5 }) {
+            function week({ x, y = 5 }) {
                 console.log(x, y);
             }
 
-            foo({});
+            week({});
             /* undefined 5 */
 
-            foo({x: 1});
+            week({x: 1});
             /* 1 5 */
 
-            foo({x: 1, y: 2});
+            week({x: 1, y: 2});
             /* 1 2 */
 
-            foo();
+            week();
             /* TypeError: Cannot read property 'x' of undefined */
 
-            function foo({x, y = 5} = {}) {
+            function week({x, y = 5} = {}) {
                 console.log(x, y);
             }
 
-            foo();
+            week();
             /* undefined 5 */
             ```
             - `参数变量已经默认声明, 不能用let或const再次声明`
             ```javascript
-            function foo(x = 5) {
+            function week(x = 5) {
                 let x = 1;
                 const x = 2;
             }
@@ -1142,7 +1206,7 @@
 
             - `函数不能有同名参数`
             ```javascript
-            function foo(x, x, y = 1) {
+            function week(x, x, y = 1) {
                 /* ... */
             }
             /* SyntaxError: Duplicate parameter name not allowed in this context */
@@ -1151,15 +1215,15 @@
             - `参数默认值是惰性求值`
             ```javascript
             let x = 99;
-            function foo(p = x + 1) {
+            function week(p = x + 1) {
                 console.log(p);
             }
 
-            foo();
+            week();
             /* 100 */
 
             x = 100;
-            foo();
+            week();
             /* 101 */
             ```
 
@@ -1205,22 +1269,22 @@
             f();
             /* 1 */
 
-            function bar(func = () => foo) {
-                let foo = 'inner';
+            function month(func = () => week) {
+                let week = 'inner';
                 console.log(func());
             }
 
-            bar();
-            /* ReferenceError: foo is not defined */
+            month();
+            /* ReferenceError: week is not defined */
 
             var x = 1;
-            function foo(x, y = function() { x = 2; }) {
+            function week(x, y = function() { x = 2; }) {
                 var x = 3;
                 y();
                 console.log(x);
             }
 
-            foo();
+            week();
             /* 3 */
             x;
             /* 1 */
@@ -1230,11 +1294,11 @@
                 throw new Error('Missing parameter');
             }
 
-            function foo(mustBeProvided = throwIfMissing()) {
+            function week(mustBeProvided = throwIfMissing()) {
                 return mustBeProvided;
             }
 
-            foo();
+            week();
             /* Error: Missing parameter */
             ```
 
@@ -1263,9 +1327,9 @@
 
         - `name - 返回函数名`
             ```javascript
-            function foo() {}
-            foo.name;
-            /* "foo" */
+            function week() {}
+            week.name;
+            /* "week" */
 
             var f = function () {};
             f.name // ""
@@ -1305,7 +1369,7 @@
             ```
             - `函数体内的this对象指向定义时所在的对象而不是使用时所在的对象`
             ```javascript
-            function foo() {
+            function week() {
                 setTimeout(() => {
                     console.log('id:', this.id);
                 }, 100);
@@ -1313,10 +1377,10 @@
 
             var id = 21;
 
-            foo.call({ id: 42 });
+            week.call({ id: 42 });
             /* 42 */
 
-            function foo() {
+            function week() {
                 return () => {
                     return () => {
                         return () => {
@@ -1326,7 +1390,7 @@
                 };
             }
 
-            var f = foo.call({id: 1});
+            var f = week.call({id: 1});
 
             var t1 = f.call({id: 2})()();
             var t2 = f().call({id: 3})();
@@ -1376,8 +1440,8 @@
         - `函数参数的尾逗号 - 方便代码版本管理`
         ```javascript
         func(
-            'foo',
-            'bar',
+            'week',
+            'month',
         );
         ```
 
@@ -1391,13 +1455,13 @@
             /* symbol */
 
             /* 接收参数 - 仅作为描述 */
-            let symbol1 = Symbol('foo');
+            let symbol1 = Symbol('week');
 
             symbol1;
-            /* Symbol(foo) */
+            /* Symbol(week) */
 
             symbol1.toString();
-            /* "Symbol(foo)" */
+            /* "Symbol(week)" */
 
             let symbol1 = Symbol();
             let symbol2 = Symbol();
@@ -1489,8 +1553,8 @@
 
         - `Symbol.for - 返回当前索引Symbol`
             ```javascript
-            let symbol1 = Symbol.for('foo');
-            let symbol2 = Symbol.for('foo');
+            let symbol1 = Symbol.for('week');
+            let symbol2 = Symbol.for('week');
 
             symbol1 === symbol2;
             /* true */
@@ -1502,7 +1566,7 @@
             Symbol.keyFor(symbol1);
             /* symbol1 */
 
-            let symbol2 = Symbol("foo");
+            let symbol2 = Symbol("week");
             Symbol.keyFor(symbol2);
             /* undefined */
             ```
@@ -1646,18 +1710,18 @@
         }
 
         class MyClass {
-            foo() {
+            week() {
                 return 1;
             }
             get [Symbol.unscopables]() {
-                return { foo: true };
+                return { week: true };
             }
         }
 
-        var foo = function () { return 2; };
+        var week = function () { return 2; };
 
         with (MyClass.prototype) {
-            foo();
+            week();
             /* 2 */
         }
         ```
