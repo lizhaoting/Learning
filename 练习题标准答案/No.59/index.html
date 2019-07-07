@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">1</div>
+</body>
+<script>
+    const queue = new Set();
+
+    const observe = fun => queue.add(fun);
+
+    const observable = obj => new Proxy(
+        obj,
+        {
+            set(target, key, value, receiver) {
+                const result = Reflect.set(target, key, value, receiver);
+                queue.forEach(observer => observer());
+                return result;
+            }
+        }
+    );
+
+    let data = {
+        count: 1,
+    }
+
+    const update = () => {
+        document.getElementById('app').innerHTML = data.count;
+    }
+
+    const observeData = observable(data);
+
+    observe(update);
+
+    setInterval(() => {
+        observeData.count++;
+        console.log(data.count);
+    }, 500);
+</script>
+</html>
