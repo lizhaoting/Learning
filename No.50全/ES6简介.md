@@ -1662,31 +1662,8 @@
         }
         ```
     - `Set、Map`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    - `Proxy`
+    - `Reflect`
 
 
 
@@ -1708,8 +1685,6 @@
 
 
     
-    - `Proxy`
-    - `Reflect`
     - `Promise`
     - `Iterator`
     - `Generator`
