@@ -2,7 +2,11 @@ import './style.css';
 
 var element = document.createElement('div');
 
-element.innerHTML = 'Hello Word!';
+function greeter(person: string) {
+    return "Hello, " + person;
+}
+
+element.innerHTML = greeter('Eric');
 
 const className = 'header';
 

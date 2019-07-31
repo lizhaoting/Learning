@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n__webpack_require__(/*! ./style.css */ \"./style.css\");\r\nvar element = document.createElement('div');\r\nelement.innerHTML = 'Hello Word!';\r\nconst className = 'header';\r\nelement.classList.add(className);\r\ndocument.getElementById('app').appendChild(element);\r\n\n\n//# sourceURL=webpack:///./index.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n__webpack_require__(/*! ./style.css */ \"./style.css\");\r\nvar element = document.createElement('div');\r\nfunction greeter(person) {\r\n    return \"Hello, \" + person;\r\n}\r\nelement.innerHTML = greeter('Eric');\r\nconst className = 'header';\r\nelement.classList.add(className);\r\ndocument.getElementById('app').appendChild(element);\r\n\n\n//# sourceURL=webpack:///./index.ts?");
 
 /***/ }),
 

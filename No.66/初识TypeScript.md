@@ -70,6 +70,70 @@ function hello(name: string) {
   ```
 
 - `搭配Webpack`
+  - `index.ts`
+  ```typescript
+  import './style.css';
+
+  var element = document.createElement('div');
+
+  function greeter(person: string) {
+      return "Hello, " + person;
+  }
+
+  element.innerHTML = greeter('Eric');
+
+  const className = 'header';
+
+  element.classList.add(className);
+
+  document.getElementById('app').appendChild(element);
+  ```
+
+  - `tsconfig.json`
+  ```javascript
+  {
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es6",
+      "allowJs": true
+    },
+    "include": [
+      "./*"
+    ],
+    "exclude": [
+      "./node_modules"
+    ]
+  }
+  ```
+
+  - `webpack.config`
+  ```typescript
+  const path = require('path');
+
+  module.exports = {
+    entry: './index.ts',
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'bundle.js'
+    },
+    mode: 'development',
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          loader: 'ts-loader'
+        },
+        {
+          test: /\.css$/,
+          use: [
+            'style-loader',
+            'css-loader'
+          ]
+        }
+      ]
+    }
+  };
+  ```
 
 > **`6：总结`**
 ```css
