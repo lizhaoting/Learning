@@ -14,7 +14,15 @@ function hello(name: string) {
     return "Hello, " + name;
 }
 ```
-> **`2：环境搭建`**
+> **`2：TypeScript优势`**
+- `静态类型，TypeScript代码比JavaScript 更容易预测且更容易调试`
+
+- `面向对象的功能（如模块和命名空间）使组织大型代码库更易于管理`
+
+- `编译步骤在到达运行时之前捕获错误`
+
+- `很多框架类库使用TypeScript编写`
+> **`3：环境搭建`**
 - `npm安装编译`
   ```javascript
   npm i typescript -g
@@ -48,6 +56,8 @@ function hello(name: string) {
 
   ```css
   tsc hello.ts
+
+  /* 可以同时编辑多个， 逗号分割 */
 
 
   /*
@@ -135,7 +145,7 @@ function hello(name: string) {
   };
   ```
 
-> **`6：总结`**
+> **`4：总结`**
 ```css
-本节课介绍了ES6新特征中Module的基本用法, 重点在于理解import与export的复合调用, 最后介绍了import()动态加载
+本节课介绍了TypeScript的产生背景与优势，结合npm与webpack介绍了TypeScript编译
 ```
