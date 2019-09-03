@@ -113,7 +113,7 @@
 importScripts('./one.js', './two.js');
 ```
 
-> `7：WebWOrker错误监听`
+> `7：WebWorker错误监听`
 ```css
 webWorker.addEventListener('error', error => {
     console.error(error.filename, error.lineno, error.message);

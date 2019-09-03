@@ -109,7 +109,7 @@
         100% { background-position: -100% 0;
 	}
 	```
-- **炫彩文字**
+- **特殊图形**
 	```css
 	background: linear-gradient(-60deg, blue 50%, transparent 0) no-repeat top left / 50% 50%,
                 linear-gradient(60deg, blue 50%, transparent 0) no-repeat top right / 50% 50%,

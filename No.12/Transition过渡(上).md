@@ -31,7 +31,7 @@
 
 - `默认值` - 0
 
-> **`5：Transition-duration`**
+> **`4：Transition-duration`**
   ```css
   transition-duration: s | ms;
   ```
@@ -39,7 +39,7 @@
 
 - `默认值` - 0
 
-> **`4：Transition-property`**
+> **`5：Transition-property`**
   ```css
   transition-property: none | all | property;
   ```
@@ -103,7 +103,7 @@
     z-index
     ```
 
-> **`5：Transition-duration`**
+> **`6：Transition-duration`**
   ```css
   transition-duration: s | ms;
   ```
@@ -111,14 +111,14 @@
 
 - `默认值` - 0
 
-> **`5：Transition-delay`**
+> **`7：Transition-delay`**
   ```css
   transition-delay: s | ms;
   ```
 
 - `默认值` - 0
 
-> **`6：贝塞尔曲线`**
+> **`8：贝塞尔曲线`**
 - `应用于二维图形应用程序的数学曲线`
 
 - `绘制贝塞尔曲线`
@@ -165,7 +165,7 @@
 
 - `http://cubic-bezier.com/` - 可视化cubic-bezier编辑
 
-> **`7：Transition-timing-function`**
+> **`9：Transition-timing-function`**
   ```css
   transition-timing-function: linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n1, n2, n3, n4);
   ```

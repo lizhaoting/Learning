@@ -171,7 +171,7 @@ Person.prototype;
 }
 */
 ```
-> **`6：课后练习`**
+> **`4：课后练习`**
 - `将公用方法getName提取到prototype级`
     ```css
     function Student(name) {
@@ -244,7 +244,7 @@ Person.prototype;
     Eric.getName();
     ```
 
-> **`7：总结`**
+> **`5：总结`**
 ```css
 本节课介绍了JavaScript原型链, 从对象属性入手介绍了__proto__与prototype, 讲解了原型链的追溯方式, 最后结合练习题引入原型链继承概念
 ```
