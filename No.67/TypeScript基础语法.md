@@ -57,7 +57,7 @@
   let name: string = Color[2];
   ```
 
-- `Any - 编译时选择地包含或移除类型、方法检查(Object会检查方法)`
+- `Any - 编译时选择地包含或移除类型、方法检查`
   ```typescript
   let something: any = 4;
   something = "maybe a string instead";
@@ -100,8 +100,84 @@
 
 > **`2：变量声明`**
   -  `let、const - 与ES6行为保持一致`
+> **`3：函数`**
+  - `函数类型`
+    - `参数类型`
+    - `返回值类型(可自动识别)`
+    ```typescript
+    function add(x: number, y: number): number {
+        return x + y;
+    }
 
-> **`3：接口`**
+    let myAdd = function(x: number, y: number): number {
+      return x + y;
+    };
+    ```
+    - `完整类型`
+    ```typescript
+    let myAdd: (x: number, y: number) => number = function(x: number, y: number): number {
+      return x + y;
+    };
+    ```
+  - `可选参数、默认参数、Rest参数`
+    ```typescript
+    function getName(firstName: string, lastName?: string) {
+      if (lastName)
+          return firstName + " " + lastName;
+      else
+          return firstName;
+    }
+
+    let result1 = getName("Eric");
+
+    let result2 = getName("Eric", "Lee", "Sr.");
+    // Expected 1-2 arguments, but got 3
+
+    let result3 = getName("Eric", "Lee");
+    ```
+    ```typescript
+    function getName(firstName = "Will", lastName: string) {
+        return firstName + " " + lastName;
+    }
+    ```
+    ```typescript
+    function getName(firstName: string, ...restOfName: string[]) {
+      return firstName + " " + restOfName.join(" ");
+    }
+    ```
+  - `This`
+    ```typescript
+    let deck: Deck = {
+      suits: ["hearts", "spades", "clubs", "diamonds"],
+      cards: Array(52),
+      createCardPicker: function(this: Deck) {
+        return () => {
+            let pickedCard = Math.floor(Math.random() * 52);
+            let pickedSuit = Math.floor(pickedCard / 13);
+
+            return {suit: this.suits[pickedSuit], card: pickedCard % 13};
+        }
+      }
+    }
+    ```
+  - `动态返回值`
+    ```typescript
+    function pickCard(x: {suit: string; card: number; }[]): number;
+    function pickCard(x: number): {suit: string; card: number; };
+    function pickCard(x): any {
+        if (typeof x == "object") {
+            let pickedCard = Math.floor(Math.random() * x.length);
+            return pickedCard;
+        }
+        else if (typeof x == "number") {
+            let pickedSuit = Math.floor(x / 13);
+            return { suit: suits[pickedSuit], card: x % 13 };
+        }
+    }
+    ```
+> **`4：接口`**
+  - `对值所具有的结构进行类型检查`
+
   -  `检查变量组合以确保它们使用一致、不会转换为JavaScript`
 
   - `基本用法`
@@ -148,8 +224,52 @@
     let mySquare = createSquare({ color: "black" });
     ```
   - `只读属性`
+    ```typescript
+    interface Point {
+      readonly x: number;
+      readonly y: number;
+    }
+    let point: Point = { x: 10, y: 20 };
+    ```
+  - `索引`
+    ```typescript
+    interface StringArray {
+      [index: number]: string;
+    }
 
-> **`4：总结`**
+    let myArray: StringArray;
+    myArray = ["Bob", "Fred"];
+
+    let myStr: string = myArray[0];
+    ```
+> **`5：课后练习`**
+- `下列函数的执行结果是`
+    ```typescript
+    function GetName(firstName = "Will", lastName: string) {
+        return firstName + " " + lastName;
+    }
+
+    let result1 = GetName("Bob");
+    let result2 = GetName("Bob", "Adams", "Sr.");
+    let result3 = GetName("Bob", "Adams");
+    let result4 = GetName(undefined, "Adams");
+    ```
+- `为下列函数添加interface`
+    ```typescript
+    let deck: Deck = {
+        suits: ["hearts", "spades", "clubs", "diamonds"],
+        cards: Array(52),
+        createCardPicker: function(this: Deck) {
+            return () => {
+                let pickedCard = Math.floor(Math.random() * 52);
+                let pickedSuit = Math.floor(pickedCard / 13);
+
+                return {suit: this.suits[pickedSuit], card: pickedCard % 13};
+            }
+        }
+    }
+    ```
+> **`6：总结`**
 ```css
-本节课介绍了TypeScript的产生背景与优势，结合npm与webpack介绍了TypeScript编译
+本节课介绍了TypeScript的基本数据类型于函数，并介绍了为数据于函数定义接口
 ```
