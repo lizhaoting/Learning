@@ -62,7 +62,7 @@
     - `keywords - 关键字`
     - `license - 开源许可证`
 
-- `package-lock.json - 锁定安装时包的版本号`
+- `package-lock.json - 锁定安装时包的版本号 - 与node_modules层级对应`
   ```json
   "express": {
     "version": "4.15.4",
@@ -99,6 +99,10 @@
       "vary": "1.1.1"
     }
   }
+  ```
+
+  ```css
+  npm config set package-lock false
   ```
 - `安装依赖包`
   -  `本地安装（local）- 当前项目node_modules`
