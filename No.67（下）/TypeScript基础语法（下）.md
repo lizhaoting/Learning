@@ -1,4 +1,4 @@
-##  （六十八）TypeScript中的类
+##  （六十七）TypeScript基础语法（上）
 
 > **`1：基本用法`**
   ```typescript

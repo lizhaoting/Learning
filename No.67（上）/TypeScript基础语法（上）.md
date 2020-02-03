@@ -1,4 +1,4 @@
-##  （六十七）TypeScript基础语法
+##  （六十七）TypeScript基础语法（上）
 
 > **`1：基本类型`**
 - `在线TypeScript转换`

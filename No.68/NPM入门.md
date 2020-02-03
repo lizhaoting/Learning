@@ -1,4 +1,4 @@
-##  （六十九）NPM入门
+##  （六十八）NPM入门
 
 > **`1：NPM简介`**
 - `Node Package Manager - Node.js包管理工具`
