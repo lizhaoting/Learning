@@ -19,6 +19,6 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "nconf": "^0.10.0",
-    "webpack": "^4.41.5"
+    "webpack": "^5.75.0"
   }
 }
